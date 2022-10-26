@@ -22,7 +22,7 @@ limitations under the License.
 
 To install, run:
 ```
-git clone https://github.com/opentensor/clm_model_tuning 
+git clone https://github.com/ViktorThink/clm_model_tuning
 cd clm_model_tuning
 pip install -r requirements.txt
 ```
