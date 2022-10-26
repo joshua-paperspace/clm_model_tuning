@@ -18,6 +18,18 @@ limitations under the License.
 
 **Note**: This script was adapted from HuggingFace's Transformers/language-modeling code.
 
+## How to run on servers
+
+To install, run:
+```
+git clone https://github.com/opentensor/clm_model_tuning 
+cd clm_model_tuning
+pip install -r requirements.txt
+```
+
+
+Run `python finetune_using_clm.py model.name="facebook/opt-125m" dataset.num_batches=1000` to train the 125m opt model on 1000 batches (Takes about 5 minutes on a T5 GPU)
+
 ## Language model tuning
 
 Fine-tuning the library models for language modeling on a text dataset 
