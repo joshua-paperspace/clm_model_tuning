@@ -380,6 +380,7 @@ def main(cfg: DictConfig):
             total_loss = 0
         train_losses = []
         for step, batch in enumerate(train_dataloader):
+            print("Step 1")
             # We need to skip steps until we reach the resumed step
             if (
                 cfg.training.checkpoint.resume_from_checkpoint
@@ -388,33 +389,43 @@ def main(cfg: DictConfig):
                 if resume_step is not None and step < resume_step:
                     completed_steps += 1
                     continue
-
+            print("Step 2")
             outputs = model(**batch)
+            print("Step 3")
             loss = outputs.loss
+            print("Step 4")
             train_losses.append(
                 accelerator.gather(loss.repeat(cfg.training.train_batch_size))
             )
+            print("Step 5")
             # We keep track of the loss at each epoch
             if cfg.tracking.enabled is True:
                 total_loss += loss.detach().float()
+            print("Step 6")
             loss = loss / cfg.training.gradient_accumulation_steps
+            print("Step 7")
             accelerator.backward(loss)
+            print("Step 8")
 
             if (
                 step % cfg.training.gradient_accumulation_steps == 0
                 or step == len(train_dataloader) - 1
             ):
+                print("Step 9")
                 optimizer.step()
                 lr_scheduler.step()
                 optimizer.zero_grad()
                 progress_bar.update(1)
                 completed_steps += 1
+                print("Step 10")
 
             if step % cfg.training.eval_every == 0:
+                print("Step 11")
                 train_losses_tensor = torch.cat(train_losses)
                 train_loss = torch.mean(train_losses_tensor)
                 model.eval()
                 eval_losses = []
+                print("Step 11")
                 for _eval_step, eval_batch in enumerate(eval_dataloader):
                     with torch.no_grad():
                         outputs = model(**eval_batch)
