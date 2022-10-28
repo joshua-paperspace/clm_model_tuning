@@ -40,6 +40,7 @@ training:
   lr_scheduler: "constant" # ["linear", "cosine", "cosine_with_restarts", "polynomial", "constant", "constant_with_warmup"]
   lr_warmup_steps: 0
   eval_every: 50
+  max_eval_steps: 1000
 
   checkpoint:
     resume_from_checkpoint: 0 # integer representing which checkpoint to load from, or <= 0 to not

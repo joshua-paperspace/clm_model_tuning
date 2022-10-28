@@ -425,7 +425,8 @@ def main(cfg: DictConfig):
                 train_loss = torch.mean(train_losses_tensor)
                 model.eval()
                 eval_losses = []
-                print("Step 11")
+                print("Step 12")
+                
                 for _eval_step, eval_batch in enumerate(eval_dataloader):
                     with torch.no_grad():
                         outputs = model(**eval_batch)
@@ -434,6 +435,8 @@ def main(cfg: DictConfig):
                     eval_losses.append(
                         accelerator.gather(loss.repeat(cfg.training.eval_batch_size))
                     )
+                    if _eval_step == cfg.training.max_eval_steps:
+                        break
 
                 losses = torch.cat(eval_losses)
                 losses = losses[: len(eval_dataset)]
