@@ -380,6 +380,8 @@ def main(cfg: DictConfig):
             total_loss = 0
         train_losses = []
         for step, batch in enumerate(train_dataloader):
+            if step > cfg.training.max_train_steps:
+                break
             print("Step 1")
             # We need to skip steps until we reach the resumed step
             if (
