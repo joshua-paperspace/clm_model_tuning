@@ -259,7 +259,6 @@ def main(cfg: DictConfig):
     raw_datasets = load_raw_datasets(cfg)
     tokenized_datasets = preprocess(cfg, accelerator, tokenizer, raw_datasets)
     if "train" not in tokenized_datasets.column_names:
-        print("Train not in")
         tokenized_datasets = tokenized_datasets.train_test_split(
             test_size=cfg.training.val_split_percent / 100
         )
@@ -269,9 +268,11 @@ def main(cfg: DictConfig):
         tokenized_datasets["test"] = tokenized_datasets_test_valid["train"]
         tokenized_datasets["validation"] = tokenized_datasets_test_valid["test"]
     
-    print("tokenized_datasets",tokenized_datasets)
     train_dataset = tokenized_datasets["train"]
-    eval_dataset = tokenized_datasets["validation"]
+    try:
+        eval_dataset = tokenized_datasets["validation"]
+    except:
+        eval_dataset = tokenized_datasets["test"]
 
     # Log a few random samples from the training set:
     for index in random.sample(range(len(train_dataset)), 3):
