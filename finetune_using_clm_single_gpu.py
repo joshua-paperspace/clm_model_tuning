@@ -3,7 +3,6 @@
 """
 Fine-tuning the library models for causal language modeling (GPT, GPT-2, CTRL, ...)
 on a text file or a dataset without using HuggingFace Trainer.
-
 Here is the full list of checkpoints on the hub that can be fine-tuned by this script:
 https://huggingface.co/models?filter=text-generation
 """
@@ -126,7 +125,6 @@ def load_model_and_tokenizer(cfg: DictConfig):
         from_tf=bool(".ckpt" in cfg.model.name),
         config=config,
     )
-    model.to(cfg.device)
     model.resize_token_embeddings(len(tokenizer))
 
     return tokenizer, model
@@ -268,12 +266,9 @@ def main(cfg: DictConfig):
         )
         tokenized_datasets["test"] = tokenized_datasets_test_valid["train"]
         tokenized_datasets["validation"] = tokenized_datasets_test_valid["test"]
-    
+
     train_dataset = tokenized_datasets["train"]
-    try:
-        eval_dataset = tokenized_datasets["validation"]
-    except:
-        eval_dataset = tokenized_datasets["test"]
+    eval_dataset = tokenized_datasets["validation"]
 
     # Log a few random samples from the training set:
     for index in random.sample(range(len(train_dataset)), 3):
@@ -295,15 +290,15 @@ def main(cfg: DictConfig):
     )
 
     # Prepare everything using our accelerator
-    # (
-    #     model,
-    #     optimizer,
-    #     train_dataloader,
-    #     eval_dataloader,
-    #     lr_scheduler,
-    # ) = accelerator.prepare(
-    #     model, optimizer, train_dataloader, eval_dataloader, lr_scheduler
-    # )
+    (
+        model,
+        optimizer,
+        train_dataloader,
+        eval_dataloader,
+        lr_scheduler,
+    ) = accelerator.prepare(
+        model, optimizer, train_dataloader, eval_dataloader, lr_scheduler
+    )
 
     # Scheduler and math around the number of training steps.
     overrode_max_train_steps = False
@@ -339,7 +334,7 @@ def main(cfg: DictConfig):
         experiment_config["lr_scheduler_type"] = experiment_config[
             "lr_scheduler_type"
         ].value
-        # accelerator.init_trackers("finetune_using_clm", experiment_config)
+        accelerator.init_trackers("finetune_using_clm", experiment_config)
 
     logger.info("***** Running training *****")
     logger.info(f"  Num examples = {len(train_dataset)}")
@@ -360,10 +355,10 @@ def main(cfg: DictConfig):
 
     # Potentially load in the weights and states from a previous save
     if cfg.training.checkpoint.resume_from_checkpoint > 0:
-        # accelerator.print(
-        #     f"Resumed from checkpoint: {cfg.training.checkpoint.resume_from_checkpoint}"
-        # )
-        # accelerator.load_state(cfg.training.checkpoint.resume_from_checkpoint)
+        accelerator.print(
+            f"Resumed from checkpoint: {cfg.training.checkpoint.resume_from_checkpoint}"
+        )
+        accelerator.load_state(cfg.training.checkpoint.resume_from_checkpoint)
         path = os.path.basename(cfg.training.checkpoint.resume_from_checkpoint)
         training_difference = os.path.splitext(path)[0]
 
@@ -381,8 +376,6 @@ def main(cfg: DictConfig):
             total_loss = 0
         train_losses = []
         for step, batch in enumerate(train_dataloader):
-            if step > cfg.training.max_train_steps:
-                break
             # We need to skip steps until we reach the resumed step
             if (
                 cfg.training.checkpoint.resume_from_checkpoint
@@ -391,7 +384,7 @@ def main(cfg: DictConfig):
                 if resume_step is not None and step < resume_step:
                     completed_steps += 1
                     continue
-            batch=batch.to(cfg.device)
+
             outputs = model(**batch)
             loss = outputs.loss
             train_losses.append(
@@ -401,7 +394,7 @@ def main(cfg: DictConfig):
             if cfg.tracking.enabled is True:
                 total_loss += loss.detach().float()
             loss = loss / cfg.training.gradient_accumulation_steps
-            loss.backward(loss)
+            accelerator.backward(loss)
 
             if (
                 step % cfg.training.gradient_accumulation_steps == 0
@@ -418,14 +411,13 @@ def main(cfg: DictConfig):
                 train_loss = torch.mean(train_losses_tensor)
                 model.eval()
                 eval_losses = []
-                
                 for _eval_step, eval_batch in enumerate(eval_dataloader):
                     with torch.no_grad():
                         outputs = model(**eval_batch)
 
                     loss = outputs.loss
                     eval_losses.append(
-                        accelerator.gather(loss.repeat(cfg.training.eval_batch_size))
+                        accelerator.gather(loss.repeat(cfg.training.eval_batch_size).clone().detach())
                     )
                     if _eval_step == cfg.training.max_eval_steps:
                         break
