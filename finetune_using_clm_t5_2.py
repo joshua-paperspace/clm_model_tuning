@@ -471,7 +471,7 @@ def main(cfg: DictConfig):
                     
                     if _eval_step == 0 and epoch == 0:
                         print("Eval")
-                        print("Full sequence",batch["input_ids"][0])
+                        print("Full sequence",eval_batch["input_ids"][0])
                         print("Input ids", input_ids[0])
                         print("lm_labels",lm_labels[0])
                     
