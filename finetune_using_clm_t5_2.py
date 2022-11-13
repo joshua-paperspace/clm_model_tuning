@@ -473,7 +473,7 @@ def main(cfg: DictConfig):
                         print("Eval")
                         print("Full sequence",eval_batch["input_ids"][0])
                         print("Input ids", input_ids[0])
-                        print("lm_labels",lm_labels[0])
+                        print("lm_labels",lm_labels)
                     
 
         
