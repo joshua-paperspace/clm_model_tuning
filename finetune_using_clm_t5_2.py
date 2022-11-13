@@ -416,7 +416,7 @@ def main(cfg: DictConfig):
 
             b_input_ids = batch["input_ids"]
             batch["attention_mask"]
-            lm_labels = batch["input_ids"].clone().detach()
+            lm_labels = batch["input_ids"][:,1:].clone().detach()
             
             lm_labels[:,:-2] = -100
             batch["input_ids"] = batch["input_ids"][:,:-1]
