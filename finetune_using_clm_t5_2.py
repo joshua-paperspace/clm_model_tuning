@@ -421,7 +421,7 @@ def main(cfg: DictConfig):
             batch["input_ids"] = batch["input_ids"][:,:-1]
             batch["input_ids"][:,-1] = 1
             
-            if step == 0:
+            if step == 0 and epoch == 0:
                 print("Keys", batch.keys())
                 print("input_ids",batch["input_ids"][0])
                 print("lm_labels",lm_labels[0])
@@ -432,10 +432,7 @@ def main(cfg: DictConfig):
             train_losses.append(
                 accelerator.gather(loss.repeat(cfg.training.train_batch_size))
             )
-            if step == 0:
-                print("Keys", batch.keys())
-                print("input_ids",batch["input_ids"][0])
-                print("lm_labels",lm_labels[0])
+
             # We keep track of the loss at each epoch
             if cfg.tracking.enabled is True:
                 total_loss += loss.detach().float()
