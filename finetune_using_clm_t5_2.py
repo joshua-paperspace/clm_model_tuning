@@ -415,14 +415,14 @@ def main(cfg: DictConfig):
                     completed_steps += 1
                     continue
 
-            batch["attention_mask"] = batch["attention_mask"][:,:(cfg.dataset.block_size/2)+1]
+            batch["attention_mask"] = batch["attention_mask"][:,:int(cfg.dataset.block_size/2)+1]
             
             
             lm_labels = batch["input_ids"][:,(cfg.dataset.block_size/2):-1].clone().detach()
             
             lm_labels[b_decoder_in[:, :] == 1] = -100
             
-            batch["input_ids"] = batch["input_ids"][:,:cfg.dataset.block_size/2+1]
+            batch["input_ids"] = batch["input_ids"][:,:int(cfg.dataset.block_size/2+1)]
             batch["input_ids"][:,-1] = 1
             
             if step == 0 and epoch == 0:
