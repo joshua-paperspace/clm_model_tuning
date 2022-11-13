@@ -459,7 +459,7 @@ def main(cfg: DictConfig):
                 model.eval()
                 eval_losses = []
                 for _eval_step, eval_batch in enumerate(eval_dataloader):
-                    batch["attention_mask"] = eval_batch["attention_mask"][:,:int(cfg.dataset.block_size/2)+1]
+                    eval_batch["attention_mask"] = eval_batch["attention_mask"][:,:int(cfg.dataset.block_size/2)+1]
             
             
                     lm_labels = eval_batch["input_ids"][:,int(cfg.dataset.block_size/2):int(cfg.dataset.block_size/2)+1].clone().detach()
