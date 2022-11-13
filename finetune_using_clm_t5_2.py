@@ -192,7 +192,7 @@ def preprocess(cfg, accelerator, tokenizer, raw_datasets):
             examples[text_column_name],
             padding=pad,
             truncation=True,
-            max_length=cfg.dataset.block_size,
+            max_length=cfg.dataset.block_size+1,
         )
         result["labels"] = result["input_ids"].copy()
         return result
@@ -418,7 +418,9 @@ def main(cfg: DictConfig):
             batch["attention_mask"]
             lm_labels = batch["input_ids"].clone().detach()
             
-            lm_labels[:,:-1] = -100
+            lm_labels[:,:-2] = -100
+            batch["input_ids"] = batch["input_ids"][:,:-1]
+            batch["input_ids"][:,-1] = 1
 
             outputs = model(input_ids=batch["input_ids"],attention_mask=batch["attention_mask"], labels=lm_labels)
             loss = outputs.loss
