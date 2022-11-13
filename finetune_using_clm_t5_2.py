@@ -418,7 +418,7 @@ def main(cfg: DictConfig):
             batch["attention_mask"] = batch["attention_mask"][:,:int(cfg.dataset.block_size/2)+1]
             
             
-            lm_labels = batch["input_ids"][:,(cfg.dataset.block_size/2):-1].clone().detach()
+            lm_labels = batch["input_ids"][:,int(cfg.dataset.block_size/2):-1].clone().detach()
             
             lm_labels[b_decoder_in[:, :] == 1] = -100
             
