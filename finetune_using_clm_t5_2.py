@@ -421,6 +421,12 @@ def main(cfg: DictConfig):
             lm_labels[:,:-2] = -100
             batch["input_ids"] = batch["input_ids"][:,:-1]
             batch["input_ids"][:,-1] = 1
+            
+            if step == 0:
+                print("Keys", batch.keys())
+                print("input_ids",batch["input_ids"][0])
+                print("lm_labels",lm_labels[0])
+            
 
             outputs = model(input_ids=batch["input_ids"],attention_mask=batch["attention_mask"], labels=lm_labels)
             loss = outputs.loss
