@@ -413,17 +413,21 @@ def main(cfg: DictConfig):
                 if resume_step is not None and step < resume_step:
                     completed_steps += 1
                     continue
-            if step == 0:
-                print("Keys", b_input_ids.keys())
-            # b_input_ids = 
-            # lm_labels = b_decoder_in[:, :].clone().detach()
-            # lm_labels[b_decoder_in[:, :] == tokenizer.pad_token_id] = -100    
 
-            outputs = model(**b_input_ids)
+            b_input_ids = batch["input_ids"]
+            batch["attention_mask"]
+            lm_labels = batch["input_ids"].clone().detach()
+            
+            lm_labels[:,:-1] = -100
+
+            outputs = model(input_ids=batch["input_ids"],attention_mask=batch["attention_mask"])
             loss = outputs.loss
             train_losses.append(
                 accelerator.gather(loss.repeat(cfg.training.train_batch_size))
             )
+            if step == 0:
+                print("Keys", batch.keys())
+                print("lm_labels",lm_labels[0])
             # We keep track of the loss at each epoch
             if cfg.tracking.enabled is True:
                 total_loss += loss.detach().float()
