@@ -427,6 +427,7 @@ def main(cfg: DictConfig):
             )
             if step == 0:
                 print("Keys", batch.keys())
+                print("input_ids",batch["input_ids"][0])
                 print("lm_labels",lm_labels[0])
             # We keep track of the loss at each epoch
             if cfg.tracking.enabled is True:
