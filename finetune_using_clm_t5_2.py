@@ -459,8 +459,21 @@ def main(cfg: DictConfig):
                 model.eval()
                 eval_losses = []
                 for _eval_step, eval_batch in enumerate(eval_dataloader):
+                    batch["attention_mask"] = eval_batch["attention_mask"][:,:int(cfg.dataset.block_size/2)+1]
+            
+            
+                    lm_labels = eval_batch["input_ids"][:,int(cfg.dataset.block_size/2):int(cfg.dataset.block_size/2)+1].clone().detach()
+                    
+                    lm_labels[lm_labels[:, :] == 1] = -100
+                    
+                    batch["input_ids"] = eval_batch["input_ids"][:,:int(cfg.dataset.block_size/2+1)]
+                    batch["input_ids"][:,-1] = 1
+                    
+
+        
+                    outputs = model(input_ids=batch["input_ids"],attention_mask=batch["attention_mask"], labels=lm_labels)
                     with torch.no_grad():
-                        outputs = model(**eval_batch)
+                        outputs = model(input_ids=batch["input_ids"],attention_mask=batch["attention_mask"], labels=lm_labels)
 
                     loss = outputs.loss
                     eval_losses.append(
