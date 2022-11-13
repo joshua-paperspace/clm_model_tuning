@@ -378,6 +378,7 @@ def main(cfg: DictConfig):
         range(cfg.training.max_train_steps),
         disable=not accelerator.is_local_main_process,
     )
+    print("F",cfg.dataset.block_size)
 
     completed_steps = 0
     starting_epoch = 0
@@ -414,10 +415,10 @@ def main(cfg: DictConfig):
                     completed_steps += 1
                     continue
 
-            batch["attention_mask"] = batch["attention_mask"][:,:cfg.dataset.block_size/2+1]
+            batch["attention_mask"] = batch["attention_mask"][:,:(cfg.dataset.block_size/2)+1]
             
             
-            lm_labels = batch["input_ids"][:,cfg.dataset.block_size/2:-1].clone().detach()
+            lm_labels = batch["input_ids"][:,(cfg.dataset.block_size/2):-1].clone().detach()
             
             lm_labels[b_decoder_in[:, :] == 1] = -100
             
