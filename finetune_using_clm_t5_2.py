@@ -414,8 +414,7 @@ def main(cfg: DictConfig):
                     completed_steps += 1
                     continue
 
-            b_input_ids = batch["input_ids"]
-            batch["attention_mask"]
+            batch["attention_mask"] = batch["attention_mask"][:,1:]
             lm_labels = batch["input_ids"][:,1:].clone().detach()
             
             lm_labels[:,:-2] = -100
