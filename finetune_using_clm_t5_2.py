@@ -420,7 +420,7 @@ def main(cfg: DictConfig):
             
             lm_labels[:,:-1] = -100
 
-            outputs = model(input_ids=batch["input_ids"],attention_mask=batch["attention_mask"])
+            outputs = model(input_ids=batch["input_ids"],attention_mask=batch["attention_mask"], labels=lm_labels)
             loss = outputs.loss
             train_losses.append(
                 accelerator.gather(loss.repeat(cfg.training.train_batch_size))
