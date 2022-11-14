@@ -420,9 +420,8 @@ def main(cfg: DictConfig):
             input_ids = batch["input_ids"][:,:int(cfg.dataset.block_size/2+1)].clone().detach()
             input_ids[:,-1] = 1
             
-            lm_labels = batch["input_ids"][:,int(cfg.dataset.block_size/2):-1].clone().detach()            
+            lm_labels = batch["input_ids"][:,int(cfg.dataset.block_size/2):int(cfg.dataset.block_size/2)+2].clone().detach()            
             lm_labels[lm_labels[:, :] == 0] = -100
-            lm_labels=lm_labels[:,:]
             
             
             
@@ -431,6 +430,7 @@ def main(cfg: DictConfig):
                 print("Keys", batch.keys())
                 print("input_ids",batch["input_ids"][0])
                 print("lm_labels",lm_labels[0])
+                print("lm_labels shape",lm_labels.shape)
             
 
             outputs = model(input_ids=input_ids,attention_mask=attention_mask, labels=lm_labels)
@@ -476,6 +476,7 @@ def main(cfg: DictConfig):
                         print("Full sequence",eval_batch["input_ids"][0])
                         print("Input ids", input_ids[0])
                         print("lm_labels",lm_labels[0])
+                        print("lm_labels shape",lm_labels.shape)
                     
 
         
