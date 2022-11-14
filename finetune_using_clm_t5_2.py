@@ -420,7 +420,7 @@ def main(cfg: DictConfig):
             input_ids = batch["input_ids"][:,:int(cfg.dataset.block_size/2+1)].clone().detach()
             input_ids[:,-1] = 1
             
-            lm_labels = batch["input_ids"][:,int(cfg.dataset.block_size/2):int(cfg.dataset.block_size/2)+2].clone().detach()            
+            lm_labels = batch["input_ids"][:,int(cfg.dataset.block_size/2):-1].clone().detach()            
             lm_labels[lm_labels[:, :] == 0] = -100
             
             
@@ -464,14 +464,14 @@ def main(cfg: DictConfig):
                     eval_batch["attention_mask"] = eval_batch["attention_mask"][:,:int(cfg.dataset.block_size/2)+1]
             
             
-                    lm_labels = eval_batch["input_ids"][:,int(cfg.dataset.block_size/2):int(cfg.dataset.block_size/2)+2].clone().detach()
+                    lm_labels = eval_batch["input_ids"][:,int(cfg.dataset.block_size/2):int(cfg.dataset.block_size/2)+1].clone().detach()
                     
                     lm_labels[lm_labels[:, :] == 0] = -100
                     
                     input_ids= eval_batch["input_ids"][:,:int(cfg.dataset.block_size/2+1)].clone().detach()
                     input_ids[:,-1] = 1
                     
-                    if _eval_step == 0 and epoch == 0:
+                    if _eval_step == 0 and epoch == 0 and step == cfg.training.eval_every:
                         print("Eval")
                         print("Full sequence",eval_batch["input_ids"][0])
                         print("Input ids", input_ids[0])
