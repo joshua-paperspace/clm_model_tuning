@@ -422,7 +422,7 @@ def main(cfg: DictConfig):
             
             lm_labels = batch["input_ids"][:,int(cfg.dataset.block_size/2):-1].clone().detach()            
             lm_labels[lm_labels[:, :] == 0] = -100
-            lm_labels=lm_labels[:,:2]
+            lm_labels=lm_labels[:,:]
             
             
             
