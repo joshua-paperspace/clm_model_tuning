@@ -217,7 +217,7 @@ def preprocess(cfg, accelerator, tokenizer, raw_datasets):
             )
 
     return tokenized_datasets
-def testModel(model, tokenizer, stop=-1):
+def testModel(model, tokenizer):
     import torch
     
     comments=getComments()
@@ -427,6 +427,7 @@ def main(cfg: DictConfig):
             
             
             if step == 0 and epoch == 0:
+                testModel(model, tokenizer)
                 print("Keys", batch.keys())
                 print("input_ids",batch["input_ids"][0])
                 print("lm_labels",lm_labels[0])
@@ -527,7 +528,7 @@ def main(cfg: DictConfig):
             )
 
         logger.info(f"done epoch {epoch}")
-
+    testModel(model, tokenizer)
     if cfg.output_dir is not None:
         accelerator.wait_for_everyone()
         unwrapped_model = accelerator.unwrap_model(model)
