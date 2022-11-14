@@ -415,15 +415,16 @@ def main(cfg: DictConfig):
                     completed_steps += 1
                     continue
 
-            batch["attention_mask"] = batch["attention_mask"][:,:int(cfg.dataset.block_size/2)+1]
+            attention_mask = batch["attention_mask"][:,:int(cfg.dataset.block_size/2)+1]
+            
+            input_ids = batch["input_ids"][:,:int(cfg.dataset.block_size/2+1)].clone().detach()
+            input_ids[:,-1] = 1
+            
+            lm_labels = batch["input_ids"][:,int(cfg.dataset.block_size/2):-1].clone().detach()            
+            lm_labels[lm_labels[:, :] == 0] = -100
             
             
-            lm_labels = batch["input_ids"][:,int(cfg.dataset.block_size/2):-1].clone().detach()
             
-            lm_labels[lm_labels[:, :] == 1] = -100
-            
-            batch["input_ids"] = batch["input_ids"][:,:int(cfg.dataset.block_size/2+1)]
-            batch["input_ids"][:,-1] = 1
             
             if step == 0 and epoch == 0:
                 print("Keys", batch.keys())
@@ -431,7 +432,7 @@ def main(cfg: DictConfig):
                 print("lm_labels",lm_labels[0])
             
 
-            outputs = model(input_ids=batch["input_ids"],attention_mask=batch["attention_mask"], labels=lm_labels)
+            outputs = model(input_ids=input_ids,attention_mask=attention_mask, labels=lm_labels)
             loss = outputs.loss
             train_losses.append(
                 accelerator.gather(loss.repeat(cfg.training.train_batch_size))
@@ -464,7 +465,7 @@ def main(cfg: DictConfig):
             
                     lm_labels = eval_batch["input_ids"][:,int(cfg.dataset.block_size/2):int(cfg.dataset.block_size/2)+1].clone().detach()
                     
-                    lm_labels[lm_labels[:, :] == 1] = -100
+                    lm_labels[lm_labels[:, :] == 0] = -100
                     
                     input_ids= eval_batch["input_ids"][:,:int(cfg.dataset.block_size/2+1)].clone().detach()
                     input_ids[:,-1] = 1
@@ -473,7 +474,7 @@ def main(cfg: DictConfig):
                         print("Eval")
                         print("Full sequence",eval_batch["input_ids"][0])
                         print("Input ids", input_ids[0])
-                        print("lm_labels",lm_labels)
+                        print("lm_labels",lm_labels[0])
                     
 
         
