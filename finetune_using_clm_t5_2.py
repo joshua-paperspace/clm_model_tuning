@@ -415,12 +415,12 @@ def main(cfg: DictConfig):
 
             attention_mask = batch["attention_mask"][:,:-1]
             
-            input_ids = batch["input_ids"][:,:-1)].clone().detach()
+            input_ids = batch["input_ids"][:,:-1].clone().detach()
             input_ids[:,-1] = 1
             
             #lm_labels = batch["input_ids"][:,int(cfg.dataset.block_size/2):-1].clone().detach()            
             #lm_labels[lm_labels[:, :] == 0] = -100
-            lm_labels = batch["input_ids"][:,:-1)].clone().detach()
+            lm_labels = batch["input_ids"][:,:-1].clone().detach()
             lm_labels[:,:-1] = -100
             
             
@@ -469,7 +469,7 @@ def main(cfg: DictConfig):
                     
                     lm_labels[:,:-1] = -100
                     
-                    input_ids= eval_batch["input_ids"][:,:-1)].clone().detach()
+                    input_ids= eval_batch["input_ids"][:,:-1].clone().detach()
                     input_ids[:,-1] = 1
                     
                     if _eval_step == 0 and epoch == 0 and step == cfg.training.eval_every:
