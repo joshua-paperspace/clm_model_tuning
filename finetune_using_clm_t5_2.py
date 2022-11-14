@@ -228,7 +228,7 @@ def testModel(model, tokenizer):
         
     
         input_ids=tokenizer.encode(text, return_tensors="pt",add_special_tokens=False)
-        decoder_input_ids=tokenizer.encode(text, return_tensors="pt",add_special_tokens=False)
+        decoder_input_ids=tokenizer.encode("<pad>", return_tensors="pt",add_special_tokens=False)
 
         beam_output = model.generate(
             input_ids=input_ids.cuda(),
