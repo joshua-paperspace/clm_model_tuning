@@ -241,7 +241,7 @@ def testModel(model, tokenizer):
         greedy=tokenizer.decode(beam_output[0].to("cpu"), skip_special_tokens=True)
         print(text)
         print()
-        print(i, greedy)
+        print(greedy)
 
 
 @hydra.main(version_base=None, config_path="conf", config_name="config")
