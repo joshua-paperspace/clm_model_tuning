@@ -422,7 +422,7 @@ def main(cfg: DictConfig):
             
             lm_labels = batch["input_ids"][:,int(cfg.dataset.block_size/2):-1].clone().detach()            
             lm_labels[lm_labels[:, :] == 0] = -100
-            lm_labels=lm_labels[:,:1]
+            lm_labels=lm_labels[:,:2]
             
             
             
@@ -464,7 +464,7 @@ def main(cfg: DictConfig):
                     eval_batch["attention_mask"] = eval_batch["attention_mask"][:,:int(cfg.dataset.block_size/2)+1]
             
             
-                    lm_labels = eval_batch["input_ids"][:,int(cfg.dataset.block_size/2):int(cfg.dataset.block_size/2)+1].clone().detach()
+                    lm_labels = eval_batch["input_ids"][:,int(cfg.dataset.block_size/2):int(cfg.dataset.block_size/2)+2].clone().detach()
                     
                     lm_labels[lm_labels[:, :] == 0] = -100
                     
