@@ -465,7 +465,7 @@ def main(cfg: DictConfig):
                     eval_batch["attention_mask"] = eval_batch["attention_mask"][:,:-1]
             
             
-                    lm_labels = eval_batch["input_ids"][:,-1].clone().detach()
+                    lm_labels = eval_batch["input_ids"][:,:-1].clone().detach()
                     
                     lm_labels[:,:-1] = -100
                     
