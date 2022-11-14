@@ -218,9 +218,7 @@ def preprocess(cfg, accelerator, tokenizer, raw_datasets):
 
     return tokenized_datasets
 def testModel(model, tokenizer):
-    import torch
     
-    comments=getComments()
     texts = ["Hello,","Hello, how","Hello, how are","Hello, how are you"]
     model.eval()
     
