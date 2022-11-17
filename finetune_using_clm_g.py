@@ -394,7 +394,7 @@ def main(cfg: DictConfig):
                     completed_steps += 1
                     continue
             try:
-                del batch["token_type_ids'"]
+                del batch["token_type_ids"]
             except:
                 pass
             outputs = model(**batch)
@@ -425,7 +425,7 @@ def main(cfg: DictConfig):
                 eval_losses = []
                 for _eval_step, eval_batch in enumerate(eval_dataloader):
                     try:
-                        del eval_batch["token_type_ids'"]
+                        del eval_batch["token_type_ids"]
                     except:
                         pass
                     with torch.no_grad():
