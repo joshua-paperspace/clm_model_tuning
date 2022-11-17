@@ -196,8 +196,7 @@ def preprocess(cfg, accelerator, tokenizer, raw_datasets):
         return result
 
     with accelerator.main_process_first():
-        
-        cfg.tokenizer.pad_token = tokenizer.eos_token
+
         tokenized_datasets = raw_datasets.map(
             tokenize_fn,
             batched=True,
@@ -222,6 +221,12 @@ def preprocess(cfg, accelerator, tokenizer, raw_datasets):
 def main(cfg: DictConfig):
 
     cfg = check_cfg_and_load_defaults(cfg)
+    try:
+        print("cfg.tokenizer.pad_token:",cfg.tokenizer.pad_token)
+        if not cfg.tokenizer.pad_token:
+            raise
+    except:
+        cfg.tokenizer.pad_token = cfg.tokenizer.eos_token
     os.makedirs(cfg.output_dir, exist_ok=True)
 
     logger = get_logger(__name__)
