@@ -220,7 +220,7 @@ def preprocess(cfg, accelerator, tokenizer, raw_datasets):
 @hydra.main(version_base=None, config_path="conf", config_name="config")
 def main(cfg: DictConfig):
 
-    cfg = check_cfg_and_load_defaults(cfg):
+    cfg = check_cfg_and_load_defaults(cfg)
     if not cfg.tokenizer.pad_token:
         print("Setting pad token")
         tokenizer.pad_token ="<pad>"
