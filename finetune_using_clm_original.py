@@ -196,7 +196,8 @@ def preprocess(cfg, accelerator, tokenizer, raw_datasets):
         return result
 
     with accelerator.main_process_first():
-
+        
+        cfg.tokenizer.pad_token = tokenizer.eos_token
         tokenized_datasets = raw_datasets.map(
             tokenize_fn,
             batched=True,
