@@ -225,9 +225,9 @@ def main(cfg: DictConfig):
         print("Setting pad token")
         tokenizer.pad_token ="<pad>"
         
-    if not cfg.tokenizer.eos_token:
-        print("Setting eos token")
-        tokenizer.eos_token ="<pad>"
+    # if not cfg.tokenizer.eos_token:
+    #     print("Setting eos token")
+    #     tokenizer.eos_token ="<pad>"
     os.makedirs(cfg.output_dir, exist_ok=True)
 
     logger = get_logger(__name__)
