@@ -227,6 +227,12 @@ def main(cfg: DictConfig):
             raise
     except:
         cfg.tokenizer.pad_token = cfg.tokenizer.eos_token
+    try:
+        print("cfg.tokenizer.pad_token_id:",cfg.tokenizer.pad_token_id)
+        if not cfg.tokenizer.pad_token_id:
+            raise
+    except:
+        cfg.tokenizer.pad_token_id = cfg.tokenizer.eos_token_id
     os.makedirs(cfg.output_dir, exist_ok=True)
 
     logger = get_logger(__name__)
