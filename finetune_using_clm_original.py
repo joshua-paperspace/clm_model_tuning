@@ -220,19 +220,14 @@ def preprocess(cfg, accelerator, tokenizer, raw_datasets):
 @hydra.main(version_base=None, config_path="conf", config_name="config")
 def main(cfg: DictConfig):
 
-    cfg = check_cfg_and_load_defaults(cfg)
-    try:
-        print("cfg.tokenizer.pad_token:",cfg.tokenizer.pad_token)
-        if not cfg.tokenizer.pad_token:
-            raise
-    except:
-        cfg.tokenizer.pad_token = cfg.tokenizer.eos_token
-    try:
-        print("cfg.tokenizer.pad_token_id:",cfg.tokenizer.pad_token_id)
-        if not cfg.tokenizer.pad_token_id:
-            raise
-    except:
-        cfg.tokenizer.pad_token_id = cfg.tokenizer.eos_token_id
+    cfg = check_cfg_and_load_defaults(cfg):
+    if not cfg.tokenizer.pad_token:
+        print("Setting pad token")
+        tokenizer.pad_token ="<pad>"
+        
+    if not cfg.tokenizer.eos_token:
+        print("Setting eos token")
+        tokenizer.eos_token ="<pad>"
     os.makedirs(cfg.output_dir, exist_ok=True)
 
     logger = get_logger(__name__)
