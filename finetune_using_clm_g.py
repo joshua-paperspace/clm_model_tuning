@@ -116,6 +116,8 @@ def load_model_and_tokenizer(cfg: DictConfig):
         tokenizer = AutoTokenizer.from_pretrained(
             cfg.model.name, use_fast=cfg.tokenizer.use_fast
         )
+    tokenizer.pad_token ="<pad>"
+    tokenizer.eos_token ="<pad>"
     #tokenizer.pad_token = cfg.tokenizer.pad_token
     if tokenizer.pad_token is None and tokenizer.eos_token is not None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -157,7 +159,7 @@ def create_optimizer(cfg, model):
 
 
 def preprocess(cfg, accelerator, tokenizer, raw_datasets):
-    tokenizer.pad_token ="<pad>"
+    
     # First we tokenize all the texts.
     column_names = raw_datasets.column_names
     text_column_name = "text" if "text" in column_names else column_names["train"][0]
@@ -391,7 +393,10 @@ def main(cfg: DictConfig):
                 if resume_step is not None and step < resume_step:
                     completed_steps += 1
                     continue
-
+            try:
+                del batch["token_type_ids'"]
+            except:
+                pass
             outputs = model(**batch)
             loss = outputs.loss
             train_losses.append(
@@ -419,6 +424,10 @@ def main(cfg: DictConfig):
                 model.eval()
                 eval_losses = []
                 for _eval_step, eval_batch in enumerate(eval_dataloader):
+                    try:
+                        del eval_batch["token_type_ids'"]
+                    except:
+                        pass
                     with torch.no_grad():
                         outputs = model(**eval_batch)
 
