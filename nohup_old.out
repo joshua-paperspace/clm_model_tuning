@@ -1,0 +1,423 @@
+wandb: Currently logged in as: joshuapaperspace. Use `wandb login --relogin` to force relogin
+wandb: Appending key for api.wandb.ai to your netrc file: /home/paperspace/.netrc
+[2022-11-17 14:44:43,758][__main__][INFO] - Distributed environment: NO
+Num processes: 1
+Process index: 0
+Local process index: 0
+Device: cuda
+Mixed precision type: no
+
+[2022-11-17 14:44:43,760][__main__][INFO] - output_dir: tuned-model
+bittensor:
+  network: nobunaga
+dataset:
+  name: bittensor
+  config_name: null
+  num_batches: 1000
+  block_size: 256
+  overwrite_cache: false
+  keep_linebreaks: true
+  concatenate_raw: false
+model:
+  name: ViktorThink/bt-opt-2.7b-a100-v6
+  config_name: null
+tokenizer:
+  name: null
+  use_fast: true
+  preprocessing_num_workers: null
+  pad_token: '[PAD]'
+training:
+  seed: null
+  val_split_percent: 30
+  train_batch_size: 128
+  eval_batch_size: 128
+  learning_rate: 1.0e-05
+  weight_decay: 0.0
+  num_epochs: 1
+  max_train_steps: null
+  gradient_accumulation_steps: 1
+  lr_scheduler: constant
+  lr_warmup_steps: 0
+  eval_every: 50
+  max_eval_steps: 1000
+  checkpoint:
+    resume_from_checkpoint: 0
+    every_n_steps: null
+tracking:
+  enabled: true
+  report_to: all
+
+loading configuration file config.json from cache at /home/paperspace/.cache/huggingface/hub/models--ViktorThink--bt-opt-2.7b-a100-v6/snapshots/f391cbb4ec9fb87aadc2aa383ceb5e36c29ea34d/config.json
+Model config OPTConfig {
+  "_name_or_path": "ViktorThink/bt-opt-2.7b-a100-v6",
+  "_remove_final_layer_norm": false,
+  "activation_dropout": 0.0,
+  "activation_function": "relu",
+  "architectures": [
+    "OPTForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 2,
+  "do_layer_norm_before": true,
+  "dropout": 0.1,
+  "eos_token_id": 2,
+  "ffn_dim": 10240,
+  "hidden_size": 2560,
+  "init_std": 0.02,
+  "layerdrop": 0.0,
+  "max_position_embeddings": 2048,
+  "model_type": "opt",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 32,
+  "pad_token_id": 1,
+  "prefix": "</s>",
+  "torch_dtype": "float32",
+  "transformers_version": "4.24.0",
+  "use_cache": true,
+  "vocab_size": 50265,
+  "word_embed_proj_dim": 2560
+}
+
+loading file vocab.json from cache at /home/paperspace/.cache/huggingface/hub/models--ViktorThink--bt-opt-2.7b-a100-v6/snapshots/f391cbb4ec9fb87aadc2aa383ceb5e36c29ea34d/vocab.json
+loading file merges.txt from cache at /home/paperspace/.cache/huggingface/hub/models--ViktorThink--bt-opt-2.7b-a100-v6/snapshots/f391cbb4ec9fb87aadc2aa383ceb5e36c29ea34d/merges.txt
+loading file tokenizer.json from cache at /home/paperspace/.cache/huggingface/hub/models--ViktorThink--bt-opt-2.7b-a100-v6/snapshots/f391cbb4ec9fb87aadc2aa383ceb5e36c29ea34d/tokenizer.json
+loading file added_tokens.json from cache at None
+loading file special_tokens_map.json from cache at /home/paperspace/.cache/huggingface/hub/models--ViktorThink--bt-opt-2.7b-a100-v6/snapshots/f391cbb4ec9fb87aadc2aa383ceb5e36c29ea34d/special_tokens_map.json
+loading file tokenizer_config.json from cache at /home/paperspace/.cache/huggingface/hub/models--ViktorThink--bt-opt-2.7b-a100-v6/snapshots/f391cbb4ec9fb87aadc2aa383ceb5e36c29ea34d/tokenizer_config.json
+loading weights file pytorch_model.bin from cache at /home/paperspace/.cache/huggingface/hub/models--ViktorThink--bt-opt-2.7b-a100-v6/snapshots/f391cbb4ec9fb87aadc2aa383ceb5e36c29ea34d/pytorch_model.bin.index.json
+All model checkpoint weights were used when initializing OPTForCausalLM.
+
+All the weights of OPTForCausalLM were initialized from the model checkpoint at ViktorThink/bt-opt-2.7b-a100-v6.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use OPTForCausalLM for predictions without further training.
+[2022-11-17 14:45:08,615][__main__][INFO] - Sample 52194 of the training set: {'text': 'is the closest to u in -3, 5, j?\\n-3\\nLet u = -4.02719 - -0.02719. What is the nearest to -0.2 in u, -30, 0.5, 34?\\n0.5\\nLet l = -4 + 4.4. Let t(k) = -5*k**2 - k + 65. Let n be t(12). Let h = n + 1335/2. Which is the nearest to -0.2? (a) l (b) 4 (c) h\\na\\nLet d be (-8)/(8/(-2))*(-5)/(-2). Let f be (d + 38/(-6))*36/(-128). Which is the nearest to 1? (a) f (b) 5 (c) 1\\nc\\nLet m = -25 + 178/7. Let x be 21/((-1)/(-1)*(3 + -2)). Let n be (12 - 14)*(x/(-8) + 2). What is the closest to -0.2 in n, m, -5?\\nm\\nLet l = -103 + 1029/10. Let d = -21562.8 - -21563. Which is the nearest to -1? (a) d (b) l (c) -3\\nb\\nLet k = -123 + 70. Suppose -4*p + 158 = 3*z - 40, -248 = -5*p - 4*z. Let a = k + p. What is the closest to 1/4 in -1, -4, a?\\n-1\\nLet z = 2188.1 + -2188. What is the closest to -1/7 in 0, 4, 144, z?\\n0\\nLet v = -5/844 + -41331/4220. What is the nearest to v in -4, 2/11, -3/8?\\n-4\\nLet b = 4.3832 - 0.3832. What is the closest to -1 in b, -0.3, 51?\\n-0.3\\nLet d be (-8)/260*-2 - 20/(-50). What is the nearest to d in -5, -16, 3, -3?\\n3\\nLet f = -169.91 + 164.91. What is the closest to -3/7 in 3, 0.22, 4, f?\\n0.22\\nLet k be (179/3)/(-1 - -2). Let j = k + -60.', 'input_ids': [2, 354, 5, 8099, 7, 1717, 11, 111, 246, 6, 195, 6, 1236, 116, 37457, 282, 12, 246, 37457, 282, 7939, 1717, 5457, 111, 306, 4, 40819, 1646, 111, 111, 288, 4, 40819, 1646, 4, 653, 16, 5, 14712, 7, 111, 288, 4, 176, 11, 1717, 6, 111, 541, 6, 321, 4, 245, 6, 2631, 116, 37457, 282, 288, 4, 245, 37457, 282, 7939, 784, 5457, 111, 306, 2055, 204, 4, 306, 4, 2780, 326, 1640, 330, 43, 5457, 111, 245, 3226, 330, 12606, 176, 111, 449, 2055, 3620, 4, 2780, 295, 28, 326, 1640, 1092, 322, 2780, 1368, 5457, 295, 2055, 508, 2022, 73, 176, 4, 6834, 16, 5, 14712, 7, 111, 288, 4, 176, 116, 36, 102, 43, 784, 36, 428, 43, 204, 36, 438, 43, 1368, 37457, 2133, 37457, 282, 7939, 385, 28, 15611, 398, 36098, 1640, 398, 45381, 12, 176, 35122, 3226, 48614, 245, 36098, 48614, 176, 322, 2780, 856, 28, 36, 417, 2055, 2843, 45381, 12, 401, 35122, 3226, 3367, 45381, 12, 21540, 322, 6834, 16, 5, 14712, 7, 112, 116, 36, 102, 43, 856, 36, 428, 43, 195, 36, 438, 43, 112, 37457, 11326, 37457, 282, 7939, 475, 5457, 111, 1244, 2055, 29065, 73, 406, 4, 2780, 3023, 28, 733, 73, 48461, 12, 134, 36098, 48614, 134, 44418, 1640, 246, 2055, 111, 176, 46904, 2780, 295, 28, 36, 1092, 111, 501, 44418, 1640, 1178, 45381, 12, 398, 43, 2055, 132, 322, 653, 16, 5, 8099, 7, 111, 288, 4, 176, 11, 295, 6, 475, 6, 111, 245, 116, 37457, 28235], 'attention_mask': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'labels': [2, 354, 5, 8099, 7, 1717, 11, 111, 246, 6, 195, 6, 1236, 116, 37457, 282, 12, 246, 37457, 282, 7939, 1717, 5457, 111, 306, 4, 40819, 1646, 111, 111, 288, 4, 40819, 1646, 4, 653, 16, 5, 14712, 7, 111, 288, 4, 176, 11, 1717, 6, 111, 541, 6, 321, 4, 245, 6, 2631, 116, 37457, 282, 288, 4, 245, 37457, 282, 7939, 784, 5457, 111, 306, 2055, 204, 4, 306, 4, 2780, 326, 1640, 330, 43, 5457, 111, 245, 3226, 330, 12606, 176, 111, 449, 2055, 3620, 4, 2780, 295, 28, 326, 1640, 1092, 322, 2780, 1368, 5457, 295, 2055, 508, 2022, 73, 176, 4, 6834, 16, 5, 14712, 7, 111, 288, 4, 176, 116, 36, 102, 43, 784, 36, 428, 43, 204, 36, 438, 43, 1368, 37457, 2133, 37457, 282, 7939, 385, 28, 15611, 398, 36098, 1640, 398, 45381, 12, 176, 35122, 3226, 48614, 245, 36098, 48614, 176, 322, 2780, 856, 28, 36, 417, 2055, 2843, 45381, 12, 401, 35122, 3226, 3367, 45381, 12, 21540, 322, 6834, 16, 5, 14712, 7, 112, 116, 36, 102, 43, 856, 36, 428, 43, 195, 36, 438, 43, 112, 37457, 11326, 37457, 282, 7939, 475, 5457, 111, 1244, 2055, 29065, 73, 406, 4, 2780, 3023, 28, 733, 73, 48461, 12, 134, 36098, 48614, 134, 44418, 1640, 246, 2055, 111, 176, 46904, 2780, 295, 28, 36, 1092, 111, 501, 44418, 1640, 1178, 45381, 12, 398, 43, 2055, 132, 322, 653, 16, 5, 8099, 7, 111, 288, 4, 176, 11, 295, 6, 475, 6, 111, 245, 116, 37457, 28235]}: 
+
+[2022-11-17 14:45:08,616][__main__][INFO] - </s>is the closest to u in -3, 5, j?\n-3\nLet u = -4.02719 - -0.02719. What is the nearest to -0.2 in u, -30, 0.5, 34?\n0.5\nLet l = -4 + 4.4. Let t(k) = -5*k**2 - k + 65. Let n be t(12). Let h = n + 1335/2. Which is the nearest to -0.2? (a) l (b) 4 (c) h\na\nLet d be (-8)/(8/(-2))*(-5)/(-2). Let f be (d + 38/(-6))*36/(-128). Which is the nearest to 1? (a) f (b) 5 (c) 1\nc\nLet m = -25 + 178/7. Let x be 21/((-1)/(-1)*(3 + -2)). Let n be (12 - 14)*(x/(-8) + 2). What is the closest to -0.2 in n, m, -5?\nm
+[2022-11-17 14:45:08,617][__main__][INFO] - Sample 25115 of the training set: {'text': 'event.\\nAll the legal bases for that widely considering is based on treaties and\\nfluffy documents rendered after the war.\\n\\nIt\'s also meaningless because the whole concept is flawed. Crimes do not occur\\nabove the sovereign nation state level. \\"War crimes\\" is a convenient excuse\\nfor the winner of a conflict to execute the leaders of the losing side. It\'s\\nvictor\'s justice.\\n\\n~~~\\ndeciplex\\nObjective criteria which are established... how exactly if not by popularity\\ncontest? And if making the criteria _ex post facto_ also wins the popularity\\ncontest, then _ex post facto_ it is, regardless of whether that offends your\\nsense of justice.\\n\\n(It\'s not really _ex post facto_ anyway - you simply apply the existing (1945)\\nstandards for what was considered a war crime, and find that the bombings fit\\nthe bill [1]. That seems to me the best way to do it - what would you prefer?\\nThat no one had used an atomic bomb before, need not exclude the possibility\\nof the first such use of one being a war crime.)\\n\\nThat said, I mostly agree with your take on war crimes in practice, if not in\\nprinciple. But _if the allies had lost the war_ the bombings would have been\\nconsidered a war crime by the victors, without a doubt. In that sense it is\\nappropriate to call it a war crime. Again, it was a war crime in a war replete\\nwith them, and it was not the worst of them either: it was certainly no\\nHolocaust, and I don\'t think the two bombings taken together even rise to the\\nlevel of one Rape of Nanjing, either - but it was a war crime', 'input_ids': [2, 21680, 4, 37457, 282, 3684, 5, 1030, 7531, 13, 14, 3924, 2811, 16, 716, 15, 30935, 8, 37457, 282, 4825, 33650, 2339, 18728, 71, 5, 997, 4, 37457, 282, 37457, 282, 243, 18, 67, 27782, 142, 5, 1086, 4286, 16, 17107, 4, 21203, 109, 45, 5948, 37457, 282, 23444, 5, 9595, 1226, 194, 672, 4, 48298, 20096, 3474, 48110, 16, 10, 12148, 10525, 37457, 282, 1990, 5, 1924, 9, 10, 3050, 7, 11189, 5, 917, 9, 5, 2086, 526, 4, 85, 18, 37457, 282, 28923, 368, 18, 2427, 4, 37457, 282, 37457, 282, 48256, 34437, 37457, 1187, 3204, 42420, 1178, 37457, 282, 46674, 2088, 8608, 61, 32, 2885, 734, 141, 2230, 114, 45, 30, 7347, 37457, 282, 10800, 990, 116, 178, 114, 442, 5, 8608, 18134, 3463, 618, 20624, 1215, 67, 2693, 5, 7347, 37457, 282, 10800, 990, 6, 172, 18134, 3463, 618, 20624, 1215, 24, 16, 6, 6069, 9, 549, 14, 160, 8845, 110, 37457, 6852, 9401, 9, 2427, 4, 37457, 282, 37457, 282, 1640, 243, 18, 45, 269, 18134, 3463, 618, 20624, 1215, 6992, 111, 47, 1622, 3253, 5, 2210, 36, 45391, 49394, 282, 8490, 5954, 13, 99, 21, 1687, 10, 997, 1846, 6, 8, 465, 14, 5, 19918, 2564, 37457, 3999, 700, 1087, 646, 134, 8174, 280, 1302, 7, 162, 5, 275, 169, 7, 109, 24, 111, 99, 74, 47, 6573, 116, 37457, 282, 1711, 117, 65, 56, 341, 41, 21495, 4840, 137, 6, 240, 45, 18717, 5, 3302, 37457, 282, 1116, 5, 78, 215, 304, 9, 65, 145, 10, 997, 1846], 'attention_mask': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'labels': [2, 21680, 4, 37457, 282, 3684, 5, 1030, 7531, 13, 14, 3924, 2811, 16, 716, 15, 30935, 8, 37457, 282, 4825, 33650, 2339, 18728, 71, 5, 997, 4, 37457, 282, 37457, 282, 243, 18, 67, 27782, 142, 5, 1086, 4286, 16, 17107, 4, 21203, 109, 45, 5948, 37457, 282, 23444, 5, 9595, 1226, 194, 672, 4, 48298, 20096, 3474, 48110, 16, 10, 12148, 10525, 37457, 282, 1990, 5, 1924, 9, 10, 3050, 7, 11189, 5, 917, 9, 5, 2086, 526, 4, 85, 18, 37457, 282, 28923, 368, 18, 2427, 4, 37457, 282, 37457, 282, 48256, 34437, 37457, 1187, 3204, 42420, 1178, 37457, 282, 46674, 2088, 8608, 61, 32, 2885, 734, 141, 2230, 114, 45, 30, 7347, 37457, 282, 10800, 990, 116, 178, 114, 442, 5, 8608, 18134, 3463, 618, 20624, 1215, 67, 2693, 5, 7347, 37457, 282, 10800, 990, 6, 172, 18134, 3463, 618, 20624, 1215, 24, 16, 6, 6069, 9, 549, 14, 160, 8845, 110, 37457, 6852, 9401, 9, 2427, 4, 37457, 282, 37457, 282, 1640, 243, 18, 45, 269, 18134, 3463, 618, 20624, 1215, 6992, 111, 47, 1622, 3253, 5, 2210, 36, 45391, 49394, 282, 8490, 5954, 13, 99, 21, 1687, 10, 997, 1846, 6, 8, 465, 14, 5, 19918, 2564, 37457, 3999, 700, 1087, 646, 134, 8174, 280, 1302, 7, 162, 5, 275, 169, 7, 109, 24, 111, 99, 74, 47, 6573, 116, 37457, 282, 1711, 117, 65, 56, 341, 41, 21495, 4840, 137, 6, 240, 45, 18717, 5, 3302, 37457, 282, 1116, 5, 78, 215, 304, 9, 65, 145, 10, 997, 1846]}: 
+
+[2022-11-17 14:45:08,617][__main__][INFO] - </s>event.\nAll the legal bases for that widely considering is based on treaties and\nfluffy documents rendered after the war.\n\nIt's also meaningless because the whole concept is flawed. Crimes do not occur\nabove the sovereign nation state level. \"War crimes\" is a convenient excuse\nfor the winner of a conflict to execute the leaders of the losing side. It's\nvictor's justice.\n\n~~~\ndeciplex\nObjective criteria which are established... how exactly if not by popularity\ncontest? And if making the criteria _ex post facto_ also wins the popularity\ncontest, then _ex post facto_ it is, regardless of whether that offends your\nsense of justice.\n\n(It's not really _ex post facto_ anyway - you simply apply the existing (1945)\nstandards for what was considered a war crime, and find that the bombings fit\nthe bill [1]. That seems to me the best way to do it - what would you prefer?\nThat no one had used an atomic bomb before, need not exclude the possibility\nof the first such use of one being a war crime
+[2022-11-17 14:45:08,618][__main__][INFO] - Sample 53447 of the training set: {'text': 'of 7?\\nTrue\\nIs 14 + (-3071233)/(-55) - (-1 + 12/20) a multiple of 24?\\nFalse\\nLet f be (7/(196/(-48)))/(14/(-2695)). Does 19 divide f + ((-210)/6)/5?\\nTrue\\nLet g(v) = 42*v**2 - 52*v + 160. Is 23 a factor of g(3)?\\nFalse\\nLet n = 15638 + -3758. Is 33 a factor of n?\\nTrue\\nSuppose 7*p - 30 = 2*p. Let n(s) = -s + p*s - 5 - 4*s + 18. Is n(-8) a multiple of 3?\\nFalse\\nLet h(d) = 182*d - 602. Does 68 divide h(19)?\\nTrue\\nSuppose -y = 2*y + 4*k - 1297, k - 2173 = -5*y. Suppose -12*d + y = -7*d. Suppose h - 54 = -s, 0 = -3*s + 5*h + d + 51. Is s a multiple of 17?\\nTrue\\nLet o(j) = 977*j + 8886. Does 25 divide o(7)?\\nTrue\\nLet g(q) be the third derivative of -307*q**4/24 + 13*q**3/6 + 14*q**2. Is g(-2) a multiple of 33?\\nTrue\\nLet m(p) = p**2 + 5*p + 9. Let g be m(-2). Suppose 5*c = -z - g - 4, 4 = -2*c. Suppose 4*l - z*l - 54 = 0. Is l a multiple of 27?\\nTrue\\nIs 14 a factor of (-32 - (-180)/6)*3049*(-2)/4?\\nFalse\\nSuppose q - 29 - 1 = -5*p, 5*p = 5*q. Suppose q*y = -t + 242, 90 = 2*y + 4*t - 7*t. Suppose o - 8 = -s + 32, o - y = -3*s. Does 5 divide o?\\nFalse\\nLet z(d) = d + 9 + 1 - 12*d**2 - 3 + 7*d**2 + d**3. Let k be z(5). Let o = k + 14. Is 2 a factor of', 'input_ids': [2, 1116, 262, 116, 37457, 282, 36948, 37457, 282, 6209, 501, 2055, 15611, 31998, 1092, 3103, 36098, 48614, 3118, 43, 111, 15611, 134, 2055, 316, 73, 844, 43, 10, 1533, 9, 706, 116, 37457, 282, 46659, 37457, 282, 7939, 856, 28, 36, 406, 45381, 30137, 45381, 12, 3818, 35122, 36098, 1640, 1570, 45381, 12, 2481, 4015, 46904, 8901, 753, 11079, 856, 2055, 41006, 12, 22146, 36098, 401, 36098, 245, 116, 37457, 282, 36948, 37457, 282, 7939, 821, 1640, 705, 43, 5457, 3330, 3226, 705, 12606, 176, 111, 3135, 3226, 705, 2055, 10572, 4, 1534, 883, 10, 3724, 9, 821, 1640, 246, 26610, 37457, 282, 46659, 37457, 282, 7939, 295, 5457, 25664, 3170, 2055, 111, 21353, 398, 4, 1534, 2357, 10, 3724, 9, 295, 116, 37457, 282, 36948, 37457, 282, 33661, 3876, 262, 3226, 642, 111, 389, 5457, 132, 3226, 642, 4, 2780, 295, 1640, 29, 43, 5457, 111, 29, 2055, 181, 3226, 29, 111, 195, 111, 204, 3226, 29, 2055, 504, 4, 1534, 295, 48614, 398, 43, 10, 1533, 9, 155, 116, 37457, 282, 46659, 37457, 282, 7939, 1368, 1640, 417, 43, 5457, 25669, 3226, 417, 111, 231, 4197, 4, 8901, 5595, 11079, 1368, 1640, 1646, 26610, 37457, 282, 36948, 37457, 282, 33661, 3876, 111, 219, 5457, 132, 3226, 219, 2055, 204, 3226, 330, 111, 316, 6750, 6, 449, 111, 26806, 246, 5457, 111, 245, 3226, 219, 4, 45532, 111, 1092, 3226, 417, 2055, 1423, 5457, 111, 406, 3226, 417, 4, 45532, 1368, 111, 4431, 5457, 111, 29, 6, 321, 5457, 111, 246, 3226, 29, 2055], 'attention_mask': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'labels': [2, 1116, 262, 116, 37457, 282, 36948, 37457, 282, 6209, 501, 2055, 15611, 31998, 1092, 3103, 36098, 48614, 3118, 43, 111, 15611, 134, 2055, 316, 73, 844, 43, 10, 1533, 9, 706, 116, 37457, 282, 46659, 37457, 282, 7939, 856, 28, 36, 406, 45381, 30137, 45381, 12, 3818, 35122, 36098, 1640, 1570, 45381, 12, 2481, 4015, 46904, 8901, 753, 11079, 856, 2055, 41006, 12, 22146, 36098, 401, 36098, 245, 116, 37457, 282, 36948, 37457, 282, 7939, 821, 1640, 705, 43, 5457, 3330, 3226, 705, 12606, 176, 111, 3135, 3226, 705, 2055, 10572, 4, 1534, 883, 10, 3724, 9, 821, 1640, 246, 26610, 37457, 282, 46659, 37457, 282, 7939, 295, 5457, 25664, 3170, 2055, 111, 21353, 398, 4, 1534, 2357, 10, 3724, 9, 295, 116, 37457, 282, 36948, 37457, 282, 33661, 3876, 262, 3226, 642, 111, 389, 5457, 132, 3226, 642, 4, 2780, 295, 1640, 29, 43, 5457, 111, 29, 2055, 181, 3226, 29, 111, 195, 111, 204, 3226, 29, 2055, 504, 4, 1534, 295, 48614, 398, 43, 10, 1533, 9, 155, 116, 37457, 282, 46659, 37457, 282, 7939, 1368, 1640, 417, 43, 5457, 25669, 3226, 417, 111, 231, 4197, 4, 8901, 5595, 11079, 1368, 1640, 1646, 26610, 37457, 282, 36948, 37457, 282, 33661, 3876, 111, 219, 5457, 132, 3226, 219, 2055, 204, 3226, 330, 111, 316, 6750, 6, 449, 111, 26806, 246, 5457, 111, 245, 3226, 219, 4, 45532, 111, 1092, 3226, 417, 2055, 1423, 5457, 111, 406, 3226, 417, 4, 45532, 1368, 111, 4431, 5457, 111, 29, 6, 321, 5457, 111, 246, 3226, 29, 2055]}: 
+
+[2022-11-17 14:45:08,618][__main__][INFO] - </s>of 7?\nTrue\nIs 14 + (-3071233)/(-55) - (-1 + 12/20) a multiple of 24?\nFalse\nLet f be (7/(196/(-48)))/(14/(-2695)). Does 19 divide f + ((-210)/6)/5?\nTrue\nLet g(v) = 42*v**2 - 52*v + 160. Is 23 a factor of g(3)?\nFalse\nLet n = 15638 + -3758. Is 33 a factor of n?\nTrue\nSuppose 7*p - 30 = 2*p. Let n(s) = -s + p*s - 5 - 4*s + 18. Is n(-8) a multiple of 3?\nFalse\nLet h(d) = 182*d - 602. Does 68 divide h(19)?\nTrue\nSuppose -y = 2*y + 4*k - 1297, k - 2173 = -5*y. Suppose -12*d + y = -7*d. Suppose h - 54 = -s, 0 = -3*s +
+wandb: wandb version 0.13.5 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.13.3
+wandb: Run data is saved locally in /home/paperspace/Documents/Repos/clm_model_tuning/wandb/run-20221117_144511-23ctpijx
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run neat-river-35
+wandb: ⭐️ View project at https://wandb.ai/joshuapaperspace/finetune_using_clm
+wandb: 🚀 View run at https://wandb.ai/joshuapaperspace/finetune_using_clm/runs/23ctpijx
+[2022-11-17 14:45:12,049][__main__][INFO] - ***** Running training *****
+[2022-11-17 14:45:12,049][__main__][INFO] -   Num examples = 89600
+[2022-11-17 14:45:12,049][__main__][INFO] -   Num Epochs = 1
+[2022-11-17 14:45:12,049][__main__][INFO] -   Gradient Accumulation steps = 1
+[2022-11-17 14:45:12,050][__main__][INFO] -   Total optimization steps = 700
+  0%|          | 0/700 [00:00<?, ?it/s]a
+b
+c
+step: 0
+step: 1
+step: 2
+step: 3
+step: 4
+step: 5
+step: 6
+step: 7
+step: 8
+step: 9
+step: 10
+step: 11
+step: 12
+step: 13
+step: 14
+step: 15
+step: 16
+step: 17
+step: 18
+step: 19
+step: 20
+step: 21
+step: 22
+step: 23
+step: 24
+step: 25
+step: 26
+step: 27
+step: 28
+step: 29
+step: 30
+step: 31
+step: 32
+step: 33
+step: 34
+step: 35
+step: 36
+step: 37
+step: 38
+step: 39
+step: 40
+step: 41
+step: 42
+step: 43
+step: 44
+step: 45
+step: 46
+step: 47
+step: 48
+step: 49
+step: 50
+step: 51
+step: 52
+step: 53
+step: 54
+step: 55
+step: 56
+step: 57
+step: 58
+step: 59
+step: 60
+step: 61
+step: 62
+step: 63
+step: 64
+step: 65
+step: 66
+step: 67
+step: 68
+step: 69
+step: 70
+step: 71
+step: 72
+step: 73
+step: 74
+step: 75
+step: 76
+step: 77
+step: 78
+step: 79
+step: 80
+step: 81
+step: 82
+step: 83
+step: 84
+step: 85
+step: 86
+step: 87
+step: 88
+step: 89
+step: 90
+step: 91
+step: 92
+step: 93
+step: 94
+step: 95
+step: 96
+step: 97
+step: 98
+step: 99
+step: 100
+step: 101
+step: 102
+step: 103
+step: 104
+step: 105
+step: 106
+step: 107
+step: 108
+step: 109
+step: 110
+step: 111
+step: 112
+step: 113
+step: 114
+step: 115
+step: 116
+step: 117
+step: 118
+step: 119
+step: 120
+step: 121
+step: 122
+step: 123
+step: 124
+step: 125
+step: 126
+step: 127
+step: 128
+step: 129
+step: 130
+step: 131
+step: 132
+step: 133
+step: 134
+step: 135
+step: 136
+step: 137
+step: 138
+step: 139
+step: 140
+step: 141
+step: 142
+step: 143
+step: 144
+step: 145
+step: 146
+step: 147
+step: 148
+step: 149
+step: 150
+step: 151
+step: 152
+step: 153
+step: 154
+step: 155
+step: 156
+step: 157
+step: 158
+step: 159
+step: 160
+step: 161
+step: 162
+step: 163
+step: 164
+step: 165
+step: 166
+step: 167
+step: 168
+step: 169
+step: 170
+step: 171
+step: 172
+step: 173
+step: 174
+step: 175
+step: 176
+step: 177
+step: 178
+step: 179
+step: 180
+step: 181
+step: 182
+step: 183
+step: 184
+step: 185
+step: 186
+step: 187
+step: 188
+step: 189
+step: 190
+step: 191
+step: 192
+step: 193
+step: 194
+step: 195
+step: 196
+step: 197
+step: 198
+step: 199
+step: 200
+step: 201
+step: 202
+step: 203
+step: 204
+step: 205
+step: 206
+step: 207
+step: 208
+step: 209
+step: 210
+step: 211
+step: 212
+step: 213
+step: 214
+step: 215
+step: 216
+step: 217
+step: 218
+step: 219
+step: 220
+step: 221
+step: 222
+step: 223
+step: 224
+step: 225
+step: 226
+step: 227
+step: 228
+step: 229
+step: 230
+step: 231
+step: 232
+step: 233
+step: 234
+step: 235
+step: 236
+step: 237
+step: 238
+step: 239
+step: 240
+step: 241
+step: 242
+step: 243
+step: 244
+step: 245
+step: 246
+step: 247
+step: 248
+step: 249
+step: 250
+step: 251
+step: 252
+step: 253
+step: 254
+step: 255
+step: 256
+step: 257
+step: 258
+step: 259
+step: 260
+step: 261
+step: 262
+step: 263
+step: 264
+step: 265
+step: 266
+step: 267
+step: 268
+step: 269
+step: 270
+step: 271
+step: 272
+step: 273
+step: 274
+step: 275
+step: 276
+step: 277
+step: 278
+step: 279
+step: 280
+step: 281
+step: 282
+step: 283
+step: 284
+step: 285
+step: 286
+step: 287
+step: 288
+step: 289
+step: 290
+step: 291
+step: 292
+step: 293
+step: 294
+step: 295
+step: 296
+step: 297
+step: 298
+step: 299
+[2022-11-17 15:09:48,156][__main__][INFO] - steps: 299 perplexity: 7.128194963474408 test_loss: 1.9640580415725708
+  0%|          | 0/700 [24:36<?, ?it/s]wandb: Waiting for W&B process to finish... (success).
+wandb: - 0.001 MB of 0.001 MB uploaded (0.000 MB deduped)wandb: \ 0.001 MB of 0.001 MB uploaded (0.000 MB deduped)wandb: | 0.001 MB of 0.010 MB uploaded (0.000 MB deduped)wandb: / 0.008 MB of 0.010 MB uploaded (0.000 MB deduped)wandb: - 0.010 MB of 0.010 MB uploaded (0.000 MB deduped)wandb: \ 0.010 MB of 0.010 MB uploaded (0.000 MB deduped)wandb: | 0.010 MB of 0.010 MB uploaded (0.000 MB deduped)wandb: / 0.010 MB of 0.010 MB uploaded (0.000 MB deduped)wandb: - 0.010 MB of 0.010 MB uploaded (0.000 MB deduped)wandb: \ 0.010 MB of 0.010 MB uploaded (0.000 MB deduped)wandb:                                                                                
+wandb: Synced neat-river-35: https://wandb.ai/joshuapaperspace/finetune_using_clm/runs/23ctpijx
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20221117_144511-23ctpijx/logs
+
