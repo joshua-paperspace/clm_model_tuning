@@ -129,10 +129,17 @@ dmypy.json
 .pyre/
 
 # ipynb files
-*.ipynb
+# *.ipynb
 
 # wandb files
 wandb/*
 
 # ide
 .idea/
+
+# Other
+data
+tuned-model
+venv
+wandb
+outputs

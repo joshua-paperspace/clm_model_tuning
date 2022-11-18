@@ -4,4 +4,3 @@ sentencepiece != 0.1.92
 hydra-core
 transformers >= 4.2.0
 bittensor
-wandb==0.13.5

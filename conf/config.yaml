@@ -8,6 +8,7 @@ dataset:
   name: "bittensor"
   config_name: null # necessary for huggingface datasets
   num_batches: 10
+  # num_batches: 20
   block_size: null # if null, defaults to bittensor's validator sequence length.
 
   overwrite_cache: false
