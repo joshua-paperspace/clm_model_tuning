@@ -39,8 +39,10 @@ import bittensor
 import wandb
 import numpy as np
 import pickle 
+import time
 
-# WANDB_KEY = "c0d007cc7a7f9e6db9b2d3d4d37f17f1b0202276"
+WANDB_KEY = "c0d007cc7a7f9e6db9b2d3d4d37f17f1b0202276"
+HF_access_token="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"
 # wandb.login(WANDB_KEY)
 
 test_model = False
@@ -103,10 +105,10 @@ def load_raw_datasets(cfg: DictConfig) -> DatasetDict:
         if extension == "txt":
             extension = "text"
             dataset_args["keep_linebreaks"] = cfg.dataset.keep_linebreaks
-        raw_datasets = load_dataset(extension, data_files=data_files, **dataset_args)
+        raw_datasets = load_dataset(extension, data_files=data_files, **dataset_args, use_auth_token=HF_access_token)
         raw_datasets = raw_datasets["text"]
     else:
-        raw_datasets = load_dataset(cfg.dataset.name, cfg.dataset.config_name)
+        raw_datasets = load_dataset(cfg.dataset.name, cfg.dataset.config_name, use_auth_token=HF_access_token)
 
     return raw_datasets
 
@@ -117,7 +119,6 @@ def load_model_and_tokenizer(cfg: DictConfig):
     #     config = AutoConfig.from_pretrained(cfg.model.config_name)
     # else:
     #     config = AutoConfig.from_pretrained(cfg.model.name)
-    HF_access_token="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"
     # config =  AutoConfig.from_pretrained("ViktorThink/bt-opt-2.7b-a100-v6", use_auth_token=HF_access_token)
     config=AutoConfig.from_pretrained("EleutherAI/gpt-neo-2.7B", use_auth_token=HF_access_token)
 
@@ -140,12 +141,6 @@ def load_model_and_tokenizer(cfg: DictConfig):
         from_flax=True
     )
     model.resize_token_embeddings(len(tokenizer))
-
-    # if test_model:
-    #     print('a')
-    #     model = HF_access_token =  "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"
-    #     model = AutoModel.from_pretrained("ViktorThink/bt-opt-2.7b-a100-v6", use_auth_token=HF_access_token)
-    #     print('b')
     
     return tokenizer, model
 
@@ -237,6 +232,32 @@ def preprocess(cfg, accelerator, tokenizer, raw_datasets):
     return tokenized_datasets
 
 
+def save_tokenized_datasets(tokenized_datasets):
+
+    train_dataset = tokenized_datasets["train"]
+    eval_dataset = tokenized_datasets["validation"]
+
+    filehandler = open("data/train_dataset.pkl", 'wb')
+    pickle.dump(train_dataset, filehandler)
+
+    filehandler = open("data/eval_dataset.pkl", 'wb')
+    pickle.dump(eval_dataset, filehandler)
+
+    print('Tokenized datasets saved.')
+    exit()
+    return None
+
+
+def load_preloaded_data():
+    filehandler = open("data/prev/train_dataset.pkl", 'rb')
+    train_dataset = pickle.load(filehandler)
+
+    filehandler = open("data/prev/eval_dataset.pkl", 'rb')
+    eval_dataset = pickle.load(filehandler)
+
+    return train_dataset, eval_dataset
+
+
 @hydra.main(version_base=None, config_path="conf", config_name="config")
 def main(cfg: DictConfig):
 
@@ -275,60 +296,44 @@ def main(cfg: DictConfig):
         model.tie_weights()
 
     # Load and preprocess data
-    load_preloaded_data = False
-    if load_preloaded_data:
-        filehandler = open("data/prev/train_dataset.pkl", 'rb')
-        train_dataset = pickle.load(filehandler)
-
-        filehandler = open("data/prev/eval_dataset.pkl", 'rb')
-        eval_dataset = pickle.load(filehandler)
-
-        filehandler = open("data/prev/test_dataset.pkl", 'rb')
-        test_dataset = pickle.load(filehandler)
-    
+    if cfg.dataset.load_tokenized_data:
+        train_dataset, eval_dataset = load_preloaded_data()
     else:
-        print('starting here!')
         raw_datasets = load_raw_datasets(cfg)
-        print("raw_datasets types:", type(raw_datasets))
-        print("raw_datasets length:", len(raw_datasets))
-        # exit()
 
+        print('a')
         tokenized_datasets = preprocess(cfg, accelerator, tokenizer, raw_datasets)
+        print('b')
         if "train" not in tokenized_datasets.column_names:
+            print('c')
             tokenized_datasets = tokenized_datasets.train_test_split(
-                test_size=cfg.training.val_split_percent / 100
+                test_size=cfg.training.val_split_percent / 100,
+                random_state=cfg.training.seed
             )
-            tokenized_datasets_test_valid = tokenized_datasets["test"].train_test_split(
-                test_size=0.5
-            )
-            tokenized_datasets["test"] = tokenized_datasets_test_valid["train"]
-            tokenized_datasets["validation"] = tokenized_datasets_test_valid["test"]
 
+            # tokenized_datasets_test_valid = tokenized_datasets["test"].train_test_split(
+            #     test_size=1, random_state=cfg.training.seed
+            # )
+            # tokenized_datasets["test"] = tokenized_datasets_test_valid["train"]
+            # tokenized_datasets["validation"] = tokenized_datasets_test_valid["test"]
+
+        print('column names:', tokenized_datasets.column_names)
+        save_tokenized_datasets(tokenized_datasets)
         train_dataset = tokenized_datasets["train"]
         eval_dataset = tokenized_datasets["validation"]
-        test_dataset = tokenized_datasets["test"]
 
-        print("train_dataset types:", type(train_dataset))
-        print("train_dataset length:", len(train_dataset))
-        print("eval_dataset length:", len(eval_dataset))
-        
-        # import pickle 
-        # object = Object() 
-        filehandler = open("data/train_dataset.pkl", 'wb')
-        pickle.dump(train_dataset, filehandler)
-
-        filehandler = open("data/eval_dataset.pkl", 'wb')
-        pickle.dump(eval_dataset, filehandler)
-
-        filehandler = open("data/test_dataset.pkl", 'wb')
-        pickle.dump(test_dataset, filehandler)
-        # exit()
+        print('train_dataset length:',len(train_dataset))
+        print('eval_dataset length:',len(eval_dataset))
+        # test_dataset = tokenized_datasets["test"]
 
     # Log a few random samples from the training set:
     for index in random.sample(range(len(train_dataset)), 3):
         ex = train_dataset[index]
         logger.info(f"Sample {index} of the training set: {ex}: \n")
         logger.info(tokenizer.decode(ex["input_ids"]))
+    
+    # Exit
+    # exit()
 
     # DataLoaders creation:
     train_dataloader = DataLoader(
@@ -343,23 +348,15 @@ def main(cfg: DictConfig):
         batch_size=cfg.training.eval_batch_size,
     )
 
-    test_dataloader = DataLoader(
-        test_dataset,
-        collate_fn=default_data_collator,
-        batch_size=64,
-        # batch_size=cfg.training.eval_batch_size,
-    )
-
     # Prepare everything using our accelerator
     (
         model,
         optimizer,
         train_dataloader,
         eval_dataloader,
-        test_dataloader, 
         lr_scheduler,
     ) = accelerator.prepare(
-        model, optimizer, train_dataloader, eval_dataloader, test_dataloader, lr_scheduler
+        model, optimizer, train_dataloader, eval_dataloader, lr_scheduler
     )
 
     # Scheduler and math around the number of training steps.
@@ -400,7 +397,7 @@ def main(cfg: DictConfig):
         # experiment_config["lr_scheduler"] = experiment_config[
         #     "training.lr_scheduler"
         # ].value
-        experiment_config["lr_scheduler"] = "constant"
+        experiment_config["lr_scheduler"] = cfg.training.lr_scheduler
         accelerator.init_trackers("finetune_using_clm", experiment_config)
 
     logger.info("***** Running training *****")
@@ -437,163 +434,162 @@ def main(cfg: DictConfig):
             starting_epoch = resume_step // len(train_dataloader)
             resume_step -= starting_epoch * len(train_dataloader)
 
-    import time
-    # time.sleep(0.100)
-    print('a')
-    time.sleep(3)
-    # del train_dataloader
-    print('b')
-    time.sleep(3)
-    # del eval_dataloader
-    print('c')
-    time.sleep(3)
-    # device = 'cuda:0'
-    # test_dataloader.to(device)
+    # if cfg.testing.enabled:
+    #     model.eval()
+    #     test_losses = []
+    #     for _test_step, test_batch in enumerate(test_dataloader):
+    #         print('step:', _test_step)
+    #         with torch.no_grad():
+    #             outputs = model(**test_batch)
 
-    # test_model = True
-    if test_model:
-        model.eval()
-        test_losses = []
-        for _test_step, test_batch in enumerate(test_dataloader):
-            print('step:', _test_step)
-            with torch.no_grad():
-                outputs = model(**test_batch)
+    #         loss = outputs.loss
+    #         test_losses.append(
+    #             accelerator.gather(loss.repeat(64))
+    #             # accelerator.gather(loss.repeat(cfg.training.test_batch_size))
+    #         )
+    #         # if _test_step == 2:
+    #         #     break
 
-            loss = outputs.loss
-            test_losses.append(
-                accelerator.gather(loss.repeat(64))
-                # accelerator.gather(loss.repeat(cfg.training.test_batch_size))
-            )
-            # if _test_step == 2:
-            #     break
-
-        losses = torch.cat(test_losses)
-        losses = losses[: len(test_dataset)]
-        try:
-            test_loss = torch.mean(losses)
-            perplexity = math.exp(test_loss)
-        except OverflowError:
-            perplexity = float("inf")
+    #     losses = torch.cat(test_losses)
+    #     losses = losses[: len(test_dataset)]
+    #     try:
+    #         test_loss = torch.mean(losses)
+    #         perplexity = math.exp(test_loss)
+    #     except OverflowError:
+    #         perplexity = float("inf")
 
         
-        results = f"steps: {_test_step} perplexity: {perplexity} test_loss: {test_loss}"
+    #     results = f"steps: {_test_step} perplexity: {perplexity} test_loss: {test_loss}"
 
-        logger.info(
-            results
-        )
+    #     logger.info(
+    #         results
+    #     )
 
-        with open("results.txt", "w") as file1:
-            file1.write(results)
+    #     with open("results.txt", "w") as file1:
+    #         file1.write(results)
 
-        exit()
+    #     exit()
     
-    config={
-         "epochs": 10,
-         "batch_size": 128,
-         "lr": 1e-3,
-         }
-    model_name = 'facebook/opt-125m'
-    # with wandb.init(project="Bittensor", config=config, name=model_name):
-    for epoch in range(starting_epoch, cfg.training.num_epochs):
-        model.train()
-        if cfg.tracking.enabled is True:
-            total_loss = 0
-        train_losses = []
-        for step, batch in enumerate(train_dataloader):
-            # print("batch:", batch)
-            # print("train_dataloader:",train_dataloader)
-            # exit()
-            # print('batch size:', batch.shape())
-            # print('data size: ', train_dataloader.shape())
-            # We need to skip steps until we reach the resumed step
-            if (
-                cfg.training.checkpoint.resume_from_checkpoint
-                and epoch == starting_epoch
-            ):
-                if resume_step is not None and step < resume_step:
-                    completed_steps += 1
-                    continue
+    # config={
+    #      "epochs": 10,
+    #      "batch_size": 128,
+    #      "lr": 1e-3,
+    #      }
+    
+    epoch_durations = []
+    eval_step_durations = []
 
-            outputs = model(**batch)
-            loss = outputs.loss
-            train_losses.append(
-                accelerator.gather(loss.repeat(cfg.training.train_batch_size))
-            )
-            # We keep track of the loss at each epoch
+    with wandb.init(project="Bittensor", config=cfg, name=cfg.model.name):
+        for epoch in range(starting_epoch, cfg.training.num_epochs):
+            start_epoch_time = time.time()
+            model.train()
             if cfg.tracking.enabled is True:
-                total_loss += loss.detach().float()
-            loss = loss / cfg.training.gradient_accumulation_steps
-            accelerator.backward(loss)
+                total_loss = 0
+            train_losses = []
+            for step, batch in enumerate(train_dataloader):
+                start_eval_step_time = time.time()
+                if (
+                    cfg.training.checkpoint.resume_from_checkpoint
+                    and epoch == starting_epoch
+                ):
+                    if resume_step is not None and step < resume_step:
+                        completed_steps += 1
+                        continue
 
-            if (
-                step % cfg.training.gradient_accumulation_steps == 0
-                or step == len(train_dataloader) - 1
-            ):
-                optimizer.step()
-                lr_scheduler.step()
-                optimizer.zero_grad()
-                progress_bar.update(1)
-                completed_steps += 1
+                outputs = model(**batch)
+                loss = outputs.loss
+                train_losses.append(
+                    accelerator.gather(loss.repeat(cfg.training.train_batch_size))
+                )
+                # We keep track of the loss at each epoch
+                if cfg.tracking.enabled is True:
+                    total_loss += loss.detach().float()
+                loss = loss / cfg.training.gradient_accumulation_steps
+                accelerator.backward(loss)
 
-            if step % cfg.training.eval_every == 0:
-                train_losses_tensor = torch.cat(train_losses)
-                train_loss = torch.mean(train_losses_tensor)
-                model.eval()
-                eval_losses = []
-                for _eval_step, eval_batch in enumerate(eval_dataloader):
-                    with torch.no_grad():
-                        outputs = model(**eval_batch)
+                if (
+                    step % cfg.training.gradient_accumulation_steps == 0
+                    or step == len(train_dataloader) - 1
+                ):
+                    optimizer.step()
+                    lr_scheduler.step()
+                    optimizer.zero_grad()
+                    progress_bar.update(1)
+                    completed_steps += 1
 
-                    loss = outputs.loss
-                    eval_losses.append(
-                        accelerator.gather(loss.repeat(cfg.training.eval_batch_size))
+                if step % cfg.training.eval_every == 0:
+                    train_losses_tensor = torch.cat(train_losses)
+                    train_loss = torch.mean(train_losses_tensor)
+                    model.eval()
+                    eval_losses = []
+                    for _eval_step, eval_batch in enumerate(eval_dataloader):
+                        with torch.no_grad():
+                            outputs = model(**eval_batch)
+
+                        loss = outputs.loss
+                        eval_losses.append(
+                            accelerator.gather(loss.repeat(cfg.training.eval_batch_size))
+                        )
+                        if _eval_step == cfg.training.max_eval_steps:
+                            break
+
+                    losses = torch.cat(eval_losses)
+                    losses = losses[: len(eval_dataset)]
+                    try:
+                        eval_loss = torch.mean(losses)
+                        perplexity = math.exp(eval_loss)
+                    except OverflowError:
+                        perplexity = float("inf")
+
+                    results = f"epoch {epoch}: perplexity: {perplexity} train_loss: {train_loss} eval_loss: {eval_loss}"
+                    logger.info(
+                        results
                     )
-                    if _eval_step == cfg.training.max_eval_steps:
-                        break
 
-                losses = torch.cat(eval_losses)
-                losses = losses[: len(eval_dataset)]
-                try:
-                    eval_loss = torch.mean(losses)
-                    perplexity = math.exp(eval_loss)
-                except OverflowError:
-                    perplexity = float("inf")
+                    # with open("results.txt", "w") as file1:
+                    #     file1.write(results)
 
-                results = f"epoch {epoch}: perplexity: {perplexity} train_loss: {train_loss} eval_loss: {eval_loss}"
-                logger.info(
-                    results
-                )
+                    eval_step_duration = time.time() - start_eval_step_time
+                    wandb.log({"train_loss": train_loss, "epoch": epoch, 'eval_loss': eval_loss, 'perplexity': perplexity, 'eval_step_duration': eval_step_duration}, step=step)
+                    eval_step_durations.append(eval_step_duration)
 
-                with open("results.txt", "w") as file1:
-                    file1.write(results)
+            epoch_duration = time.time() - start_epoch_time
+            wandb.log({"train_loss": train_loss, "epoch": epoch, 'eval_loss': eval_loss, 'perplexity': perplexity, 'epoch_duration': epoch_duration}, step=step)
 
-                # wandb.log({"train_loss": train_loss, "epoch": epoch, 'eval_loss': eval_loss}, step=step)
+            epoch_durations.append(epoch_duration)
+            
 
-                epoch_dir = f"epoch_{epoch}_most_recent"
-                if cfg.output_dir is not None:
-                    output_dir = os.path.join(cfg.output_dir, epoch_dir)
-                unwrapped_model = accelerator.unwrap_model(model)
-                unwrapped_model.save_pretrained(
-                    output_dir,
-                    is_main_process=accelerator.is_main_process,
-                    save_function=accelerator.save,
-                )
-                if accelerator.is_main_process:
-                    tokenizer.save_pretrained(output_dir)
-
-        if cfg.tracking.enabled is True:
-            accelerator.log(
-                {
-                    "perplexity": perplexity,
-                    "eval_loss": eval_loss,
-                    "train_loss": total_loss.item() / len(train_dataloader),
-                    "epoch": epoch,
-                    "step": completed_steps,
-                },
-                step=completed_steps,
+            epoch_dir = f"epoch_{epoch}_most_recent"
+            if cfg.output_dir is not None:
+                output_dir = os.path.join(cfg.output_dir, epoch_dir)
+            unwrapped_model = accelerator.unwrap_model(model)
+            unwrapped_model.save_pretrained(
+                output_dir,
+                is_main_process=accelerator.is_main_process,
+                save_function=accelerator.save,
             )
+            if accelerator.is_main_process:
+                tokenizer.save_pretrained(output_dir)
 
-        logger.info(f"done epoch {epoch}")
+            if cfg.tracking.enabled is True:
+                accelerator.log(
+                    {
+                        "perplexity": perplexity,
+                        "eval_loss": eval_loss,
+                        "train_loss": total_loss.item() / len(train_dataloader),
+                        "epoch": epoch,
+                        "step": completed_steps,
+                    },
+                    step=completed_steps,
+                )
+
+            logger.info(f"done epoch {epoch}")
+
+        avg_epoch_runtime = sum(epoch_durations) / len(epoch_durations)
+        avg_eval_step_runtime = sum(eval_step_durations) / len(eval_step_durations)
+        wandb.log({"avg epoch runtime (seconds)": avg_epoch_runtime})
+        wandb.log({"avg eval step runtime (seconds)": avg_eval_step_runtime})
+        wandb.finish()
 
     if cfg.output_dir is not None:
         accelerator.wait_for_everyone()

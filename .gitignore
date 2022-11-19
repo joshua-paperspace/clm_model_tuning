@@ -138,8 +138,8 @@ wandb/*
 .idea/
 
 # Other
-data
-tuned-model
+data/*
+tuned-model/*
 venv
 wandb
 outputs

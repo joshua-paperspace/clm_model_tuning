@@ -5,3 +5,4 @@ hydra-core
 transformers >= 4.2.0
 bittensor
 wandb==0.13.5
+flax==0.6.2
