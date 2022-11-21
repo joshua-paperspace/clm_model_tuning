@@ -99,10 +99,10 @@ def load_raw_datasets(cfg: DictConfig) -> DatasetDict:
         if extension == "txt":
             extension = "text"
             dataset_args["keep_linebreaks"] = cfg.dataset.keep_linebreaks
-        raw_datasets = load_dataset(extension, data_files=data_files, **dataset_args, use_auth_token=HF_access_token)
+        raw_datasets = load_dataset(extension, data_files=data_files, **dataset_args, use_auth_token=cfg.access.hf_access_token)
         raw_datasets = raw_datasets["text"]
     else:
-        raw_datasets = load_dataset(cfg.dataset.name, cfg.dataset.config_name, use_auth_token=HF_access_token)
+        raw_datasets = load_dataset(cfg.dataset.name, cfg.dataset.config_name, use_auth_token=cfg.access.hf_access_token)
 
     return raw_datasets
 
@@ -116,11 +116,11 @@ def load_model_and_tokenizer(cfg: DictConfig):
 
     if cfg.tokenizer.name is not None:
         tokenizer = AutoTokenizer.from_pretrained(
-            cfg.tokenizer.name, use_fast=cfg.tokenizer.use_fast, use_auth_token=HF_access_token
+            cfg.tokenizer.name, use_fast=cfg.tokenizer.use_fast, use_auth_token=cfg.access.hf_access_token
         )
     else:
         tokenizer = AutoTokenizer.from_pretrained(
-            cfg.model.name, use_fast=cfg.tokenizer.use_fast, use_auth_token=HF_access_token
+            cfg.model.name, use_fast=cfg.tokenizer.use_fast, use_auth_token=cfg.access.hf_access_token
         )
     #tokenizer.pad_token = cfg.tokenizer.pad_token
     if tokenizer.pad_token is None and tokenizer.eos_token is not None:
@@ -260,9 +260,6 @@ def load_preloaded_data():
 def main(cfg: DictConfig):
 
     cfg = check_cfg_and_load_defaults(cfg)
-
-    WANDB_KEY = cfg.keys.WANDB_KEY
-    HF_access_token=cfg.keys.HF_access_token
 
     os.makedirs(cfg.output_dir, exist_ok=True)
 
