@@ -41,11 +41,8 @@ import numpy as np
 import pickle 
 import time
 
-WANDB_KEY = "c0d007cc7a7f9e6db9b2d3d4d37f17f1b0202276"
-HF_access_token="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"
-# wandb.login(WANDB_KEY)
-
-test_model = False
+WANDB_KEY = cfg.keys.WANDB_KEY
+HF_access_token=cfg.keys.HF_access_token
 
 
 def check_cfg_and_load_defaults(cfg: DictConfig) -> DictConfig:
@@ -115,12 +112,10 @@ def load_raw_datasets(cfg: DictConfig) -> DatasetDict:
 
 def load_model_and_tokenizer(cfg: DictConfig):
 
-    # if cfg.model.config_name is not None:
-    #     config = AutoConfig.from_pretrained(cfg.model.config_name)
-    # else:
-    #     config = AutoConfig.from_pretrained(cfg.model.name)
-    # config =  AutoConfig.from_pretrained("ViktorThink/bt-opt-2.7b-a100-v6", use_auth_token=HF_access_token)
-    config=AutoConfig.from_pretrained("EleutherAI/gpt-neo-2.7B", use_auth_token=HF_access_token)
+    if cfg.model.config_name is not None:
+        config = AutoConfig.from_pretrained(cfg.model.config_name)
+    else:
+        config = AutoConfig.from_pretrained(cfg.model.name)
 
     if cfg.tokenizer.name is not None:
         tokenizer = AutoTokenizer.from_pretrained(
@@ -243,17 +238,22 @@ def save_tokenized_datasets(tokenized_datasets):
     filehandler = open("data/eval_dataset.pkl", 'wb')
     pickle.dump(eval_dataset, filehandler)
 
+    print('train_dataset length:',len(train_dataset))
+    print('eval_dataset length:',len(eval_dataset))
     print('Tokenized datasets saved.')
-    exit()
-    return None
+
+    return True
 
 
 def load_preloaded_data():
-    filehandler = open("data/prev/train_dataset.pkl", 'rb')
+    filehandler = open("data/train_dataset.pkl", 'rb')
     train_dataset = pickle.load(filehandler)
 
-    filehandler = open("data/prev/eval_dataset.pkl", 'rb')
+    filehandler = open("data/eval_dataset.pkl", 'rb')
     eval_dataset = pickle.load(filehandler)
+
+    print('train_dataset length:', len(train_dataset))
+    print('eval_dataset length:', len(eval_dataset))
 
     return train_dataset, eval_dataset
 
@@ -301,16 +301,15 @@ def main(cfg: DictConfig):
     else:
         raw_datasets = load_raw_datasets(cfg)
 
-        print('a')
         tokenized_datasets = preprocess(cfg, accelerator, tokenizer, raw_datasets)
-        print('b')
+
         if "train" not in tokenized_datasets.column_names:
-            print('c')
             tokenized_datasets = tokenized_datasets.train_test_split(
                 test_size=cfg.training.val_split_percent / 100,
                 random_state=cfg.training.seed
             )
 
+            # Removed below as we are not using a test dataset, only a validation set
             # tokenized_datasets_test_valid = tokenized_datasets["test"].train_test_split(
             #     test_size=1, random_state=cfg.training.seed
             # )
@@ -322,18 +321,11 @@ def main(cfg: DictConfig):
         train_dataset = tokenized_datasets["train"]
         eval_dataset = tokenized_datasets["validation"]
 
-        print('train_dataset length:',len(train_dataset))
-        print('eval_dataset length:',len(eval_dataset))
-        # test_dataset = tokenized_datasets["test"]
-
     # Log a few random samples from the training set:
     for index in random.sample(range(len(train_dataset)), 3):
         ex = train_dataset[index]
         logger.info(f"Sample {index} of the training set: {ex}: \n")
         logger.info(tokenizer.decode(ex["input_ids"]))
-    
-    # Exit
-    # exit()
 
     # DataLoaders creation:
     train_dataloader = DataLoader(
@@ -433,48 +425,6 @@ def main(cfg: DictConfig):
             resume_step = int(training_difference.replace("step_", ""))
             starting_epoch = resume_step // len(train_dataloader)
             resume_step -= starting_epoch * len(train_dataloader)
-
-    # if cfg.testing.enabled:
-    #     model.eval()
-    #     test_losses = []
-    #     for _test_step, test_batch in enumerate(test_dataloader):
-    #         print('step:', _test_step)
-    #         with torch.no_grad():
-    #             outputs = model(**test_batch)
-
-    #         loss = outputs.loss
-    #         test_losses.append(
-    #             accelerator.gather(loss.repeat(64))
-    #             # accelerator.gather(loss.repeat(cfg.training.test_batch_size))
-    #         )
-    #         # if _test_step == 2:
-    #         #     break
-
-    #     losses = torch.cat(test_losses)
-    #     losses = losses[: len(test_dataset)]
-    #     try:
-    #         test_loss = torch.mean(losses)
-    #         perplexity = math.exp(test_loss)
-    #     except OverflowError:
-    #         perplexity = float("inf")
-
-        
-    #     results = f"steps: {_test_step} perplexity: {perplexity} test_loss: {test_loss}"
-
-    #     logger.info(
-    #         results
-    #     )
-
-    #     with open("results.txt", "w") as file1:
-    #         file1.write(results)
-
-    #     exit()
-    
-    # config={
-    #      "epochs": 10,
-    #      "batch_size": 128,
-    #      "lr": 1e-3,
-    #      }
     
     epoch_durations = []
     eval_step_durations = []
@@ -546,12 +496,23 @@ def main(cfg: DictConfig):
                         results
                     )
 
-                    # with open("results.txt", "w") as file1:
-                    #     file1.write(results)
-
                     eval_step_duration = time.time() - start_eval_step_time
+
+                    # Log results to Weights and Biases
                     wandb.log({"train_loss": train_loss, "epoch": epoch, 'eval_loss': eval_loss, 'perplexity': perplexity, 'eval_step_duration': eval_step_duration}, step=step)
                     eval_step_durations.append(eval_step_duration)
+
+                    epoch_dir = f"epoch_{epoch}_most_recent"
+                    if cfg.output_dir is not None:
+                        output_dir = os.path.join(cfg.output_dir, epoch_dir)
+                    unwrapped_model = accelerator.unwrap_model(model)
+                    unwrapped_model.save_pretrained(
+                        output_dir,
+                        is_main_process=accelerator.is_main_process,
+                        save_function=accelerator.save,
+                    )
+                    if accelerator.is_main_process:
+                        tokenizer.save_pretrained(output_dir)
 
             epoch_duration = time.time() - start_epoch_time
             wandb.log({"train_loss": train_loss, "epoch": epoch, 'eval_loss': eval_loss, 'perplexity': perplexity, 'epoch_duration': epoch_duration}, step=step)

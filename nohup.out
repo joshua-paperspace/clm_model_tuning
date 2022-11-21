@@ -1,3509 +1,0 @@
-[2022-11-18 19:01:42,615][__main__][INFO] - Setting random seed to 17
-[2022-11-18 19:01:42,616][__main__][INFO] - Distributed environment: NO
-Num processes: 1
-Process index: 0
-Local process index: 0
-Device: cuda
-Mixed precision type: no
-
-[2022-11-18 19:01:42,619][__main__][INFO] - output_dir: tuned-model
-bittensor:
-  network: nobunaga
-dataset:
-  name: ViktorThink/mountain_combined_813306
-  config_name: null
-  num_batches: 500
-  block_size: 256
-  overwrite_cache: false
-  keep_linebreaks: true
-  concatenate_raw: false
-  load_tokenized_data: false
-model:
-  name: facebook/opt-2.7b
-  config_name: null
-tokenizer:
-  name: null
-  use_fast: true
-  preprocessing_num_workers: 128
-  pad_token: '[PAD]'
-training:
-  seed: 17
-  val_split_percent: 20
-  train_batch_size: 32
-  eval_batch_size: 16
-  learning_rate: 3.0e-06
-  weight_decay: 0.05
-  num_epochs: 4
-  max_train_steps: null
-  gradient_accumulation_steps: 2
-  lr_scheduler: constant
-  lr_warmup_steps: 5
-  eval_every: 250
-  max_eval_steps: 500
-  checkpoint:
-    resume_from_checkpoint: 0
-    every_n_steps: null
-tracking:
-  enabled: true
-  report_to: all
-testing:
-  enabled: false
-
-loading configuration file config.json from cache at /home/paperspace/.cache/huggingface/hub/models--EleutherAI--gpt-neo-2.7B/snapshots/51568a6e0ae813a3f2a9da558ab7beac5e3acc24/config.json
-Model config GPTNeoConfig {
-  "_name_or_path": "EleutherAI/gpt-neo-2.7B",
-  "activation_function": "gelu_new",
-  "architectures": [
-    "GPTNeoForCausalLM"
-  ],
-  "attention_dropout": 0,
-  "attention_layers": [
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local",
-    "global",
-    "local"
-  ],
-  "attention_types": [
-    [
-      [
-        "global",
-        "local"
-      ],
-      16
-    ]
-  ],
-  "bos_token_id": 50256,
-  "embed_dropout": 0,
-  "eos_token_id": 50256,
-  "gradient_checkpointing": false,
-  "hidden_size": 2560,
-  "initializer_range": 0.02,
-  "intermediate_size": null,
-  "layer_norm_epsilon": 1e-05,
-  "max_position_embeddings": 2048,
-  "model_type": "gpt_neo",
-  "num_heads": 20,
-  "num_layers": 32,
-  "resid_dropout": 0,
-  "summary_activation": null,
-  "summary_first_dropout": 0.1,
-  "summary_proj_to_labels": true,
-  "summary_type": "cls_index",
-  "summary_use_proj": true,
-  "task_specific_params": {
-    "text-generation": {
-      "do_sample": true,
-      "max_length": 50,
-      "temperature": 0.9
-    }
-  },
-  "tokenizer_class": "GPT2Tokenizer",
-  "transformers_version": "4.24.0",
-  "use_cache": true,
-  "vocab_size": 50257,
-  "window_size": 256
-}
-
-loading configuration file config.json from cache at /home/paperspace/.cache/huggingface/hub/models--facebook--opt-2.7b/snapshots/c9c15109b9dac40871c063892227d45b85cb3952/config.json
-Model config OPTConfig {
-  "_name_or_path": "facebook/opt-2.7b",
-  "_remove_final_layer_norm": false,
-  "activation_dropout": 0.0,
-  "activation_function": "relu",
-  "architectures": [
-    "OPTForCausalLM"
-  ],
-  "attention_dropout": 0.0,
-  "bos_token_id": 2,
-  "do_layer_norm_before": true,
-  "dropout": 0.1,
-  "eos_token_id": 2,
-  "ffn_dim": 10240,
-  "hidden_size": 2560,
-  "init_std": 0.02,
-  "layerdrop": 0.0,
-  "max_position_embeddings": 2048,
-  "model_type": "opt",
-  "num_attention_heads": 32,
-  "num_hidden_layers": 32,
-  "pad_token_id": 1,
-  "prefix": "</s>",
-  "torch_dtype": "float16",
-  "transformers_version": "4.24.0",
-  "use_cache": true,
-  "vocab_size": 50272,
-  "word_embed_proj_dim": 2560
-}
-
-loading file vocab.json from cache at /home/paperspace/.cache/huggingface/hub/models--facebook--opt-2.7b/snapshots/c9c15109b9dac40871c063892227d45b85cb3952/vocab.json
-loading file merges.txt from cache at /home/paperspace/.cache/huggingface/hub/models--facebook--opt-2.7b/snapshots/c9c15109b9dac40871c063892227d45b85cb3952/merges.txt
-loading file added_tokens.json from cache at None
-loading file special_tokens_map.json from cache at /home/paperspace/.cache/huggingface/hub/models--facebook--opt-2.7b/snapshots/c9c15109b9dac40871c063892227d45b85cb3952/special_tokens_map.json
-loading file tokenizer_config.json from cache at /home/paperspace/.cache/huggingface/hub/models--facebook--opt-2.7b/snapshots/c9c15109b9dac40871c063892227d45b85cb3952/tokenizer_config.json
-loading configuration file config.json from cache at /home/paperspace/.cache/huggingface/hub/models--facebook--opt-2.7b/snapshots/c9c15109b9dac40871c063892227d45b85cb3952/config.json
-Model config OPTConfig {
-  "_name_or_path": "facebook/opt-2.7b",
-  "_remove_final_layer_norm": false,
-  "activation_dropout": 0.0,
-  "activation_function": "relu",
-  "architectures": [
-    "OPTForCausalLM"
-  ],
-  "attention_dropout": 0.0,
-  "bos_token_id": 2,
-  "do_layer_norm_before": true,
-  "dropout": 0.1,
-  "eos_token_id": 2,
-  "ffn_dim": 10240,
-  "hidden_size": 2560,
-  "init_std": 0.02,
-  "layerdrop": 0.0,
-  "max_position_embeddings": 2048,
-  "model_type": "opt",
-  "num_attention_heads": 32,
-  "num_hidden_layers": 32,
-  "pad_token_id": 1,
-  "prefix": "</s>",
-  "torch_dtype": "float16",
-  "transformers_version": "4.24.0",
-  "use_cache": true,
-  "vocab_size": 50272,
-  "word_embed_proj_dim": 2560
-}
-
-loading weights file flax_model.msgpack from cache at /home/paperspace/.cache/huggingface/hub/models--facebook--opt-2.7b/snapshots/c9c15109b9dac40871c063892227d45b85cb3952/flax_model.msgpack
-Loading Flax weights from /home/paperspace/.cache/huggingface/hub/models--facebook--opt-2.7b/snapshots/c9c15109b9dac40871c063892227d45b85cb3952/flax_model.msgpack
-Some weights of the Flax model were not used when initializing the PyTorch model GPTNeoForCausalLM: ['model.decoder.embed_tokens.weight', 'model.decoder.embed_positions.weight', 'model.decoder.final_layer_norm.weight', 'model.decoder.final_layer_norm.bias', 'model.decoder.layers.0.self_attn.k_proj.weight', 'model.decoder.layers.0.self_attn.k_proj.bias', 'model.decoder.layers.0.self_attn.v_proj.weight', 'model.decoder.layers.0.self_attn.v_proj.bias', 'model.decoder.layers.0.self_attn.q_proj.weight', 'model.decoder.layers.0.self_attn.q_proj.bias', 'model.decoder.layers.0.self_attn.out_proj.weight', 'model.decoder.layers.0.self_attn.out_proj.bias', 'model.decoder.layers.0.self_attn_layer_norm.weight', 'model.decoder.layers.0.self_attn_layer_norm.bias', 'model.decoder.layers.0.fc1.weight', 'model.decoder.layers.0.fc1.bias', 'model.decoder.layers.0.fc2.weight', 'model.decoder.layers.0.fc2.bias', 'model.decoder.layers.0.final_layer_norm.weight', 'model.decoder.layers.0.final_layer_norm.bias', 'model.decoder.layers.1.self_attn.k_proj.weight', 'model.decoder.layers.1.self_attn.k_proj.bias', 'model.decoder.layers.1.self_attn.v_proj.weight', 'model.decoder.layers.1.self_attn.v_proj.bias', 'model.decoder.layers.1.self_attn.q_proj.weight', 'model.decoder.layers.1.self_attn.q_proj.bias', 'model.decoder.layers.1.self_attn.out_proj.weight', 'model.decoder.layers.1.self_attn.out_proj.bias', 'model.decoder.layers.1.self_attn_layer_norm.weight', 'model.decoder.layers.1.self_attn_layer_norm.bias', 'model.decoder.layers.1.fc1.weight', 'model.decoder.layers.1.fc1.bias', 'model.decoder.layers.1.fc2.weight', 'model.decoder.layers.1.fc2.bias', 'model.decoder.layers.1.final_layer_norm.weight', 'model.decoder.layers.1.final_layer_norm.bias', 'model.decoder.layers.2.self_attn.k_proj.weight', 'model.decoder.layers.2.self_attn.k_proj.bias', 'model.decoder.layers.2.self_attn.v_proj.weight', 'model.decoder.layers.2.self_attn.v_proj.bias', 'model.decoder.layers.2.self_attn.q_proj.weight', 'model.decoder.layers.2.self_attn.q_proj.bias', 'model.decoder.layers.2.self_attn.out_proj.weight', 'model.decoder.layers.2.self_attn.out_proj.bias', 'model.decoder.layers.2.self_attn_layer_norm.weight', 'model.decoder.layers.2.self_attn_layer_norm.bias', 'model.decoder.layers.2.fc1.weight', 'model.decoder.layers.2.fc1.bias', 'model.decoder.layers.2.fc2.weight', 'model.decoder.layers.2.fc2.bias', 'model.decoder.layers.2.final_layer_norm.weight', 'model.decoder.layers.2.final_layer_norm.bias', 'model.decoder.layers.3.self_attn.k_proj.weight', 'model.decoder.layers.3.self_attn.k_proj.bias', 'model.decoder.layers.3.self_attn.v_proj.weight', 'model.decoder.layers.3.self_attn.v_proj.bias', 'model.decoder.layers.3.self_attn.q_proj.weight', 'model.decoder.layers.3.self_attn.q_proj.bias', 'model.decoder.layers.3.self_attn.out_proj.weight', 'model.decoder.layers.3.self_attn.out_proj.bias', 'model.decoder.layers.3.self_attn_layer_norm.weight', 'model.decoder.layers.3.self_attn_layer_norm.bias', 'model.decoder.layers.3.fc1.weight', 'model.decoder.layers.3.fc1.bias', 'model.decoder.layers.3.fc2.weight', 'model.decoder.layers.3.fc2.bias', 'model.decoder.layers.3.final_layer_norm.weight', 'model.decoder.layers.3.final_layer_norm.bias', 'model.decoder.layers.4.self_attn.k_proj.weight', 'model.decoder.layers.4.self_attn.k_proj.bias', 'model.decoder.layers.4.self_attn.v_proj.weight', 'model.decoder.layers.4.self_attn.v_proj.bias', 'model.decoder.layers.4.self_attn.q_proj.weight', 'model.decoder.layers.4.self_attn.q_proj.bias', 'model.decoder.layers.4.self_attn.out_proj.weight', 'model.decoder.layers.4.self_attn.out_proj.bias', 'model.decoder.layers.4.self_attn_layer_norm.weight', 'model.decoder.layers.4.self_attn_layer_norm.bias', 'model.decoder.layers.4.fc1.weight', 'model.decoder.layers.4.fc1.bias', 'model.decoder.layers.4.fc2.weight', 'model.decoder.layers.4.fc2.bias', 'model.decoder.layers.4.final_layer_norm.weight', 'model.decoder.layers.4.final_layer_norm.bias', 'model.decoder.layers.5.self_attn.k_proj.weight', 'model.decoder.layers.5.self_attn.k_proj.bias', 'model.decoder.layers.5.self_attn.v_proj.weight', 'model.decoder.layers.5.self_attn.v_proj.bias', 'model.decoder.layers.5.self_attn.q_proj.weight', 'model.decoder.layers.5.self_attn.q_proj.bias', 'model.decoder.layers.5.self_attn.out_proj.weight', 'model.decoder.layers.5.self_attn.out_proj.bias', 'model.decoder.layers.5.self_attn_layer_norm.weight', 'model.decoder.layers.5.self_attn_layer_norm.bias', 'model.decoder.layers.5.fc1.weight', 'model.decoder.layers.5.fc1.bias', 'model.decoder.layers.5.fc2.weight', 'model.decoder.layers.5.fc2.bias', 'model.decoder.layers.5.final_layer_norm.weight', 'model.decoder.layers.5.final_layer_norm.bias', 'model.decoder.layers.6.self_attn.k_proj.weight', 'model.decoder.layers.6.self_attn.k_proj.bias', 'model.decoder.layers.6.self_attn.v_proj.weight', 'model.decoder.layers.6.self_attn.v_proj.bias', 'model.decoder.layers.6.self_attn.q_proj.weight', 'model.decoder.layers.6.self_attn.q_proj.bias', 'model.decoder.layers.6.self_attn.out_proj.weight', 'model.decoder.layers.6.self_attn.out_proj.bias', 'model.decoder.layers.6.self_attn_layer_norm.weight', 'model.decoder.layers.6.self_attn_layer_norm.bias', 'model.decoder.layers.6.fc1.weight', 'model.decoder.layers.6.fc1.bias', 'model.decoder.layers.6.fc2.weight', 'model.decoder.layers.6.fc2.bias', 'model.decoder.layers.6.final_layer_norm.weight', 'model.decoder.layers.6.final_layer_norm.bias', 'model.decoder.layers.7.self_attn.k_proj.weight', 'model.decoder.layers.7.self_attn.k_proj.bias', 'model.decoder.layers.7.self_attn.v_proj.weight', 'model.decoder.layers.7.self_attn.v_proj.bias', 'model.decoder.layers.7.self_attn.q_proj.weight', 'model.decoder.layers.7.self_attn.q_proj.bias', 'model.decoder.layers.7.self_attn.out_proj.weight', 'model.decoder.layers.7.self_attn.out_proj.bias', 'model.decoder.layers.7.self_attn_layer_norm.weight', 'model.decoder.layers.7.self_attn_layer_norm.bias', 'model.decoder.layers.7.fc1.weight', 'model.decoder.layers.7.fc1.bias', 'model.decoder.layers.7.fc2.weight', 'model.decoder.layers.7.fc2.bias', 'model.decoder.layers.7.final_layer_norm.weight', 'model.decoder.layers.7.final_layer_norm.bias', 'model.decoder.layers.8.self_attn.k_proj.weight', 'model.decoder.layers.8.self_attn.k_proj.bias', 'model.decoder.layers.8.self_attn.v_proj.weight', 'model.decoder.layers.8.self_attn.v_proj.bias', 'model.decoder.layers.8.self_attn.q_proj.weight', 'model.decoder.layers.8.self_attn.q_proj.bias', 'model.decoder.layers.8.self_attn.out_proj.weight', 'model.decoder.layers.8.self_attn.out_proj.bias', 'model.decoder.layers.8.self_attn_layer_norm.weight', 'model.decoder.layers.8.self_attn_layer_norm.bias', 'model.decoder.layers.8.fc1.weight', 'model.decoder.layers.8.fc1.bias', 'model.decoder.layers.8.fc2.weight', 'model.decoder.layers.8.fc2.bias', 'model.decoder.layers.8.final_layer_norm.weight', 'model.decoder.layers.8.final_layer_norm.bias', 'model.decoder.layers.9.self_attn.k_proj.weight', 'model.decoder.layers.9.self_attn.k_proj.bias', 'model.decoder.layers.9.self_attn.v_proj.weight', 'model.decoder.layers.9.self_attn.v_proj.bias', 'model.decoder.layers.9.self_attn.q_proj.weight', 'model.decoder.layers.9.self_attn.q_proj.bias', 'model.decoder.layers.9.self_attn.out_proj.weight', 'model.decoder.layers.9.self_attn.out_proj.bias', 'model.decoder.layers.9.self_attn_layer_norm.weight', 'model.decoder.layers.9.self_attn_layer_norm.bias', 'model.decoder.layers.9.fc1.weight', 'model.decoder.layers.9.fc1.bias', 'model.decoder.layers.9.fc2.weight', 'model.decoder.layers.9.fc2.bias', 'model.decoder.layers.9.final_layer_norm.weight', 'model.decoder.layers.9.final_layer_norm.bias', 'model.decoder.layers.10.self_attn.k_proj.weight', 'model.decoder.layers.10.self_attn.k_proj.bias', 'model.decoder.layers.10.self_attn.v_proj.weight', 'model.decoder.layers.10.self_attn.v_proj.bias', 'model.decoder.layers.10.self_attn.q_proj.weight', 'model.decoder.layers.10.self_attn.q_proj.bias', 'model.decoder.layers.10.self_attn.out_proj.weight', 'model.decoder.layers.10.self_attn.out_proj.bias', 'model.decoder.layers.10.self_attn_layer_norm.weight', 'model.decoder.layers.10.self_attn_layer_norm.bias', 'model.decoder.layers.10.fc1.weight', 'model.decoder.layers.10.fc1.bias', 'model.decoder.layers.10.fc2.weight', 'model.decoder.layers.10.fc2.bias', 'model.decoder.layers.10.final_layer_norm.weight', 'model.decoder.layers.10.final_layer_norm.bias', 'model.decoder.layers.11.self_attn.k_proj.weight', 'model.decoder.layers.11.self_attn.k_proj.bias', 'model.decoder.layers.11.self_attn.v_proj.weight', 'model.decoder.layers.11.self_attn.v_proj.bias', 'model.decoder.layers.11.self_attn.q_proj.weight', 'model.decoder.layers.11.self_attn.q_proj.bias', 'model.decoder.layers.11.self_attn.out_proj.weight', 'model.decoder.layers.11.self_attn.out_proj.bias', 'model.decoder.layers.11.self_attn_layer_norm.weight', 'model.decoder.layers.11.self_attn_layer_norm.bias', 'model.decoder.layers.11.fc1.weight', 'model.decoder.layers.11.fc1.bias', 'model.decoder.layers.11.fc2.weight', 'model.decoder.layers.11.fc2.bias', 'model.decoder.layers.11.final_layer_norm.weight', 'model.decoder.layers.11.final_layer_norm.bias', 'model.decoder.layers.12.self_attn.k_proj.weight', 'model.decoder.layers.12.self_attn.k_proj.bias', 'model.decoder.layers.12.self_attn.v_proj.weight', 'model.decoder.layers.12.self_attn.v_proj.bias', 'model.decoder.layers.12.self_attn.q_proj.weight', 'model.decoder.layers.12.self_attn.q_proj.bias', 'model.decoder.layers.12.self_attn.out_proj.weight', 'model.decoder.layers.12.self_attn.out_proj.bias', 'model.decoder.layers.12.self_attn_layer_norm.weight', 'model.decoder.layers.12.self_attn_layer_norm.bias', 'model.decoder.layers.12.fc1.weight', 'model.decoder.layers.12.fc1.bias', 'model.decoder.layers.12.fc2.weight', 'model.decoder.layers.12.fc2.bias', 'model.decoder.layers.12.final_layer_norm.weight', 'model.decoder.layers.12.final_layer_norm.bias', 'model.decoder.layers.13.self_attn.k_proj.weight', 'model.decoder.layers.13.self_attn.k_proj.bias', 'model.decoder.layers.13.self_attn.v_proj.weight', 'model.decoder.layers.13.self_attn.v_proj.bias', 'model.decoder.layers.13.self_attn.q_proj.weight', 'model.decoder.layers.13.self_attn.q_proj.bias', 'model.decoder.layers.13.self_attn.out_proj.weight', 'model.decoder.layers.13.self_attn.out_proj.bias', 'model.decoder.layers.13.self_attn_layer_norm.weight', 'model.decoder.layers.13.self_attn_layer_norm.bias', 'model.decoder.layers.13.fc1.weight', 'model.decoder.layers.13.fc1.bias', 'model.decoder.layers.13.fc2.weight', 'model.decoder.layers.13.fc2.bias', 'model.decoder.layers.13.final_layer_norm.weight', 'model.decoder.layers.13.final_layer_norm.bias', 'model.decoder.layers.14.self_attn.k_proj.weight', 'model.decoder.layers.14.self_attn.k_proj.bias', 'model.decoder.layers.14.self_attn.v_proj.weight', 'model.decoder.layers.14.self_attn.v_proj.bias', 'model.decoder.layers.14.self_attn.q_proj.weight', 'model.decoder.layers.14.self_attn.q_proj.bias', 'model.decoder.layers.14.self_attn.out_proj.weight', 'model.decoder.layers.14.self_attn.out_proj.bias', 'model.decoder.layers.14.self_attn_layer_norm.weight', 'model.decoder.layers.14.self_attn_layer_norm.bias', 'model.decoder.layers.14.fc1.weight', 'model.decoder.layers.14.fc1.bias', 'model.decoder.layers.14.fc2.weight', 'model.decoder.layers.14.fc2.bias', 'model.decoder.layers.14.final_layer_norm.weight', 'model.decoder.layers.14.final_layer_norm.bias', 'model.decoder.layers.15.self_attn.k_proj.weight', 'model.decoder.layers.15.self_attn.k_proj.bias', 'model.decoder.layers.15.self_attn.v_proj.weight', 'model.decoder.layers.15.self_attn.v_proj.bias', 'model.decoder.layers.15.self_attn.q_proj.weight', 'model.decoder.layers.15.self_attn.q_proj.bias', 'model.decoder.layers.15.self_attn.out_proj.weight', 'model.decoder.layers.15.self_attn.out_proj.bias', 'model.decoder.layers.15.self_attn_layer_norm.weight', 'model.decoder.layers.15.self_attn_layer_norm.bias', 'model.decoder.layers.15.fc1.weight', 'model.decoder.layers.15.fc1.bias', 'model.decoder.layers.15.fc2.weight', 'model.decoder.layers.15.fc2.bias', 'model.decoder.layers.15.final_layer_norm.weight', 'model.decoder.layers.15.final_layer_norm.bias', 'model.decoder.layers.16.self_attn.k_proj.weight', 'model.decoder.layers.16.self_attn.k_proj.bias', 'model.decoder.layers.16.self_attn.v_proj.weight', 'model.decoder.layers.16.self_attn.v_proj.bias', 'model.decoder.layers.16.self_attn.q_proj.weight', 'model.decoder.layers.16.self_attn.q_proj.bias', 'model.decoder.layers.16.self_attn.out_proj.weight', 'model.decoder.layers.16.self_attn.out_proj.bias', 'model.decoder.layers.16.self_attn_layer_norm.weight', 'model.decoder.layers.16.self_attn_layer_norm.bias', 'model.decoder.layers.16.fc1.weight', 'model.decoder.layers.16.fc1.bias', 'model.decoder.layers.16.fc2.weight', 'model.decoder.layers.16.fc2.bias', 'model.decoder.layers.16.final_layer_norm.weight', 'model.decoder.layers.16.final_layer_norm.bias', 'model.decoder.layers.17.self_attn.k_proj.weight', 'model.decoder.layers.17.self_attn.k_proj.bias', 'model.decoder.layers.17.self_attn.v_proj.weight', 'model.decoder.layers.17.self_attn.v_proj.bias', 'model.decoder.layers.17.self_attn.q_proj.weight', 'model.decoder.layers.17.self_attn.q_proj.bias', 'model.decoder.layers.17.self_attn.out_proj.weight', 'model.decoder.layers.17.self_attn.out_proj.bias', 'model.decoder.layers.17.self_attn_layer_norm.weight', 'model.decoder.layers.17.self_attn_layer_norm.bias', 'model.decoder.layers.17.fc1.weight', 'model.decoder.layers.17.fc1.bias', 'model.decoder.layers.17.fc2.weight', 'model.decoder.layers.17.fc2.bias', 'model.decoder.layers.17.final_layer_norm.weight', 'model.decoder.layers.17.final_layer_norm.bias', 'model.decoder.layers.18.self_attn.k_proj.weight', 'model.decoder.layers.18.self_attn.k_proj.bias', 'model.decoder.layers.18.self_attn.v_proj.weight', 'model.decoder.layers.18.self_attn.v_proj.bias', 'model.decoder.layers.18.self_attn.q_proj.weight', 'model.decoder.layers.18.self_attn.q_proj.bias', 'model.decoder.layers.18.self_attn.out_proj.weight', 'model.decoder.layers.18.self_attn.out_proj.bias', 'model.decoder.layers.18.self_attn_layer_norm.weight', 'model.decoder.layers.18.self_attn_layer_norm.bias', 'model.decoder.layers.18.fc1.weight', 'model.decoder.layers.18.fc1.bias', 'model.decoder.layers.18.fc2.weight', 'model.decoder.layers.18.fc2.bias', 'model.decoder.layers.18.final_layer_norm.weight', 'model.decoder.layers.18.final_layer_norm.bias', 'model.decoder.layers.19.self_attn.k_proj.weight', 'model.decoder.layers.19.self_attn.k_proj.bias', 'model.decoder.layers.19.self_attn.v_proj.weight', 'model.decoder.layers.19.self_attn.v_proj.bias', 'model.decoder.layers.19.self_attn.q_proj.weight', 'model.decoder.layers.19.self_attn.q_proj.bias', 'model.decoder.layers.19.self_attn.out_proj.weight', 'model.decoder.layers.19.self_attn.out_proj.bias', 'model.decoder.layers.19.self_attn_layer_norm.weight', 'model.decoder.layers.19.self_attn_layer_norm.bias', 'model.decoder.layers.19.fc1.weight', 'model.decoder.layers.19.fc1.bias', 'model.decoder.layers.19.fc2.weight', 'model.decoder.layers.19.fc2.bias', 'model.decoder.layers.19.final_layer_norm.weight', 'model.decoder.layers.19.final_layer_norm.bias', 'model.decoder.layers.20.self_attn.k_proj.weight', 'model.decoder.layers.20.self_attn.k_proj.bias', 'model.decoder.layers.20.self_attn.v_proj.weight', 'model.decoder.layers.20.self_attn.v_proj.bias', 'model.decoder.layers.20.self_attn.q_proj.weight', 'model.decoder.layers.20.self_attn.q_proj.bias', 'model.decoder.layers.20.self_attn.out_proj.weight', 'model.decoder.layers.20.self_attn.out_proj.bias', 'model.decoder.layers.20.self_attn_layer_norm.weight', 'model.decoder.layers.20.self_attn_layer_norm.bias', 'model.decoder.layers.20.fc1.weight', 'model.decoder.layers.20.fc1.bias', 'model.decoder.layers.20.fc2.weight', 'model.decoder.layers.20.fc2.bias', 'model.decoder.layers.20.final_layer_norm.weight', 'model.decoder.layers.20.final_layer_norm.bias', 'model.decoder.layers.21.self_attn.k_proj.weight', 'model.decoder.layers.21.self_attn.k_proj.bias', 'model.decoder.layers.21.self_attn.v_proj.weight', 'model.decoder.layers.21.self_attn.v_proj.bias', 'model.decoder.layers.21.self_attn.q_proj.weight', 'model.decoder.layers.21.self_attn.q_proj.bias', 'model.decoder.layers.21.self_attn.out_proj.weight', 'model.decoder.layers.21.self_attn.out_proj.bias', 'model.decoder.layers.21.self_attn_layer_norm.weight', 'model.decoder.layers.21.self_attn_layer_norm.bias', 'model.decoder.layers.21.fc1.weight', 'model.decoder.layers.21.fc1.bias', 'model.decoder.layers.21.fc2.weight', 'model.decoder.layers.21.fc2.bias', 'model.decoder.layers.21.final_layer_norm.weight', 'model.decoder.layers.21.final_layer_norm.bias', 'model.decoder.layers.22.self_attn.k_proj.weight', 'model.decoder.layers.22.self_attn.k_proj.bias', 'model.decoder.layers.22.self_attn.v_proj.weight', 'model.decoder.layers.22.self_attn.v_proj.bias', 'model.decoder.layers.22.self_attn.q_proj.weight', 'model.decoder.layers.22.self_attn.q_proj.bias', 'model.decoder.layers.22.self_attn.out_proj.weight', 'model.decoder.layers.22.self_attn.out_proj.bias', 'model.decoder.layers.22.self_attn_layer_norm.weight', 'model.decoder.layers.22.self_attn_layer_norm.bias', 'model.decoder.layers.22.fc1.weight', 'model.decoder.layers.22.fc1.bias', 'model.decoder.layers.22.fc2.weight', 'model.decoder.layers.22.fc2.bias', 'model.decoder.layers.22.final_layer_norm.weight', 'model.decoder.layers.22.final_layer_norm.bias', 'model.decoder.layers.23.self_attn.k_proj.weight', 'model.decoder.layers.23.self_attn.k_proj.bias', 'model.decoder.layers.23.self_attn.v_proj.weight', 'model.decoder.layers.23.self_attn.v_proj.bias', 'model.decoder.layers.23.self_attn.q_proj.weight', 'model.decoder.layers.23.self_attn.q_proj.bias', 'model.decoder.layers.23.self_attn.out_proj.weight', 'model.decoder.layers.23.self_attn.out_proj.bias', 'model.decoder.layers.23.self_attn_layer_norm.weight', 'model.decoder.layers.23.self_attn_layer_norm.bias', 'model.decoder.layers.23.fc1.weight', 'model.decoder.layers.23.fc1.bias', 'model.decoder.layers.23.fc2.weight', 'model.decoder.layers.23.fc2.bias', 'model.decoder.layers.23.final_layer_norm.weight', 'model.decoder.layers.23.final_layer_norm.bias', 'model.decoder.layers.24.self_attn.k_proj.weight', 'model.decoder.layers.24.self_attn.k_proj.bias', 'model.decoder.layers.24.self_attn.v_proj.weight', 'model.decoder.layers.24.self_attn.v_proj.bias', 'model.decoder.layers.24.self_attn.q_proj.weight', 'model.decoder.layers.24.self_attn.q_proj.bias', 'model.decoder.layers.24.self_attn.out_proj.weight', 'model.decoder.layers.24.self_attn.out_proj.bias', 'model.decoder.layers.24.self_attn_layer_norm.weight', 'model.decoder.layers.24.self_attn_layer_norm.bias', 'model.decoder.layers.24.fc1.weight', 'model.decoder.layers.24.fc1.bias', 'model.decoder.layers.24.fc2.weight', 'model.decoder.layers.24.fc2.bias', 'model.decoder.layers.24.final_layer_norm.weight', 'model.decoder.layers.24.final_layer_norm.bias', 'model.decoder.layers.25.self_attn.k_proj.weight', 'model.decoder.layers.25.self_attn.k_proj.bias', 'model.decoder.layers.25.self_attn.v_proj.weight', 'model.decoder.layers.25.self_attn.v_proj.bias', 'model.decoder.layers.25.self_attn.q_proj.weight', 'model.decoder.layers.25.self_attn.q_proj.bias', 'model.decoder.layers.25.self_attn.out_proj.weight', 'model.decoder.layers.25.self_attn.out_proj.bias', 'model.decoder.layers.25.self_attn_layer_norm.weight', 'model.decoder.layers.25.self_attn_layer_norm.bias', 'model.decoder.layers.25.fc1.weight', 'model.decoder.layers.25.fc1.bias', 'model.decoder.layers.25.fc2.weight', 'model.decoder.layers.25.fc2.bias', 'model.decoder.layers.25.final_layer_norm.weight', 'model.decoder.layers.25.final_layer_norm.bias', 'model.decoder.layers.26.self_attn.k_proj.weight', 'model.decoder.layers.26.self_attn.k_proj.bias', 'model.decoder.layers.26.self_attn.v_proj.weight', 'model.decoder.layers.26.self_attn.v_proj.bias', 'model.decoder.layers.26.self_attn.q_proj.weight', 'model.decoder.layers.26.self_attn.q_proj.bias', 'model.decoder.layers.26.self_attn.out_proj.weight', 'model.decoder.layers.26.self_attn.out_proj.bias', 'model.decoder.layers.26.self_attn_layer_norm.weight', 'model.decoder.layers.26.self_attn_layer_norm.bias', 'model.decoder.layers.26.fc1.weight', 'model.decoder.layers.26.fc1.bias', 'model.decoder.layers.26.fc2.weight', 'model.decoder.layers.26.fc2.bias', 'model.decoder.layers.26.final_layer_norm.weight', 'model.decoder.layers.26.final_layer_norm.bias', 'model.decoder.layers.27.self_attn.k_proj.weight', 'model.decoder.layers.27.self_attn.k_proj.bias', 'model.decoder.layers.27.self_attn.v_proj.weight', 'model.decoder.layers.27.self_attn.v_proj.bias', 'model.decoder.layers.27.self_attn.q_proj.weight', 'model.decoder.layers.27.self_attn.q_proj.bias', 'model.decoder.layers.27.self_attn.out_proj.weight', 'model.decoder.layers.27.self_attn.out_proj.bias', 'model.decoder.layers.27.self_attn_layer_norm.weight', 'model.decoder.layers.27.self_attn_layer_norm.bias', 'model.decoder.layers.27.fc1.weight', 'model.decoder.layers.27.fc1.bias', 'model.decoder.layers.27.fc2.weight', 'model.decoder.layers.27.fc2.bias', 'model.decoder.layers.27.final_layer_norm.weight', 'model.decoder.layers.27.final_layer_norm.bias', 'model.decoder.layers.28.self_attn.k_proj.weight', 'model.decoder.layers.28.self_attn.k_proj.bias', 'model.decoder.layers.28.self_attn.v_proj.weight', 'model.decoder.layers.28.self_attn.v_proj.bias', 'model.decoder.layers.28.self_attn.q_proj.weight', 'model.decoder.layers.28.self_attn.q_proj.bias', 'model.decoder.layers.28.self_attn.out_proj.weight', 'model.decoder.layers.28.self_attn.out_proj.bias', 'model.decoder.layers.28.self_attn_layer_norm.weight', 'model.decoder.layers.28.self_attn_layer_norm.bias', 'model.decoder.layers.28.fc1.weight', 'model.decoder.layers.28.fc1.bias', 'model.decoder.layers.28.fc2.weight', 'model.decoder.layers.28.fc2.bias', 'model.decoder.layers.28.final_layer_norm.weight', 'model.decoder.layers.28.final_layer_norm.bias', 'model.decoder.layers.29.self_attn.k_proj.weight', 'model.decoder.layers.29.self_attn.k_proj.bias', 'model.decoder.layers.29.self_attn.v_proj.weight', 'model.decoder.layers.29.self_attn.v_proj.bias', 'model.decoder.layers.29.self_attn.q_proj.weight', 'model.decoder.layers.29.self_attn.q_proj.bias', 'model.decoder.layers.29.self_attn.out_proj.weight', 'model.decoder.layers.29.self_attn.out_proj.bias', 'model.decoder.layers.29.self_attn_layer_norm.weight', 'model.decoder.layers.29.self_attn_layer_norm.bias', 'model.decoder.layers.29.fc1.weight', 'model.decoder.layers.29.fc1.bias', 'model.decoder.layers.29.fc2.weight', 'model.decoder.layers.29.fc2.bias', 'model.decoder.layers.29.final_layer_norm.weight', 'model.decoder.layers.29.final_layer_norm.bias', 'model.decoder.layers.30.self_attn.k_proj.weight', 'model.decoder.layers.30.self_attn.k_proj.bias', 'model.decoder.layers.30.self_attn.v_proj.weight', 'model.decoder.layers.30.self_attn.v_proj.bias', 'model.decoder.layers.30.self_attn.q_proj.weight', 'model.decoder.layers.30.self_attn.q_proj.bias', 'model.decoder.layers.30.self_attn.out_proj.weight', 'model.decoder.layers.30.self_attn.out_proj.bias', 'model.decoder.layers.30.self_attn_layer_norm.weight', 'model.decoder.layers.30.self_attn_layer_norm.bias', 'model.decoder.layers.30.fc1.weight', 'model.decoder.layers.30.fc1.bias', 'model.decoder.layers.30.fc2.weight', 'model.decoder.layers.30.fc2.bias', 'model.decoder.layers.30.final_layer_norm.weight', 'model.decoder.layers.30.final_layer_norm.bias', 'model.decoder.layers.31.self_attn.k_proj.weight', 'model.decoder.layers.31.self_attn.k_proj.bias', 'model.decoder.layers.31.self_attn.v_proj.weight', 'model.decoder.layers.31.self_attn.v_proj.bias', 'model.decoder.layers.31.self_attn.q_proj.weight', 'model.decoder.layers.31.self_attn.q_proj.bias', 'model.decoder.layers.31.self_attn.out_proj.weight', 'model.decoder.layers.31.self_attn.out_proj.bias', 'model.decoder.layers.31.self_attn_layer_norm.weight', 'model.decoder.layers.31.self_attn_layer_norm.bias', 'model.decoder.layers.31.fc1.weight', 'model.decoder.layers.31.fc1.bias', 'model.decoder.layers.31.fc2.weight', 'model.decoder.layers.31.fc2.bias', 'model.decoder.layers.31.final_layer_norm.weight', 'model.decoder.layers.31.final_layer_norm.bias']
-- This IS expected if you are initializing GPTNeoForCausalLM from a Flax model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a FlaxBertForPreTraining model).
-- This IS NOT expected if you are initializing GPTNeoForCausalLM from a Flax model that you expect to be exactly identical (e.g. initializing a BertForSequenceClassification model from a FlaxBertForSequenceClassification model).
-Some weights of GPTNeoForCausalLM were not initialized from the Flax model and are newly initialized: ['transformer.h.1.attn.attention.out_proj.weight', 'transformer.h.25.ln_1.bias', 'transformer.h.23.mlp.c_proj.bias', 'transformer.h.7.ln_2.weight', 'transformer.h.25.ln_2.weight', 'transformer.h.15.mlp.c_proj.bias', 'transformer.h.20.mlp.c_fc.bias', 'transformer.h.13.mlp.c_proj.weight', 'transformer.h.31.mlp.c_fc.weight', 'transformer.h.23.attn.attention.k_proj.weight', 'transformer.h.0.ln_1.bias', 'transformer.h.26.mlp.c_fc.bias', 'transformer.h.0.attn.attention.k_proj.weight', 'transformer.h.18.attn.attention.masked_bias', 'transformer.h.23.attn.attention.bias', 'transformer.h.31.mlp.c_fc.bias', 'transformer.h.20.attn.attention.bias', 'transformer.h.30.ln_1.weight', 'transformer.h.31.attn.attention.k_proj.weight', 'transformer.h.22.mlp.c_fc.weight', 'transformer.h.28.ln_2.weight', 'transformer.h.29.attn.attention.out_proj.weight', 'transformer.h.1.mlp.c_fc.bias', 'transformer.h.20.attn.attention.v_proj.weight', 'transformer.h.18.mlp.c_proj.weight', 'transformer.h.23.attn.attention.masked_bias', 'transformer.h.5.attn.attention.q_proj.weight', 'transformer.h.20.mlp.c_proj.weight', 'transformer.h.7.ln_1.bias', 'transformer.h.16.ln_1.weight', 'transformer.h.22.attn.attention.masked_bias', 'transformer.h.12.mlp.c_proj.weight', 'transformer.h.20.ln_1.weight', 'transformer.h.28.attn.attention.bias', 'transformer.h.28.ln_1.weight', 'transformer.h.16.mlp.c_proj.weight', 'transformer.h.8.ln_1.weight', 'transformer.h.1.ln_2.bias', 'transformer.h.2.attn.attention.masked_bias', 'transformer.h.6.mlp.c_proj.weight', 'transformer.h.17.attn.attention.q_proj.weight', 'transformer.h.29.attn.attention.v_proj.weight', 'transformer.h.30.ln_1.bias', 'transformer.h.7.attn.attention.q_proj.weight', 'transformer.h.19.ln_1.weight', 'transformer.h.12.ln_2.bias', 'transformer.h.16.attn.attention.bias', 'transformer.h.1.ln_1.bias', 'transformer.h.3.mlp.c_fc.bias', 'transformer.h.2.mlp.c_fc.weight', 'transformer.h.10.attn.attention.q_proj.weight', 'transformer.h.5.mlp.c_proj.weight', 'transformer.h.11.attn.attention.out_proj.bias', 'transformer.h.4.attn.attention.out_proj.bias', 'transformer.h.16.ln_1.bias', 'transformer.h.8.attn.attention.out_proj.bias', 'transformer.h.14.attn.attention.v_proj.weight', 'transformer.h.1.ln_2.weight', 'transformer.h.18.mlp.c_fc.bias', 'transformer.h.14.ln_1.weight', 'transformer.h.26.attn.attention.out_proj.weight', 'transformer.h.17.attn.attention.v_proj.weight', 'transformer.h.30.attn.attention.v_proj.weight', 'transformer.h.17.mlp.c_fc.bias', 'transformer.h.6.attn.attention.q_proj.weight', 'transformer.h.5.ln_1.bias', 'transformer.h.29.ln_2.weight', 'transformer.h.6.attn.attention.masked_bias', 'transformer.h.22.ln_1.weight', 'transformer.h.17.ln_2.weight', 'transformer.h.15.attn.attention.out_proj.weight', 'transformer.h.17.mlp.c_proj.weight', 'transformer.h.2.mlp.c_proj.weight', 'transformer.h.21.attn.attention.v_proj.weight', 'transformer.h.9.attn.attention.k_proj.weight', 'transformer.h.28.attn.attention.k_proj.weight', 'transformer.h.14.mlp.c_fc.bias', 'transformer.h.14.mlp.c_proj.weight', 'transformer.h.8.attn.attention.bias', 'transformer.h.4.ln_2.bias', 'transformer.h.17.attn.attention.out_proj.bias', 'transformer.h.0.ln_2.weight', 'transformer.h.27.attn.attention.bias', 'transformer.h.0.attn.attention.out_proj.weight', 'transformer.h.6.mlp.c_fc.weight', 'transformer.h.31.attn.attention.out_proj.bias', 'transformer.h.10.mlp.c_proj.bias', 'transformer.h.27.attn.attention.out_proj.bias', 'transformer.h.22.attn.attention.v_proj.weight', 'transformer.h.22.attn.attention.out_proj.bias', 'transformer.h.1.mlp.c_fc.weight', 'transformer.h.23.ln_2.bias', 'transformer.h.18.ln_2.weight', 'transformer.h.23.attn.attention.q_proj.weight', 'transformer.h.23.ln_1.weight', 'transformer.h.23.ln_1.bias', 'transformer.h.0.mlp.c_proj.weight', 'transformer.h.12.attn.attention.k_proj.weight', 'transformer.h.11.ln_2.weight', 'transformer.h.13.ln_1.weight', 'transformer.h.30.ln_2.bias', 'transformer.h.12.mlp.c_fc.weight', 'transformer.h.23.ln_2.weight', 'transformer.h.11.ln_2.bias', 'transformer.h.14.attn.attention.masked_bias', 'transformer.h.20.ln_1.bias', 'transformer.h.21.ln_1.weight', 'transformer.h.24.ln_1.bias', 'transformer.h.2.ln_1.bias', 'transformer.h.1.attn.attention.k_proj.weight', 'transformer.h.0.attn.attention.v_proj.weight', 'transformer.h.29.mlp.c_fc.weight', 'transformer.h.5.attn.attention.k_proj.weight', 'transformer.h.20.attn.attention.k_proj.weight', 'transformer.h.15.ln_1.bias', 'transformer.h.26.mlp.c_fc.weight', 'transformer.h.9.mlp.c_proj.weight', 'transformer.h.9.ln_2.bias', 'transformer.h.14.ln_2.weight', 'transformer.h.11.attn.attention.v_proj.weight', 'transformer.h.9.mlp.c_fc.weight', 'transformer.h.20.ln_2.bias', 'transformer.h.31.ln_1.weight', 'transformer.h.18.ln_2.bias', 'transformer.h.24.ln_1.weight', 'transformer.h.25.attn.attention.out_proj.bias', 'transformer.h.11.mlp.c_fc.bias', 'transformer.h.27.mlp.c_fc.bias', 'transformer.h.4.attn.attention.masked_bias', 'transformer.h.3.mlp.c_fc.weight', 'transformer.h.28.attn.attention.v_proj.weight', 'transformer.h.3.ln_1.weight', 'transformer.h.19.attn.attention.masked_bias', 'transformer.h.9.ln_1.bias', 'transformer.h.18.mlp.c_proj.bias', 'transformer.h.3.attn.attention.v_proj.weight', 'transformer.h.25.ln_2.bias', 'transformer.h.28.ln_1.bias', 'transformer.wte.weight', 'transformer.h.29.attn.attention.out_proj.bias', 'transformer.h.13.mlp.c_proj.bias', 'transformer.h.30.mlp.c_proj.weight', 'transformer.h.21.mlp.c_fc.weight', 'transformer.h.27.ln_1.weight', 'transformer.h.26.ln_1.bias', 'transformer.h.17.attn.attention.masked_bias', 'transformer.h.16.mlp.c_proj.bias', 'transformer.h.21.ln_2.bias', 'transformer.h.4.attn.attention.q_proj.weight', 'transformer.h.15.ln_2.bias', 'transformer.h.18.ln_1.weight', 'transformer.h.25.attn.attention.q_proj.weight', 'transformer.h.29.attn.attention.bias', 'transformer.h.11.attn.attention.k_proj.weight', 'transformer.h.16.mlp.c_fc.bias', 'transformer.h.12.attn.attention.out_proj.bias', 'transformer.ln_f.weight', 'transformer.h.17.attn.attention.out_proj.weight', 'transformer.h.25.attn.attention.bias', 'transformer.h.21.attn.attention.out_proj.weight', 'transformer.h.8.mlp.c_fc.bias', 'transformer.h.3.attn.attention.masked_bias', 'transformer.h.26.attn.attention.q_proj.weight', 'transformer.h.7.mlp.c_fc.bias', 'transformer.h.24.attn.attention.masked_bias', 'transformer.h.4.attn.attention.v_proj.weight', 'transformer.h.7.attn.attention.v_proj.weight', 'transformer.h.8.ln_2.weight', 'transformer.h.24.attn.attention.out_proj.bias', 'transformer.h.8.attn.attention.masked_bias', 'transformer.h.9.ln_1.weight', 'transformer.h.6.ln_1.bias', 'transformer.h.28.attn.attention.out_proj.weight', 'transformer.h.21.attn.attention.out_proj.bias', 'transformer.h.3.ln_2.weight', 'transformer.h.9.attn.attention.v_proj.weight', 'transformer.h.16.ln_2.weight', 'transformer.h.22.ln_2.bias', 'transformer.h.21.mlp.c_fc.bias', 'transformer.h.18.attn.attention.v_proj.weight', 'transformer.h.30.attn.attention.masked_bias', 'transformer.h.14.mlp.c_fc.weight', 'transformer.h.31.attn.attention.bias', 'transformer.h.21.attn.attention.k_proj.weight', 'transformer.h.20.attn.attention.q_proj.weight', 'transformer.h.14.attn.attention.out_proj.weight', 'transformer.h.31.ln_2.weight', 'transformer.h.24.attn.attention.bias', 'transformer.h.5.attn.attention.v_proj.weight', 'transformer.h.1.attn.attention.q_proj.weight', 'transformer.h.26.ln_2.weight', 'transformer.h.24.mlp.c_fc.bias', 'transformer.h.19.attn.attention.v_proj.weight', 'transformer.h.7.attn.attention.k_proj.weight', 'transformer.h.30.mlp.c_fc.bias', 'transformer.h.3.ln_1.bias', 'transformer.h.4.ln_1.weight', 'transformer.h.19.mlp.c_proj.weight', 'transformer.h.31.ln_2.bias', 'transformer.h.2.ln_1.weight', 'transformer.h.2.mlp.c_proj.bias', 'transformer.h.27.attn.attention.masked_bias', 'transformer.h.13.ln_1.bias', 'transformer.h.2.ln_2.weight', 'transformer.h.19.ln_2.weight', 'transformer.h.26.attn.attention.out_proj.bias', 'transformer.h.10.attn.attention.v_proj.weight', 'transformer.h.8.attn.attention.out_proj.weight', 'transformer.h.18.attn.attention.bias', 'transformer.h.5.ln_2.bias', 'transformer.h.29.ln_1.bias', 'transformer.h.29.mlp.c_proj.weight', 'transformer.h.21.attn.attention.bias', 'transformer.h.9.mlp.c_fc.bias', 'transformer.h.28.mlp.c_fc.weight', 'transformer.h.8.mlp.c_fc.weight', 'transformer.h.9.attn.attention.out_proj.bias', 'transformer.h.2.attn.attention.q_proj.weight', 'transformer.h.25.attn.attention.masked_bias', 'transformer.h.10.ln_1.bias', 'transformer.h.12.attn.attention.out_proj.weight', 'transformer.h.14.attn.attention.q_proj.weight', 'transformer.h.18.attn.attention.out_proj.weight', 'transformer.h.30.attn.attention.k_proj.weight', 'transformer.h.10.mlp.c_fc.weight', 'transformer.h.5.attn.attention.out_proj.bias', 'transformer.h.17.ln_1.bias', 'transformer.h.26.attn.attention.k_proj.weight', 'transformer.h.25.attn.attention.out_proj.weight', 'transformer.h.16.mlp.c_fc.weight', 'transformer.h.15.ln_2.weight', 'transformer.h.26.attn.attention.v_proj.weight', 'transformer.h.21.attn.attention.masked_bias', 'transformer.h.23.mlp.c_proj.weight', 'transformer.h.13.attn.attention.out_proj.weight', 'transformer.h.22.ln_2.weight', 'transformer.h.2.attn.attention.out_proj.bias', 'transformer.h.25.attn.attention.k_proj.weight', 'transformer.h.6.attn.attention.bias', 'transformer.h.7.ln_1.weight', 'transformer.h.19.ln_2.bias', 'transformer.h.8.attn.attention.v_proj.weight', 'transformer.h.26.mlp.c_proj.weight', 'transformer.h.28.attn.attention.q_proj.weight', 'transformer.h.30.mlp.c_proj.bias', 'transformer.h.19.attn.attention.q_proj.weight', 'transformer.h.9.attn.attention.out_proj.weight', 'transformer.wpe.weight', 'transformer.h.16.attn.attention.masked_bias', 'transformer.h.20.ln_2.weight', 'transformer.h.29.attn.attention.masked_bias', 'transformer.h.6.attn.attention.v_proj.weight', 'transformer.h.4.attn.attention.out_proj.weight', 'transformer.h.9.attn.attention.masked_bias', 'transformer.h.24.attn.attention.v_proj.weight', 'transformer.h.16.attn.attention.v_proj.weight', 'transformer.h.0.attn.attention.bias', 'transformer.h.12.attn.attention.v_proj.weight', 'transformer.h.12.mlp.c_fc.bias', 'transformer.h.20.mlp.c_proj.bias', 'transformer.h.7.ln_2.bias', 'transformer.h.7.attn.attention.out_proj.bias', 'transformer.h.18.attn.attention.q_proj.weight', 'transformer.h.23.attn.attention.v_proj.weight', 'transformer.h.24.mlp.c_fc.weight', 'transformer.h.28.attn.attention.masked_bias', 'transformer.h.29.mlp.c_fc.bias', 'transformer.h.23.attn.attention.out_proj.weight', 'transformer.h.14.mlp.c_proj.bias', 'transformer.h.5.mlp.c_fc.weight', 'transformer.h.18.ln_1.bias', 'transformer.h.12.attn.attention.masked_bias', 'transformer.h.11.attn.attention.masked_bias', 'transformer.h.15.mlp.c_fc.weight', 'transformer.h.11.ln_1.bias', 'transformer.h.19.attn.attention.out_proj.weight', 'transformer.h.1.ln_1.weight', 'transformer.h.15.ln_1.weight', 'transformer.h.22.mlp.c_fc.bias', 'transformer.h.14.attn.attention.bias', 'transformer.h.10.mlp.c_proj.weight', 'transformer.h.6.mlp.c_fc.bias', 'transformer.h.5.ln_2.weight', 'transformer.h.2.attn.attention.k_proj.weight', 'transformer.h.14.attn.attention.k_proj.weight', 'transformer.h.9.mlp.c_proj.bias', 'transformer.h.7.attn.attention.bias', 'transformer.h.9.attn.attention.bias', 'transformer.h.6.attn.attention.out_proj.bias', 'transformer.h.24.ln_2.weight', 'transformer.h.0.mlp.c_proj.bias', 'transformer.h.24.mlp.c_proj.weight', 'transformer.h.0.mlp.c_fc.bias', 'transformer.h.27.attn.attention.v_proj.weight', 'transformer.h.11.mlp.c_proj.bias', 'transformer.h.19.mlp.c_proj.bias', 'transformer.h.6.attn.attention.out_proj.weight', 'transformer.h.16.attn.attention.q_proj.weight', 'transformer.h.4.mlp.c_proj.weight', 'transformer.h.13.attn.attention.q_proj.weight', 'transformer.h.15.attn.attention.out_proj.bias', 'transformer.h.21.ln_2.weight', 'transformer.h.29.attn.attention.q_proj.weight', 'transformer.h.30.attn.attention.q_proj.weight', 'transformer.h.20.mlp.c_fc.weight', 'transformer.h.31.mlp.c_proj.bias', 'lm_head.weight', 'transformer.h.8.mlp.c_proj.weight', 'transformer.h.26.attn.attention.masked_bias', 'transformer.h.27.mlp.c_fc.weight', 'transformer.h.18.attn.attention.out_proj.bias', 'transformer.h.22.attn.attention.q_proj.weight', 'transformer.h.0.mlp.c_fc.weight', 'transformer.h.27.mlp.c_proj.weight', 'transformer.h.4.mlp.c_fc.weight', 'transformer.h.24.attn.attention.q_proj.weight', 'transformer.h.8.ln_1.bias', 'transformer.h.29.attn.attention.k_proj.weight', 'transformer.h.19.attn.attention.bias', 'transformer.h.3.attn.attention.q_proj.weight', 'transformer.h.8.attn.attention.q_proj.weight', 'transformer.h.28.ln_2.bias', 'transformer.h.7.attn.attention.out_proj.weight', 'transformer.h.28.mlp.c_proj.bias', 'transformer.h.3.attn.attention.out_proj.weight', 'transformer.h.24.attn.attention.out_proj.weight', 'transformer.h.23.mlp.c_fc.bias', 'transformer.h.1.mlp.c_proj.weight', 'transformer.h.31.attn.attention.v_proj.weight', 'transformer.h.8.attn.attention.k_proj.weight', 'transformer.h.5.mlp.c_fc.bias', 'transformer.h.26.ln_2.bias', 'transformer.h.11.attn.attention.bias', 'transformer.h.7.mlp.c_proj.weight', 'transformer.h.21.mlp.c_proj.weight', 'transformer.h.10.ln_2.bias', 'transformer.h.9.ln_2.weight', 'transformer.h.10.attn.attention.masked_bias', 'transformer.h.21.mlp.c_proj.bias', 'transformer.h.13.mlp.c_fc.bias', 'transformer.h.10.attn.attention.k_proj.weight', 'transformer.h.22.mlp.c_proj.weight', 'transformer.h.30.attn.attention.bias', 'transformer.h.2.attn.attention.bias', 'transformer.h.3.mlp.c_proj.weight', 'transformer.h.7.attn.attention.masked_bias', 'transformer.h.30.attn.attention.out_proj.weight', 'transformer.h.18.attn.attention.k_proj.weight', 'transformer.h.3.attn.attention.k_proj.weight', 'transformer.h.16.attn.attention.out_proj.weight', 'transformer.h.6.attn.attention.k_proj.weight', 'transformer.h.13.attn.attention.k_proj.weight', 'transformer.h.13.ln_2.weight', 'transformer.h.26.mlp.c_proj.bias', 'transformer.h.28.attn.attention.out_proj.bias', 'transformer.h.4.mlp.c_proj.bias', 'transformer.h.27.attn.attention.q_proj.weight', 'transformer.h.4.ln_1.bias', 'transformer.h.1.attn.attention.out_proj.bias', 'transformer.h.23.attn.attention.out_proj.bias', 'transformer.h.17.mlp.c_proj.bias', 'transformer.h.6.ln_2.bias', 'transformer.h.4.attn.attention.k_proj.weight', 'transformer.h.1.attn.attention.masked_bias', 'transformer.h.5.attn.attention.bias', 'transformer.h.8.ln_2.bias', 'transformer.h.1.mlp.c_proj.bias', 'transformer.h.10.ln_2.weight', 'transformer.h.10.attn.attention.out_proj.weight', 'transformer.h.17.attn.attention.k_proj.weight', 'transformer.h.6.mlp.c_proj.bias', 'transformer.h.15.attn.attention.k_proj.weight', 'transformer.h.22.attn.attention.out_proj.weight', 'transformer.h.15.attn.attention.bias', 'transformer.h.15.attn.attention.q_proj.weight', 'transformer.h.12.attn.attention.bias', 'transformer.h.19.ln_1.bias', 'transformer.h.25.mlp.c_fc.weight', 'transformer.h.2.attn.attention.v_proj.weight', 'transformer.h.3.attn.attention.bias', 'transformer.h.1.attn.attention.v_proj.weight', 'transformer.h.13.mlp.c_fc.weight', 'transformer.h.6.ln_2.weight', 'transformer.h.22.mlp.c_proj.bias', 'transformer.h.0.attn.attention.q_proj.weight', 'transformer.h.12.ln_1.weight', 'transformer.h.14.ln_1.bias', 'transformer.h.24.mlp.c_proj.bias', 'transformer.h.13.attn.attention.v_proj.weight', 'transformer.h.10.mlp.c_fc.bias', 'transformer.h.19.attn.attention.k_proj.weight', 'transformer.h.5.attn.attention.masked_bias', 'transformer.h.7.mlp.c_fc.weight', 'transformer.h.15.attn.attention.masked_bias', 'transformer.h.17.attn.attention.bias', 'transformer.h.4.attn.attention.bias', 'transformer.h.25.mlp.c_proj.weight', 'transformer.h.9.attn.attention.q_proj.weight', 'transformer.h.11.mlp.c_proj.weight', 'transformer.h.29.ln_1.weight', 'transformer.ln_f.bias', 'transformer.h.25.ln_1.weight', 'transformer.h.11.attn.attention.q_proj.weight', 'transformer.h.8.mlp.c_proj.bias', 'transformer.h.12.ln_2.weight', 'transformer.h.10.attn.attention.out_proj.bias', 'transformer.h.12.attn.attention.q_proj.weight', 'transformer.h.31.attn.attention.masked_bias', 'transformer.h.10.ln_1.weight', 'transformer.h.15.mlp.c_proj.weight', 'transformer.h.12.mlp.c_proj.bias', 'transformer.h.5.ln_1.weight', 'transformer.h.28.mlp.c_proj.weight', 'transformer.h.16.ln_2.bias', 'transformer.h.11.ln_1.weight', 'transformer.h.13.attn.attention.bias', 'transformer.h.1.attn.attention.bias', 'transformer.h.2.mlp.c_fc.bias', 'transformer.h.29.ln_2.bias', 'transformer.h.2.attn.attention.out_proj.weight', 'transformer.h.25.mlp.c_proj.bias', 'transformer.h.18.mlp.c_fc.weight', 'transformer.h.25.attn.attention.v_proj.weight', 'transformer.h.6.ln_1.weight', 'transformer.h.31.ln_1.bias', 'transformer.h.7.mlp.c_proj.bias', 'transformer.h.0.attn.attention.masked_bias', 'transformer.h.26.attn.attention.bias', 'transformer.h.17.mlp.c_fc.weight', 'transformer.h.17.ln_2.bias', 'transformer.h.20.attn.attention.out_proj.bias', 'transformer.h.21.attn.attention.q_proj.weight', 'transformer.h.27.attn.attention.k_proj.weight', 'transformer.h.30.ln_2.weight', 'transformer.h.27.attn.attention.out_proj.weight', 'transformer.h.26.ln_1.weight', 'transformer.h.13.ln_2.bias', 'transformer.h.15.mlp.c_fc.bias', 'transformer.h.15.attn.attention.v_proj.weight', 'transformer.h.16.attn.attention.out_proj.bias', 'transformer.h.3.attn.attention.out_proj.bias', 'transformer.h.0.ln_2.bias', 'transformer.h.24.ln_2.bias', 'transformer.h.5.mlp.c_proj.bias', 'transformer.h.14.attn.attention.out_proj.bias', 'transformer.h.22.attn.attention.k_proj.weight', 'transformer.h.0.attn.attention.out_proj.bias', 'transformer.h.28.mlp.c_fc.bias', 'transformer.h.20.attn.attention.out_proj.weight', 'transformer.h.0.ln_1.weight', 'transformer.h.13.attn.attention.out_proj.bias', 'transformer.h.27.mlp.c_proj.bias', 'transformer.h.3.ln_2.bias', 'transformer.h.5.attn.attention.out_proj.weight', 'transformer.h.10.attn.attention.bias', 'transformer.h.19.mlp.c_fc.weight', 'transformer.h.4.ln_2.weight', 'transformer.h.14.ln_2.bias', 'transformer.h.31.attn.attention.q_proj.weight', 'transformer.h.17.ln_1.weight', 'transformer.h.4.mlp.c_fc.bias', 'transformer.h.11.mlp.c_fc.weight', 'transformer.h.19.mlp.c_fc.bias', 'transformer.h.27.ln_1.bias', 'transformer.h.30.attn.attention.out_proj.bias', 'transformer.h.21.ln_1.bias', 'transformer.h.27.ln_2.weight', 'transformer.h.22.ln_1.bias', 'transformer.h.24.attn.attention.k_proj.weight', 'transformer.h.31.attn.attention.out_proj.weight', 'transformer.h.11.attn.attention.out_proj.weight', 'transformer.h.2.ln_2.bias', 'transformer.h.16.attn.attention.k_proj.weight', 'transformer.h.19.attn.attention.out_proj.bias', 'transformer.h.12.ln_1.bias', 'transformer.h.31.mlp.c_proj.weight', 'transformer.h.30.mlp.c_fc.weight', 'transformer.h.25.mlp.c_fc.bias', 'transformer.h.27.ln_2.bias', 'transformer.h.3.mlp.c_proj.bias', 'transformer.h.29.mlp.c_proj.bias', 'transformer.h.13.attn.attention.masked_bias', 'transformer.h.22.attn.attention.bias', 'transformer.h.23.mlp.c_fc.weight', 'transformer.h.20.attn.attention.masked_bias']
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-[2022-11-18 19:02:09,938][datasets.builder][WARNING] - Using custom data configuration ViktorThink--mountain_combined_813306-6918b9ea07482433
-[2022-11-18 19:02:10,011][datasets.builder][WARNING] - Found cached dataset csv (/home/paperspace/.cache/huggingface/datasets/ViktorThink___csv/ViktorThink--mountain_combined_813306-6918b9ea07482433/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317)
-  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:00<00:00,  5.74it/s]100%|██████████| 2/2 [00:00<00:00, 10.87it/s]a
-
-Running tokenizer on dataset #0:   0%|          | 0/7 [00:00<?, ?ba/s]
-Running tokenizer on dataset #1:   0%|          | 0/7 [00:00<?, ?ba/s][A
-
-Running tokenizer on dataset #2:   0%|          | 0/7 [00:00<?, ?ba/s][A[A
-
-
-Running tokenizer on dataset #3:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[ARunning tokenizer on dataset #0:  14%|█▍        | 1/7 [00:02<00:15,  2.60s/ba]
-
-
-
-Running tokenizer on dataset #4:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A
-
-
-
-
-Running tokenizer on dataset #5:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A
-
-
-
-
-
-Running tokenizer on dataset #6:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A
-
-Running tokenizer on dataset #2:  14%|█▍        | 1/7 [00:03<00:19,  3.19s/ba][A[A
-Running tokenizer on dataset #1:  14%|█▍        | 1/7 [00:03<00:21,  3.58s/ba][A
-
-
-Running tokenizer on dataset #3:  14%|█▍        | 1/7 [00:02<00:16,  2.69s/ba][A[A[A
-
-
-
-
-
-
-Running tokenizer on dataset #7:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[ARunning tokenizer on dataset #0:  29%|██▊       | 2/7 [00:04<00:12,  2.40s/ba]
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A
-
-
-
-
-Running tokenizer on dataset #5:  14%|█▍        | 1/7 [00:02<00:16,  2.70s/ba][A[A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A
-
-
-
-Running tokenizer on dataset #4:  14%|█▍        | 1/7 [00:03<00:19,  3.27s/ba][A[A[A[A
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A
-
-
-Running tokenizer on dataset #3:  29%|██▊       | 2/7 [00:05<00:12,  2.47s/ba][A[A[ARunning tokenizer on dataset #0:  43%|████▎     | 3/7 [00:07<00:09,  2.33s/ba]
-
-
-
-
-
-
-Running tokenizer on dataset #7:  14%|█▍        | 1/7 [00:02<00:16,  2.70s/ba][A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A
-
-Running tokenizer on dataset #2:  29%|██▊       | 2/7 [00:06<00:15,  3.12s/ba][A[A
-Running tokenizer on dataset #1:  29%|██▊       | 2/7 [00:06<00:16,  3.29s/ba][A
-
-
-
-
-
-Running tokenizer on dataset #6:  14%|█▍        | 1/7 [00:03<00:21,  3.61s/ba][A[A[A[A[A[A
-
-
-
-
-Running tokenizer on dataset #5:  29%|██▊       | 2/7 [00:05<00:12,  2.49s/ba][A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-Running tokenizer on dataset #4:  29%|██▊       | 2/7 [00:05<00:13,  2.71s/ba][A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:  14%|█▍        | 1/7 [00:02<00:16,  2.70s/ba][A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #0:  57%|█████▋    | 4/7 [00:09<00:06,  2.28s/ba]
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:  14%|█▍        | 1/7 [00:03<00:21,  3.64s/ba][A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:  14%|█▍        | 1/7 [00:02<00:16,  2.75s/ba][A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-Running tokenizer on dataset #7:  29%|██▊       | 2/7 [00:05<00:12,  2.48s/ba][A[A[A[A[A[A[A
-
-Running tokenizer on dataset #2:  43%|████▎     | 3/7 [00:08<00:10,  2.75s/ba][A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-Running tokenizer on dataset #3:  43%|████▎     | 3/7 [00:07<00:10,  2.69s/ba][A[A[A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:  14%|█▍        | 1/7 [00:02<00:16,  2.72s/ba][A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-Running tokenizer on dataset #1:  43%|████▎     | 3/7 [00:09<00:12,  3.14s/ba][A
-
-
-
-
-Running tokenizer on dataset #5:  43%|████▎     | 3/7 [00:07<00:09,  2.39s/ba][A[A[A[A[A
-
-
-
-Running tokenizer on dataset #4:  43%|████▎     | 3/7 [00:07<00:10,  2.50s/ba][A[A[A[A
-
-
-
-
-
-Running tokenizer on dataset #6:  29%|██▊       | 2/7 [00:06<00:16,  3.32s/ba][A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #0:  71%|███████▏  | 5/7 [00:11<00:04,  2.26s/ba]
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:  29%|██▊       | 2/7 [00:05<00:13,  2.72s/ba][A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:  14%|█▍        | 1/7 [00:03<00:18,  3.11s/ba][A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:  14%|█▍        | 1/7 [00:02<00:16,  2.79s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:  29%|██▊       | 2/7 [00:05<00:12,  2.56s/ba][A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-Running tokenizer on dataset #7:  43%|████▎     | 3/7 [00:07<00:09,  2.38s/ba][A[A[A[A[A[A[A
-
-Running tokenizer on dataset #2:  57%|█████▋    | 4/7 [00:10<00:07,  2.53s/ba][A[A
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:  29%|██▊       | 2/7 [00:06<00:16,  3.35s/ba][A[A[A[A[A[A[A[A
-
-
-Running tokenizer on dataset #3:  57%|█████▋    | 4/7 [00:10<00:08,  2.77s/ba][A[A[A
-
-
-
-
-Running tokenizer on dataset #5:  57%|█████▋    | 4/7 [00:09<00:06,  2.30s/ba][A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-Running tokenizer on dataset #4:  57%|█████▋    | 4/7 [00:10<00:07,  2.42s/ba][A[A[A[A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:  29%|██▊       | 2/7 [00:05<00:14,  2.88s/ba][A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:  14%|█▍        | 1/7 [00:02<00:17,  2.85s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-Running tokenizer on dataset #1:  57%|█████▋    | 4/7 [00:12<00:09,  3.04s/ba][A
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:  14%|█▍        | 1/7 [00:03<00:21,  3.56s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #0:  86%|████████▌ | 6/7 [00:13<00:02,  2.21s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:  29%|██▊       | 2/7 [00:05<00:13,  2.70s/ba][A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-Running tokenizer on dataset #6:  43%|████▎     | 3/7 [00:09<00:12,  3.18s/ba][A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:  29%|██▊       | 2/7 [00:05<00:12,  2.56s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:  43%|████▎     | 3/7 [00:08<00:10,  2.69s/ba][A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-Running tokenizer on dataset #7:  57%|█████▋    | 4/7 [00:09<00:06,  2.32s/ba][A[A[A[A[A[A[A
-
-Running tokenizer on dataset #2:  71%|███████▏  | 5/7 [00:13<00:04,  2.43s/ba][A[A
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:  43%|████▎     | 3/7 [00:07<00:09,  2.44s/ba][A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #0: 100%|██████████| 7/7 [00:14<00:00,  1.74s/ba]Running tokenizer on dataset #0: 100%|██████████| 7/7 [00:14<00:00,  2.06s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:  14%|█▍        | 1/7 [00:03<00:18,  3.07s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:  14%|█▍        | 1/7 [00:03<00:21,  3.58s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-Running tokenizer on dataset #5:  71%|███████▏  | 5/7 [00:11<00:04,  2.27s/ba][A[A[A[A[A
-
-
-
-Running tokenizer on dataset #4:  71%|███████▏  | 5/7 [00:12<00:04,  2.34s/ba][A[A[A[A
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:  43%|████▎     | 3/7 [00:09<00:12,  3.19s/ba][A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:  43%|████▎     | 3/7 [00:08<00:10,  2.62s/ba][A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:  29%|██▊       | 2/7 [00:05<00:13,  2.63s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-Running tokenizer on dataset #3:  71%|███████▏  | 5/7 [00:13<00:05,  2.82s/ba][A[A[A
-Running tokenizer on dataset #1:  71%|███████▏  | 5/7 [00:15<00:05,  2.98s/ba][A
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:  43%|████▎     | 3/7 [00:07<00:10,  2.53s/ba][A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:  43%|████▎     | 3/7 [00:07<00:09,  2.45s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A
-
-Running tokenizer on dataset #2:  86%|████████▌ | 6/7 [00:15<00:02,  2.34s/ba][A[A
-
-
-
-
-
-
-Running tokenizer on dataset #7:  71%|███████▏  | 5/7 [00:11<00:04,  2.28s/ba][A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:  29%|██▊       | 2/7 [00:06<00:16,  3.25s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:  57%|█████▋    | 4/7 [00:09<00:07,  2.34s/ba][A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:  14%|█▍        | 1/7 [00:03<00:22,  3.74s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-Running tokenizer on dataset #6:  57%|█████▋    | 4/7 [00:12<00:09,  3.09s/ba][A[A[A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:  57%|█████▋    | 4/7 [00:10<00:08,  2.77s/ba][A[A[A[A[A[A[A[A[A
-
-
-
-
-Running tokenizer on dataset #5:  86%|████████▌ | 6/7 [00:13<00:02,  2.21s/ba][A[A[A[A[A
-
-Running tokenizer on dataset #2: 100%|██████████| 7/7 [00:15<00:00,  1.82s/ba][A[ARunning tokenizer on dataset #2: 100%|██████████| 7/7 [00:15<00:00,  2.28s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:  29%|██▊       | 2/7 [00:05<00:13,  2.71s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-Running tokenizer on dataset #4:  86%|████████▌ | 6/7 [00:14<00:02,  2.28s/ba][A[A[A[A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:  57%|█████▋    | 4/7 [00:10<00:07,  2.46s/ba][A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-Running tokenizer on dataset #5: 100%|██████████| 7/7 [00:14<00:00,  1.74s/ba][A[A[A[A[ARunning tokenizer on dataset #5: 100%|██████████| 7/7 [00:14<00:00,  2.08s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:  43%|████▎     | 3/7 [00:07<00:09,  2.48s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:  29%|██▊       | 2/7 [00:06<00:16,  3.33s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-Running tokenizer on dataset #4: 100%|██████████| 7/7 [00:15<00:00,  1.81s/ba][A[A[A[ARunning tokenizer on dataset #4: 100%|██████████| 7/7 [00:15<00:00,  2.19s/ba]
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:  57%|█████▋    | 4/7 [00:12<00:09,  3.09s/ba][A[A[A[A[A[A[A[A
-
-
-Running tokenizer on dataset #3:  86%|████████▌ | 6/7 [00:16<00:02,  2.82s/ba][A[A[A
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:  57%|█████▋    | 4/7 [00:10<00:07,  2.42s/ba][A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-Running tokenizer on dataset #7:  86%|████████▌ | 6/7 [00:13<00:02,  2.25s/ba][A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:  57%|█████▋    | 4/7 [00:09<00:07,  2.37s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:  43%|████▎     | 3/7 [00:08<00:11,  2.81s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-Running tokenizer on dataset #1:  86%|████████▌ | 6/7 [00:18<00:02,  2.97s/ba][A
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:  71%|███████▏  | 5/7 [00:12<00:04,  2.50s/ba][A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:  29%|██▊       | 2/7 [00:06<00:15,  3.09s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:  71%|███████▏  | 5/7 [00:13<00:05,  2.57s/ba][A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-Running tokenizer on dataset #7: 100%|██████████| 7/7 [00:14<00:00,  1.75s/ba][A[A[A[A[A[A[ARunning tokenizer on dataset #7: 100%|██████████| 7/7 [00:14<00:00,  2.09s/ba]
-
-
-Running tokenizer on dataset #3: 100%|██████████| 7/7 [00:17<00:00,  2.23s/ba][A[A[ARunning tokenizer on dataset #3: 100%|██████████| 7/7 [00:17<00:00,  2.51s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:  43%|████▎     | 3/7 [00:07<00:10,  2.53s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:  71%|███████▏  | 5/7 [00:12<00:04,  2.36s/ba][A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-Running tokenizer on dataset #6:  71%|███████▏  | 5/7 [00:15<00:06,  3.05s/ba][A[A[A[A[A[A
-Running tokenizer on dataset #1: 100%|██████████| 7/7 [00:19<00:00,  2.33s/ba][ARunning tokenizer on dataset #1: 100%|██████████| 7/7 [00:19<00:00,  2.76s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:  57%|█████▋    | 4/7 [00:09<00:07,  2.39s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:  71%|███████▏  | 5/7 [00:12<00:04,  2.37s/ba][A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:  71%|███████▏  | 5/7 [00:12<00:04,  2.36s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:  57%|█████▋    | 4/7 [00:11<00:07,  2.59s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:  43%|████▎     | 3/7 [00:09<00:12,  3.17s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:  71%|███████▏  | 5/7 [00:15<00:05,  2.98s/ba][A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:  86%|████████▌ | 6/7 [00:15<00:02,  2.43s/ba][A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:  43%|████▎     | 3/7 [00:08<00:10,  2.75s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:  86%|████████▌ | 6/7 [00:14<00:02,  2.47s/ba][A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:  57%|█████▋    | 4/7 [00:10<00:07,  2.42s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:  86%|████████▌ | 6/7 [00:14<00:02,  2.32s/ba][A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9: 100%|██████████| 7/7 [00:16<00:00,  1.88s/ba][A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #9: 100%|██████████| 7/7 [00:16<00:00,  2.30s/ba]
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10: 100%|██████████| 7/7 [00:15<00:00,  1.91s/ba][A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #10: 100%|██████████| 7/7 [00:15<00:00,  2.23s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:  71%|███████▏  | 5/7 [00:12<00:04,  2.34s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-Running tokenizer on dataset #6:  86%|████████▌ | 6/7 [00:18<00:02,  2.98s/ba][A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11: 100%|██████████| 7/7 [00:15<00:00,  1.82s/ba][A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #11: 100%|██████████| 7/7 [00:15<00:00,  2.21s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:  86%|████████▌ | 6/7 [00:14<00:02,  2.30s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:  86%|████████▌ | 6/7 [00:14<00:02,  2.38s/ba][A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-Running tokenizer on dataset #6: 100%|██████████| 7/7 [00:19<00:00,  2.33s/ba][A[A[A[A[A[ARunning tokenizer on dataset #6: 100%|██████████| 7/7 [00:19<00:00,  2.79s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:  71%|███████▏  | 5/7 [00:14<00:05,  2.70s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:  57%|█████▋    | 4/7 [00:10<00:07,  2.56s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13: 100%|██████████| 7/7 [00:15<00:00,  1.80s/ba][A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #13: 100%|██████████| 7/7 [00:15<00:00,  2.15s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:  57%|█████▋    | 4/7 [00:12<00:09,  3.10s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:  86%|████████▌ | 6/7 [00:18<00:02,  2.94s/ba][A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12: 100%|██████████| 7/7 [00:15<00:00,  1.88s/ba][A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #12: 100%|██████████| 7/7 [00:15<00:00,  2.23s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:  71%|███████▏  | 5/7 [00:12<00:04,  2.35s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:  86%|████████▌ | 6/7 [00:14<00:02,  2.28s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-Running tokenizer on dataset #8: 100%|██████████| 7/7 [00:19<00:00,  2.33s/ba][A[A[A[A[A[A[A[ARunning tokenizer on dataset #8: 100%|██████████| 7/7 [00:19<00:00,  2.78s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15: 100%|██████████| 7/7 [00:15<00:00,  1.79s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #15: 100%|██████████| 7/7 [00:15<00:00,  2.15s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:  71%|███████▏  | 5/7 [00:13<00:04,  2.41s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:  86%|████████▌ | 6/7 [00:14<00:02,  2.30s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:  86%|████████▌ | 6/7 [00:16<00:02,  2.72s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:  71%|███████▏  | 5/7 [00:15<00:06,  3.01s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17: 100%|██████████| 7/7 [00:15<00:00,  1.81s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #17: 100%|██████████| 7/7 [00:15<00:00,  2.19s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14: 100%|██████████| 7/7 [00:17<00:00,  2.15s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #14: 100%|██████████| 7/7 [00:17<00:00,  2.54s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:  86%|████████▌ | 6/7 [00:15<00:02,  2.33s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18: 100%|██████████| 7/7 [00:16<00:00,  1.82s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #18: 100%|██████████| 7/7 [00:16<00:00,  2.30s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #19: 100%|██████████| 7/7 [00:16<00:00,  2.29s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:  86%|████████▌ | 6/7 [00:18<00:02,  2.96s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #21: 100%|██████████| 7/7 [00:15<00:00,  2.17s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16: 100%|██████████| 7/7 [00:19<00:00,  2.32s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #16: 100%|██████████| 7/7 [00:19<00:00,  2.77s/ba]Running tokenizer on dataset #23: 100%|██████████| 7/7 [00:14<00:00,  2.12s/ba]Running tokenizer on dataset #20: 100%|██████████| 7/7 [00:19<00:00,  2.76s/ba]Running tokenizer on dataset #25: 100%|██████████| 7/7 [00:14<00:00,  2.14s/ba]Running tokenizer on dataset #22: 100%|██████████| 7/7 [00:18<00:00,  2.60s/ba]Running tokenizer on dataset #26: 100%|██████████| 7/7 [00:14<00:00,  2.12s/ba]Running tokenizer on dataset #27: 100%|██████████| 7/7 [00:15<00:00,  2.23s/ba]Running tokenizer on dataset #28: 100%|██████████| 7/7 [00:15<00:00,  2.27s/ba]Running tokenizer on dataset #24: 100%|██████████| 7/7 [00:19<00:00,  2.79s/ba]Running tokenizer on dataset #32: 100%|██████████| 7/7 [00:14<00:00,  2.12s/ba]Running tokenizer on dataset #33: 100%|██████████| 7/7 [00:14<00:00,  2.11s/ba]Running tokenizer on dataset #31: 100%|██████████| 7/7 [00:16<00:00,  2.35s/ba]Running tokenizer on dataset #35: 100%|██████████| 7/7 [00:14<00:00,  2.14s/ba]Running tokenizer on dataset #29: 100%|██████████| 7/7 [00:19<00:00,  2.77s/ba]Running tokenizer on dataset #30: 100%|██████████| 7/7 [00:19<00:00,  2.77s/ba]Running tokenizer on dataset #36: 100%|██████████| 7/7 [00:15<00:00,  2.26s/ba]Running tokenizer on dataset #34: 100%|██████████| 7/7 [00:18<00:00,  2.62s/ba]Running tokenizer on dataset #38: 100%|██████████| 7/7 [00:15<00:00,  2.24s/ba]Running tokenizer on dataset #37: 100%|██████████| 7/7 [00:17<00:00,  2.48s/ba]Running tokenizer on dataset #42: 100%|██████████| 7/7 [00:14<00:00,  2.11s/ba]Running tokenizer on dataset #39: 100%|██████████| 7/7 [00:17<00:00,  2.53s/ba]Running tokenizer on dataset #43: 100%|██████████| 7/7 [00:14<00:00,  2.13s/ba]Running tokenizer on dataset #40: 100%|██████████| 7/7 [00:19<00:00,  2.75s/ba]Running tokenizer on dataset #46: 100%|██████████| 7/7 [00:14<00:00,  2.14s/ba]Running tokenizer on dataset #41: 100%|██████████| 7/7 [00:19<00:00,  2.78s/ba]Running tokenizer on dataset #47: 100%|██████████| 7/7 [00:14<00:00,  2.12s/ba]Running tokenizer on dataset #44: 100%|██████████| 7/7 [00:19<00:00,  2.79s/ba]Running tokenizer on dataset #45: 100%|██████████| 7/7 [00:19<00:00,  2.76s/ba]Running tokenizer on dataset #51: 100%|██████████| 7/7 [00:14<00:00,  2.14s/ba]Running tokenizer on dataset #48: 100%|██████████| 7/7 [00:18<00:00,  2.66s/ba]Running tokenizer on dataset #49: 100%|██████████| 7/7 [00:18<00:00,  2.62s/ba]Running tokenizer on dataset #52: 100%|██████████| 7/7 [00:16<00:00,  2.31s/ba]Running tokenizer on dataset #53: 100%|██████████| 7/7 [00:16<00:00,  2.29s/ba]Running tokenizer on dataset #50: 100%|██████████| 7/7 [00:19<00:00,  2.79s/ba]Running tokenizer on dataset #57: 100%|██████████| 7/7 [00:14<00:00,  2.12s/ba]Running tokenizer on dataset #55: 100%|██████████| 7/7 [00:17<00:00,  2.45s/ba]Running tokenizer on dataset #54: 100%|██████████| 7/7 [00:19<00:00,  2.72s/ba]Running tokenizer on dataset #58: 100%|██████████| 7/7 [00:16<00:00,  2.40s/ba]Running tokenizer on dataset #56: 100%|██████████| 7/7 [00:18<00:00,  2.69s/ba]Running tokenizer on dataset #60: 100%|██████████| 7/7 [00:16<00:00,  2.31s/ba]Running tokenizer on dataset #63: 100%|██████████| 7/7 [00:15<00:00,  2.15s/ba]Running tokenizer on dataset #62: 100%|██████████| 7/7 [00:15<00:00,  2.25s/ba]Running tokenizer on dataset #59: 100%|██████████| 7/7 [00:18<00:00,  2.68s/ba]Running tokenizer on dataset #64: 100%|██████████| 7/7 [00:15<00:00,  2.28s/ba]Running tokenizer on dataset #65: 100%|██████████| 7/7 [00:15<00:00,  2.20s/ba]Running tokenizer on dataset #66: 100%|██████████| 7/7 [00:15<00:00,  2.15s/ba]Running tokenizer on dataset #67: 100%|██████████| 7/7 [00:14<00:00,  2.13s/ba]Running tokenizer on dataset #61: 100%|██████████| 7/7 [00:19<00:00,  2.78s/ba]Running tokenizer on dataset #68: 100%|██████████| 7/7 [00:14<00:00,  2.12s/ba]Running tokenizer on dataset #70: 100%|██████████| 7/7 [00:14<00:00,  2.13s/ba]Running tokenizer on dataset #69: 100%|██████████| 7/7 [00:18<00:00,  2.65s/ba]Running tokenizer on dataset #73: 100%|██████████| 7/7 [00:15<00:00,  2.25s/ba]Running tokenizer on dataset #76: 100%|██████████| 7/7 [00:14<00:00,  2.14s/ba]Running tokenizer on dataset #71: 100%|██████████| 7/7 [00:19<00:00,  2.78s/ba]Running tokenizer on dataset #77: 100%|██████████| 7/7 [00:14<00:00,  2.14s/ba]Running tokenizer on dataset #72: 100%|██████████| 7/7 [00:19<00:00,  2.76s/ba]Running tokenizer on dataset #75: 100%|██████████| 7/7 [00:17<00:00,  2.43s/ba]Running tokenizer on dataset #74: 100%|██████████| 7/7 [00:18<00:00,  2.60s/ba]Running tokenizer on dataset #80: 100%|██████████| 7/7 [00:15<00:00,  2.16s/ba]Running tokenizer on dataset #82: 100%|██████████| 7/7 [00:15<00:00,  2.18s/ba]Running tokenizer on dataset #78: 100%|██████████| 7/7 [00:18<00:00,  2.68s/ba]Running tokenizer on dataset #81: 100%|██████████| 7/7 [00:17<00:00,  2.48s/ba]Running tokenizer on dataset #79: 100%|██████████| 7/7 [00:18<00:00,  2.64s/ba]Running tokenizer on dataset #83: 100%|██████████| 7/7 [00:16<00:00,  2.29s/ba]Running tokenizer on dataset #87: 100%|██████████| 7/7 [00:14<00:00,  2.12s/ba]Running tokenizer on dataset #84: 100%|██████████| 7/7 [00:17<00:00,  2.53s/ba]Running tokenizer on dataset #86: 100%|██████████| 7/7 [00:16<00:00,  2.36s/ba]Running tokenizer on dataset #89: 100%|██████████| 7/7 [00:14<00:00,  2.12s/ba]Running tokenizer on dataset #90: 100%|██████████| 7/7 [00:14<00:00,  2.13s/ba]Running tokenizer on dataset #85: 100%|██████████| 7/7 [00:18<00:00,  2.69s/ba]Running tokenizer on dataset #88: 100%|██████████| 7/7 [00:17<00:00,  2.53s/ba]Running tokenizer on dataset #95: 100%|██████████| 7/7 [00:14<00:00,  2.11s/ba]Running tokenizer on dataset #91: 100%|██████████| 7/7 [00:18<00:00,  2.65s/ba]Running tokenizer on dataset #94: 100%|██████████| 7/7 [00:17<00:00,  2.49s/ba]Running tokenizer on dataset #93: 100%|██████████| 7/7 [00:18<00:00,  2.59s/ba]Running tokenizer on dataset #92: 100%|██████████| 7/7 [00:19<00:00,  2.80s/ba]Running tokenizer on dataset #97: 100%|██████████| 7/7 [00:15<00:00,  2.17s/ba]Running tokenizer on dataset #98: 100%|██████████| 7/7 [00:15<00:00,  2.15s/ba]Running tokenizer on dataset #96: 100%|██████████| 7/7 [00:17<00:00,  2.44s/ba]Running tokenizer on dataset #99: 100%|██████████| 7/7 [00:15<00:00,  2.26s/ba]Running tokenizer on dataset #101: 100%|██████████| 7/7 [00:14<00:00,  2.13s/ba]Running tokenizer on dataset #103: 100%|██████████| 7/7 [00:15<00:00,  2.18s/ba]Running tokenizer on dataset #100: 100%|██████████| 7/7 [00:18<00:00,  2.58s/ba]Running tokenizer on dataset #104: 100%|██████████| 7/7 [00:14<00:00,  2.09s/ba]Running tokenizer on dataset #102: 100%|██████████| 7/7 [00:16<00:00,  2.41s/ba]Running tokenizer on dataset #105: 100%|██████████| 7/7 [00:16<00:00,  2.30s/ba]Running tokenizer on dataset #110: 100%|██████████| 7/7 [00:15<00:00,  2.27s/ba]Running tokenizer on dataset #106: 100%|██████████| 7/7 [00:18<00:00,  2.70s/ba]Running tokenizer on dataset #107: 100%|██████████| 7/7 [00:19<00:00,  2.73s/ba]Running tokenizer on dataset #108: 100%|██████████| 7/7 [00:18<00:00,  2.68s/ba]Running tokenizer on dataset #112: 100%|██████████| 7/7 [00:15<00:00,  2.27s/ba]Running tokenizer on dataset #113: 100%|██████████| 7/7 [00:15<00:00,  2.18s/ba]Running tokenizer on dataset #111: 100%|██████████| 7/7 [00:17<00:00,  2.49s/ba]Running tokenizer on dataset #114: 100%|██████████| 7/7 [00:15<00:00,  2.15s/ba]Running tokenizer on dataset #109: 100%|██████████| 7/7 [00:19<00:00,  2.80s/ba]Running tokenizer on dataset #118: 100%|██████████| 7/7 [00:15<00:00,  2.15s/ba]Running tokenizer on dataset #115: 100%|██████████| 7/7 [00:17<00:00,  2.52s/ba]Running tokenizer on dataset #120: 100%|██████████| 7/7 [00:15<00:00,  2.22s/ba]Running tokenizer on dataset #116: 100%|██████████| 7/7 [00:19<00:00,  2.74s/ba]Running tokenizer on dataset #117: 100%|██████████| 7/7 [00:19<00:00,  2.75s/ba]Running tokenizer on dataset #122: 100%|██████████| 7/7 [00:15<00:00,  2.24s/ba]Running tokenizer on dataset #123: 100%|██████████| 7/7 [00:14<00:00,  2.12s/ba]Running tokenizer on dataset #121: 100%|██████████| 7/7 [00:17<00:00,  2.50s/ba]Running tokenizer on dataset #119: 100%|██████████| 7/7 [00:19<00:00,  2.76s/ba]Running tokenizer on dataset #125: 100%|██████████| 7/7 [00:16<00:00,  2.29s/ba]Running tokenizer on dataset #127: 100%|██████████| 7/7 [00:14<00:00,  2.12s/ba]Running tokenizer on dataset #124: 100%|██████████| 7/7 [00:19<00:00,  2.75s/ba]Running tokenizer on dataset #126: 100%|██████████| 7/7 [00:19<00:00,  2.74s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #0:   0%|          | 0/7 [00:00<?, ?ba/s]
-Running tokenizer on dataset #1:   0%|          | 0/7 [00:00<?, ?ba/s][A
-
-Running tokenizer on dataset #2:   0%|          | 0/7 [00:00<?, ?ba/s][A[A
-
-
-Running tokenizer on dataset #3:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A
-
-
-
-Running tokenizer on dataset #4:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[ARunning tokenizer on dataset #0:  14%|█▍        | 1/7 [00:03<00:21,  3.50s/ba]
-
-Running tokenizer on dataset #2:  14%|█▍        | 1/7 [00:02<00:15,  2.64s/ba][A[A
-
-
-
-
-Running tokenizer on dataset #5:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A
-Running tokenizer on dataset #1:  14%|█▍        | 1/7 [00:03<00:21,  3.55s/ba][A
-
-
-
-
-
-Running tokenizer on dataset #6:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A
-
-
-Running tokenizer on dataset #3:  14%|█▍        | 1/7 [00:02<00:16,  2.69s/ba][A[A[A
-
-
-
-
-
-
-Running tokenizer on dataset #7:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A
-
-
-
-Running tokenizer on dataset #4:  14%|█▍        | 1/7 [00:02<00:16,  2.69s/ba][A[A[A[A
-
-Running tokenizer on dataset #2:  29%|██▊       | 2/7 [00:04<00:12,  2.41s/ba][A[ARunning tokenizer on dataset #0:  29%|██▊       | 2/7 [00:06<00:16,  3.23s/ba]
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A
-
-
-
-
-Running tokenizer on dataset #5:  14%|█▍        | 1/7 [00:02<00:16,  2.74s/ba][A[A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A
-
-
-Running tokenizer on dataset #3:  29%|██▊       | 2/7 [00:05<00:12,  2.48s/ba][A[A[A
-Running tokenizer on dataset #1:  29%|██▊       | 2/7 [00:06<00:16,  3.30s/ba][A
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A
-
-
-
-Running tokenizer on dataset #4:  29%|██▊       | 2/7 [00:04<00:12,  2.47s/ba][A[A[A[A
-
-
-
-
-
-
-Running tokenizer on dataset #7:  14%|█▍        | 1/7 [00:02<00:16,  2.70s/ba][A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-Running tokenizer on dataset #6:  14%|█▍        | 1/7 [00:03<00:21,  3.66s/ba][A[A[A[A[A[A
-
-Running tokenizer on dataset #2:  43%|████▎     | 3/7 [00:07<00:09,  2.47s/ba][A[A
-
-
-
-
-Running tokenizer on dataset #5:  29%|██▊       | 2/7 [00:05<00:12,  2.53s/ba][A[A[A[A[ARunning tokenizer on dataset #0:  43%|████▎     | 3/7 [00:09<00:12,  3.13s/ba]
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A
-
-
-Running tokenizer on dataset #3:  43%|████▎     | 3/7 [00:07<00:09,  2.36s/ba][A[A[A
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:  14%|█▍        | 1/7 [00:03<00:21,  3.59s/ba][A[A[A[A[A[A[A[A
-
-
-
-Running tokenizer on dataset #4:  43%|████▎     | 3/7 [00:07<00:09,  2.36s/ba][A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:  14%|█▍        | 1/7 [00:03<00:18,  3.02s/ba][A[A[A[A[A[A[A[A[A
-Running tokenizer on dataset #1:  43%|████▎     | 3/7 [00:09<00:12,  3.16s/ba][A
-
-
-
-
-
-
-Running tokenizer on dataset #7:  29%|██▊       | 2/7 [00:05<00:12,  2.47s/ba][A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:  14%|█▍        | 1/7 [00:02<00:16,  2.77s/ba][A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-Running tokenizer on dataset #6:  29%|██▊       | 2/7 [00:06<00:15,  3.05s/ba][A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:  14%|█▍        | 1/7 [00:02<00:16,  2.75s/ba][A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-Running tokenizer on dataset #5:  43%|████▎     | 3/7 [00:07<00:09,  2.42s/ba][A[A[A[A[A
-
-Running tokenizer on dataset #2:  57%|█████▋    | 4/7 [00:10<00:07,  2.64s/ba][A[A
-
-
-Running tokenizer on dataset #3:  57%|█████▋    | 4/7 [00:09<00:06,  2.31s/ba][A[A[A
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:  14%|█▍        | 1/7 [00:02<00:16,  2.76s/ba][A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #0:  57%|█████▋    | 4/7 [00:12<00:09,  3.04s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-Running tokenizer on dataset #4:  57%|█████▋    | 4/7 [00:09<00:07,  2.33s/ba][A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:  29%|██▊       | 2/7 [00:05<00:13,  2.63s/ba][A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-Running tokenizer on dataset #7:  43%|████▎     | 3/7 [00:07<00:09,  2.47s/ba][A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:  29%|██▊       | 2/7 [00:05<00:12,  2.57s/ba][A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:  29%|██▊       | 2/7 [00:06<00:16,  3.31s/ba][A[A[A[A[A[A[A[A
-Running tokenizer on dataset #1:  57%|█████▋    | 4/7 [00:12<00:09,  3.06s/ba][A
-
-
-
-
-
-Running tokenizer on dataset #6:  43%|████▎     | 3/7 [00:08<00:10,  2.72s/ba][A[A[A[A[A[A
-
-
-
-
-Running tokenizer on dataset #5:  57%|█████▋    | 4/7 [00:09<00:06,  2.32s/ba][A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-Running tokenizer on dataset #3:  71%|███████▏  | 5/7 [00:11<00:04,  2.29s/ba][A[A[A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:  29%|██▊       | 2/7 [00:05<00:14,  2.87s/ba][A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:  14%|█▍        | 1/7 [00:03<00:21,  3.61s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:  29%|██▊       | 2/7 [00:05<00:12,  2.53s/ba][A[A[A[A[A[A[A[A[A[A[A[A
-
-Running tokenizer on dataset #2:  71%|███████▏  | 5/7 [00:13<00:05,  2.74s/ba][A[A
-
-
-
-Running tokenizer on dataset #4:  71%|███████▏  | 5/7 [00:11<00:04,  2.30s/ba][A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:  14%|█▍        | 1/7 [00:03<00:21,  3.57s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:  43%|████▎     | 3/7 [00:07<00:09,  2.46s/ba][A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:   0%|          | 0/7 [00:00<?, ?ba/s][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #0:  71%|███████▏  | 5/7 [00:15<00:05,  2.99s/ba]
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:  43%|████▎     | 3/7 [00:07<00:09,  2.45s/ba][A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:  14%|█▍        | 1/7 [00:03<00:18,  3.08s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-Running tokenizer on dataset #7:  57%|█████▋    | 4/7 [00:10<00:07,  2.62s/ba][A[A[A[A[A[A[A
-
-
-
-
-Running tokenizer on dataset #5:  71%|███████▏  | 5/7 [00:11<00:04,  2.26s/ba][A[A[A[A[A
-
-
-
-
-
-Running tokenizer on dataset #6:  57%|█████▋    | 4/7 [00:10<00:07,  2.54s/ba][A[A[A[A[A[A
-Running tokenizer on dataset #1:  71%|███████▏  | 5/7 [00:15<00:05,  2.99s/ba][A
-
-
-Running tokenizer on dataset #3:  86%|████████▌ | 6/7 [00:13<00:02,  2.25s/ba][A[A[A
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:  43%|████▎     | 3/7 [00:09<00:12,  3.16s/ba][A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:  14%|█▍        | 1/7 [00:03<00:20,  3.38s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:  43%|████▎     | 3/7 [00:08<00:10,  2.70s/ba][A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:  43%|████▎     | 3/7 [00:07<00:09,  2.41s/ba][A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:  14%|█▍        | 1/7 [00:02<00:17,  2.92s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-Running tokenizer on dataset #4:  86%|████████▌ | 6/7 [00:13<00:02,  2.26s/ba][A[A[A[A
-
-
-Running tokenizer on dataset #3: 100%|██████████| 7/7 [00:14<00:00,  1.77s/ba][A[A[ARunning tokenizer on dataset #3: 100%|██████████| 7/7 [00:14<00:00,  2.09s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:  29%|██▊       | 2/7 [00:06<00:16,  3.33s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:  57%|█████▋    | 4/7 [00:10<00:07,  2.43s/ba][A[A[A[A[A[A[A[A[A
-
-Running tokenizer on dataset #2:  86%|████████▌ | 6/7 [00:16<00:02,  2.77s/ba][A[A
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:  57%|█████▋    | 4/7 [00:09<00:07,  2.36s/ba][A[A[A[A[A[A[A[A[A[A
-
-
-
-
-Running tokenizer on dataset #5:  86%|████████▌ | 6/7 [00:13<00:02,  2.20s/ba][A[A[A[A[A
-
-
-
-Running tokenizer on dataset #4: 100%|██████████| 7/7 [00:14<00:00,  1.80s/ba][A[A[A[ARunning tokenizer on dataset #4: 100%|██████████| 7/7 [00:14<00:00,  2.11s/ba]Running tokenizer on dataset #0:  86%|████████▌ | 6/7 [00:18<00:02,  2.92s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:  29%|██▊       | 2/7 [00:06<00:16,  3.33s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-Running tokenizer on dataset #6:  71%|███████▏  | 5/7 [00:13<00:04,  2.45s/ba][A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:  29%|██▊       | 2/7 [00:05<00:14,  2.90s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-Running tokenizer on dataset #2: 100%|██████████| 7/7 [00:17<00:00,  2.18s/ba][A[ARunning tokenizer on dataset #2: 100%|██████████| 7/7 [00:17<00:00,  2.44s/ba]
-
-
-
-
-Running tokenizer on dataset #5: 100%|██████████| 7/7 [00:14<00:00,  1.73s/ba][A[A[A[A[ARunning tokenizer on dataset #5: 100%|██████████| 7/7 [00:14<00:00,  2.08s/ba]
-
-
-
-
-
-
-Running tokenizer on dataset #7:  71%|███████▏  | 5/7 [00:13<00:05,  2.72s/ba][A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:  14%|█▍        | 1/7 [00:03<00:22,  3.74s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #0: 100%|██████████| 7/7 [00:19<00:00,  2.29s/ba]Running tokenizer on dataset #0: 100%|██████████| 7/7 [00:19<00:00,  2.73s/ba]
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:  57%|█████▋    | 4/7 [00:09<00:07,  2.34s/ba][A[A[A[A[A[A[A[A[A[A[A[A
-Running tokenizer on dataset #1:  86%|████████▌ | 6/7 [00:18<00:02,  2.95s/ba][A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:  57%|█████▋    | 4/7 [00:10<00:07,  2.62s/ba][A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:  57%|█████▋    | 4/7 [00:12<00:09,  3.07s/ba][A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:  29%|██▊       | 2/7 [00:06<00:16,  3.26s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:  71%|███████▏  | 5/7 [00:11<00:04,  2.29s/ba][A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:  29%|██▊       | 2/7 [00:06<00:15,  3.02s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-Running tokenizer on dataset #1: 100%|██████████| 7/7 [00:19<00:00,  2.31s/ba][ARunning tokenizer on dataset #1: 100%|██████████| 7/7 [00:19<00:00,  2.76s/ba]
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:  71%|███████▏  | 5/7 [00:12<00:05,  2.60s/ba][A[A[A[A[A[A[A[A[A
-
-
-
-
-
-Running tokenizer on dataset #6:  86%|████████▌ | 6/7 [00:15<00:02,  2.38s/ba][A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:  43%|████▎     | 3/7 [00:09<00:12,  3.18s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:  43%|████▎     | 3/7 [00:08<00:10,  2.62s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:  43%|████▎     | 3/7 [00:09<00:11,  2.97s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-Running tokenizer on dataset #6: 100%|██████████| 7/7 [00:16<00:00,  1.85s/ba][A[A[A[A[A[ARunning tokenizer on dataset #6: 100%|██████████| 7/7 [00:16<00:00,  2.31s/ba]
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:  71%|███████▏  | 5/7 [00:12<00:04,  2.47s/ba][A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:  71%|███████▏  | 5/7 [00:14<00:05,  2.78s/ba][A[A[A[A[A[A[A[A
-
-
-
-
-
-
-Running tokenizer on dataset #7:  86%|████████▌ | 6/7 [00:16<00:02,  2.76s/ba][A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:  71%|███████▏  | 5/7 [00:12<00:04,  2.39s/ba][A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10:  86%|████████▌ | 6/7 [00:14<00:02,  2.25s/ba][A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:  29%|██▊       | 2/7 [00:06<00:16,  3.39s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:  43%|████▎     | 3/7 [00:09<00:12,  3.04s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-Running tokenizer on dataset #7: 100%|██████████| 7/7 [00:17<00:00,  2.17s/ba][A[A[A[A[A[A[ARunning tokenizer on dataset #7: 100%|██████████| 7/7 [00:17<00:00,  2.43s/ba]
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #10: 100%|██████████| 7/7 [00:14<00:00,  1.80s/ba][A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #10: 100%|██████████| 7/7 [00:14<00:00,  2.14s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:  43%|████▎     | 3/7 [00:08<00:11,  3.00s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:  57%|█████▋    | 4/7 [00:10<00:07,  2.61s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9:  86%|████████▌ | 6/7 [00:15<00:02,  2.67s/ba][A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:  57%|█████▋    | 4/7 [00:12<00:09,  3.06s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:  57%|█████▋    | 4/7 [00:12<00:08,  2.93s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11:  86%|████████▌ | 6/7 [00:15<00:02,  2.39s/ba][A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-Running tokenizer on dataset #8:  86%|████████▌ | 6/7 [00:17<00:02,  2.70s/ba][A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #9: 100%|██████████| 7/7 [00:16<00:00,  2.12s/ba][A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #9: 100%|██████████| 7/7 [00:16<00:00,  2.39s/ba]
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #11: 100%|██████████| 7/7 [00:15<00:00,  1.87s/ba][A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #11: 100%|██████████| 7/7 [00:15<00:00,  2.28s/ba]
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12:  86%|████████▌ | 6/7 [00:15<00:02,  2.56s/ba][A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:  57%|█████▋    | 4/7 [00:11<00:08,  2.76s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:  43%|████▎     | 3/7 [00:09<00:12,  3.22s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-Running tokenizer on dataset #8: 100%|██████████| 7/7 [00:18<00:00,  2.18s/ba][A[A[A[A[A[A[A[ARunning tokenizer on dataset #8: 100%|██████████| 7/7 [00:18<00:00,  2.65s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #12: 100%|██████████| 7/7 [00:16<00:00,  2.06s/ba][A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #12: 100%|██████████| 7/7 [00:16<00:00,  2.29s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:  57%|█████▋    | 4/7 [00:11<00:08,  2.96s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:  71%|███████▏  | 5/7 [00:13<00:05,  2.71s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:  71%|███████▏  | 5/7 [00:15<00:05,  2.99s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:  71%|███████▏  | 5/7 [00:15<00:05,  2.91s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:  71%|███████▏  | 5/7 [00:13<00:05,  2.56s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:  57%|█████▋    | 4/7 [00:12<00:09,  3.11s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:  71%|███████▏  | 5/7 [00:14<00:05,  2.92s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15:  86%|████████▌ | 6/7 [00:16<00:02,  2.75s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13:  86%|████████▌ | 6/7 [00:18<00:02,  2.94s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14:  86%|████████▌ | 6/7 [00:17<00:02,  2.86s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16:  86%|████████▌ | 6/7 [00:16<00:02,  2.44s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #15: 100%|██████████| 7/7 [00:17<00:00,  2.18s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #15: 100%|██████████| 7/7 [00:17<00:00,  2.50s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #16: 100%|██████████| 7/7 [00:16<00:00,  1.90s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #16: 100%|██████████| 7/7 [00:16<00:00,  2.41s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #13: 100%|██████████| 7/7 [00:19<00:00,  2.31s/ba][A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #13: 100%|██████████| 7/7 [00:19<00:00,  2.76s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #14: 100%|██████████| 7/7 [00:18<00:00,  2.25s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #14: 100%|██████████| 7/7 [00:18<00:00,  2.68s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #19: 100%|██████████| 7/7 [00:14<00:00,  2.13s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:  71%|███████▏  | 5/7 [00:15<00:05,  3.00s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17:  86%|████████▌ | 6/7 [00:17<00:02,  2.90s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #20: 100%|██████████| 7/7 [00:15<00:00,  2.27s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #17: 100%|██████████| 7/7 [00:18<00:00,  2.28s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #17: 100%|██████████| 7/7 [00:18<00:00,  2.66s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18:  86%|████████▌ | 6/7 [00:18<00:02,  2.93s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Running tokenizer on dataset #18: 100%|██████████| 7/7 [00:19<00:00,  2.23s/ba][A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ARunning tokenizer on dataset #18: 100%|██████████| 7/7 [00:19<00:00,  2.75s/ba]Running tokenizer on dataset #24: 100%|██████████| 7/7 [00:14<00:00,  2.13s/ba]Running tokenizer on dataset #21: 100%|██████████| 7/7 [00:17<00:00,  2.53s/ba]Running tokenizer on dataset #25: 100%|██████████| 7/7 [00:16<00:00,  2.35s/ba]Running tokenizer on dataset #23: 100%|██████████| 7/7 [00:17<00:00,  2.55s/ba]Running tokenizer on dataset #27: 100%|██████████| 7/7 [00:14<00:00,  2.13s/ba]Running tokenizer on dataset #22: 100%|██████████| 7/7 [00:19<00:00,  2.76s/ba]Running tokenizer on dataset #28: 100%|██████████| 7/7 [00:15<00:00,  2.17s/ba]Running tokenizer on dataset #26: 100%|██████████| 7/7 [00:17<00:00,  2.52s/ba]Running tokenizer on dataset #29: 100%|██████████| 7/7 [00:17<00:00,  2.48s/ba]Running tokenizer on dataset #32: 100%|██████████| 7/7 [00:14<00:00,  2.12s/ba]Running tokenizer on dataset #30: 100%|██████████| 7/7 [00:17<00:00,  2.48s/ba]Running tokenizer on dataset #31: 100%|██████████| 7/7 [00:18<00:00,  2.67s/ba]Running tokenizer on dataset #33: 100%|██████████| 7/7 [00:18<00:00,  2.65s/ba]Running tokenizer on dataset #34: 100%|██████████| 7/7 [00:17<00:00,  2.56s/ba]Running tokenizer on dataset #37: 100%|██████████| 7/7 [00:15<00:00,  2.29s/ba]Running tokenizer on dataset #39: 100%|██████████| 7/7 [00:15<00:00,  2.19s/ba]Running tokenizer on dataset #35: 100%|██████████| 7/7 [00:18<00:00,  2.65s/ba]Running tokenizer on dataset #41: 100%|██████████| 7/7 [00:15<00:00,  2.22s/ba]Running tokenizer on dataset #38: 100%|██████████| 7/7 [00:17<00:00,  2.57s/ba]Running tokenizer on dataset #36: 100%|██████████| 7/7 [00:19<00:00,  2.77s/ba]Running tokenizer on dataset #42: 100%|██████████| 7/7 [00:15<00:00,  2.25s/ba]Running tokenizer on dataset #40: 100%|██████████| 7/7 [00:19<00:00,  2.78s/ba]Running tokenizer on dataset #44: 100%|██████████| 7/7 [00:16<00:00,  2.39s/ba]Running tokenizer on dataset #43: 100%|██████████| 7/7 [00:17<00:00,  2.51s/ba]Running tokenizer on dataset #47: 100%|██████████| 7/7 [00:15<00:00,  2.15s/ba]Running tokenizer on dataset #46: 100%|██████████| 7/7 [00:16<00:00,  2.33s/ba]Running tokenizer on dataset #45: 100%|██████████| 7/7 [00:17<00:00,  2.51s/ba]Running tokenizer on dataset #48: 100%|██████████| 7/7 [00:15<00:00,  2.27s/ba]Running tokenizer on dataset #53: 100%|██████████| 7/7 [00:14<00:00,  2.13s/ba]Running tokenizer on dataset #50: 100%|██████████| 7/7 [00:17<00:00,  2.45s/ba]Running tokenizer on dataset #52: 100%|██████████| 7/7 [00:16<00:00,  2.29s/ba]Running tokenizer on dataset #54: 100%|██████████| 7/7 [00:14<00:00,  2.14s/ba]Running tokenizer on dataset #49: 100%|██████████| 7/7 [00:19<00:00,  2.75s/ba]Running tokenizer on dataset #56: 100%|██████████| 7/7 [00:14<00:00,  2.10s/ba]Running tokenizer on dataset #55: 100%|██████████| 7/7 [00:15<00:00,  2.22s/ba]Running tokenizer on dataset #51: 100%|██████████| 7/7 [00:18<00:00,  2.68s/ba]Running tokenizer on dataset #58: 100%|██████████| 7/7 [00:14<00:00,  2.14s/ba]Running tokenizer on dataset #57: 100%|██████████| 7/7 [00:17<00:00,  2.46s/ba]Running tokenizer on dataset #59: 100%|██████████| 7/7 [00:15<00:00,  2.27s/ba]Running tokenizer on dataset #60: 100%|██████████| 7/7 [00:15<00:00,  2.28s/ba]Running tokenizer on dataset #61: 100%|██████████| 7/7 [00:15<00:00,  2.25s/ba]Running tokenizer on dataset #62: 100%|██████████| 7/7 [00:17<00:00,  2.53s/ba]Running tokenizer on dataset #66: 100%|██████████| 7/7 [00:14<00:00,  2.13s/ba]Running tokenizer on dataset #67: 100%|██████████| 7/7 [00:14<00:00,  2.12s/ba]Running tokenizer on dataset #68: 100%|██████████| 7/7 [00:15<00:00,  2.19s/ba]Running tokenizer on dataset #63: 100%|██████████| 7/7 [00:19<00:00,  2.81s/ba]Running tokenizer on dataset #64: 100%|██████████| 7/7 [00:19<00:00,  2.73s/ba]Running tokenizer on dataset #70: 100%|██████████| 7/7 [00:14<00:00,  2.14s/ba]Running tokenizer on dataset #65: 100%|██████████| 7/7 [00:19<00:00,  2.81s/ba]Running tokenizer on dataset #71: 100%|██████████| 7/7 [00:15<00:00,  2.23s/ba]Running tokenizer on dataset #74: 100%|██████████| 7/7 [00:14<00:00,  2.13s/ba]Running tokenizer on dataset #69: 100%|██████████| 7/7 [00:18<00:00,  2.68s/ba]Running tokenizer on dataset #73: 100%|██████████| 7/7 [00:16<00:00,  2.34s/ba]Running tokenizer on dataset #75: 100%|██████████| 7/7 [00:15<00:00,  2.15s/ba]Running tokenizer on dataset #72: 100%|██████████| 7/7 [00:19<00:00,  2.77s/ba]Running tokenizer on dataset #78: 100%|██████████| 7/7 [00:15<00:00,  2.24s/ba]Running tokenizer on dataset #76: 100%|██████████| 7/7 [00:16<00:00,  2.41s/ba]Running tokenizer on dataset #77: 100%|██████████| 7/7 [00:17<00:00,  2.51s/ba]Running tokenizer on dataset #81: 100%|██████████| 7/7 [00:15<00:00,  2.15s/ba]Running tokenizer on dataset #79: 100%|██████████| 7/7 [00:17<00:00,  2.49s/ba]Running tokenizer on dataset #82: 100%|██████████| 7/7 [00:16<00:00,  2.39s/ba]Running tokenizer on dataset #86: 100%|██████████| 7/7 [00:14<00:00,  2.11s/ba]Running tokenizer on dataset #80: 100%|██████████| 7/7 [00:19<00:00,  2.82s/ba]Running tokenizer on dataset #85: 100%|██████████| 7/7 [00:16<00:00,  2.30s/ba]Running tokenizer on dataset #84: 100%|██████████| 7/7 [00:17<00:00,  2.56s/ba]Running tokenizer on dataset #83: 100%|██████████| 7/7 [00:19<00:00,  2.79s/ba]Running tokenizer on dataset #89: 100%|██████████| 7/7 [00:15<00:00,  2.16s/ba]Running tokenizer on dataset #87: 100%|██████████| 7/7 [00:18<00:00,  2.58s/ba]Running tokenizer on dataset #88: 100%|██████████| 7/7 [00:17<00:00,  2.51s/ba]Running tokenizer on dataset #91: 100%|██████████| 7/7 [00:15<00:00,  2.22s/ba]Running tokenizer on dataset #93: 100%|██████████| 7/7 [00:14<00:00,  2.14s/ba]Running tokenizer on dataset #90: 100%|██████████| 7/7 [00:18<00:00,  2.66s/ba]Running tokenizer on dataset #94: 100%|██████████| 7/7 [00:14<00:00,  2.14s/ba]Running tokenizer on dataset #95: 100%|██████████| 7/7 [00:15<00:00,  2.15s/ba]Running tokenizer on dataset #92: 100%|██████████| 7/7 [00:18<00:00,  2.69s/ba]Running tokenizer on dataset #96: 100%|██████████| 7/7 [00:17<00:00,  2.47s/ba]Running tokenizer on dataset #99: 100%|██████████| 7/7 [00:15<00:00,  2.18s/ba]Running tokenizer on dataset #97: 100%|██████████| 7/7 [00:17<00:00,  2.56s/ba]Running tokenizer on dataset #101: 100%|██████████| 7/7 [00:14<00:00,  2.11s/ba]Running tokenizer on dataset #98: 100%|██████████| 7/7 [00:19<00:00,  2.76s/ba]Running tokenizer on dataset #103: 100%|██████████| 7/7 [00:15<00:00,  2.26s/ba]Running tokenizer on dataset #100: 100%|██████████| 7/7 [00:18<00:00,  2.65s/ba]Running tokenizer on dataset #104: 100%|██████████| 7/7 [00:14<00:00,  2.14s/ba]Running tokenizer on dataset #102: 100%|██████████| 7/7 [00:17<00:00,  2.51s/ba]Running tokenizer on dataset #108: 100%|██████████| 7/7 [00:14<00:00,  2.10s/ba]Running tokenizer on dataset #109: 100%|██████████| 7/7 [00:14<00:00,  2.13s/ba]Running tokenizer on dataset #105: 100%|██████████| 7/7 [00:18<00:00,  2.67s/ba]Running tokenizer on dataset #107: 100%|██████████| 7/7 [00:16<00:00,  2.42s/ba]Running tokenizer on dataset #106: 100%|██████████| 7/7 [00:19<00:00,  2.72s/ba]Running tokenizer on dataset #111: 100%|██████████| 7/7 [00:15<00:00,  2.15s/ba]Running tokenizer on dataset #113: 100%|██████████| 7/7 [00:14<00:00,  2.10s/ba]Running tokenizer on dataset #114: 100%|██████████| 7/7 [00:16<00:00,  2.33s/ba]Running tokenizer on dataset #110: 100%|██████████| 7/7 [00:19<00:00,  2.74s/ba]Running tokenizer on dataset #115: 100%|██████████| 7/7 [00:15<00:00,  2.25s/ba]Running tokenizer on dataset #112: 100%|██████████| 7/7 [00:18<00:00,  2.70s/ba]Running tokenizer on dataset #116: 100%|██████████| 7/7 [00:16<00:00,  2.36s/ba]Running tokenizer on dataset #117: 100%|██████████| 7/7 [00:16<00:00,  2.39s/ba]Running tokenizer on dataset #118: 100%|██████████| 7/7 [00:16<00:00,  2.33s/ba]Running tokenizer on dataset #124: 100%|██████████| 7/7 [00:14<00:00,  2.09s/ba]Running tokenizer on dataset #119: 100%|██████████| 7/7 [00:19<00:00,  2.76s/ba]Running tokenizer on dataset #120: 100%|██████████| 7/7 [00:19<00:00,  2.75s/ba]Running tokenizer on dataset #122: 100%|██████████| 7/7 [00:19<00:00,  2.75s/ba]Running tokenizer on dataset #121: 100%|██████████| 7/7 [00:20<00:00,  2.92s/ba]Running tokenizer on dataset #123: 100%|██████████| 7/7 [00:19<00:00,  2.72s/ba]Running tokenizer on dataset #125: 100%|██████████| 7/7 [00:19<00:00,  2.75s/ba]Running tokenizer on dataset #126: 100%|██████████| 7/7 [00:19<00:00,  2.72s/ba]Running tokenizer on dataset #127: 100%|██████████| 7/7 [00:19<00:00,  2.74s/ba]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-b
-column names: {'train': ['train', 'validation', 'input_ids', 'attention_mask', 'labels'], 'validation': ['train', 'validation', 'input_ids', 'attention_mask', 'labels']}
-Tokenized datasets saved.

@@ -1,1 +1,0 @@
-epoch 9: perplexity: 3.244505814298309e+21 train_loss: 54.9375 eval_loss: 49.53125

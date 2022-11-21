@@ -143,3 +143,5 @@ tuned-model/*
 venv
 wandb
 outputs
+*.out
+out_files

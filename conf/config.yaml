@@ -13,7 +13,7 @@ dataset:
   overwrite_cache: false
   keep_linebreaks: true
   concatenate_raw: false # only really necessary when loading a local .txt file
-  load_tokenized_data: false
+  load_tokenized_data: true
 
 model:
   name: gpt2
@@ -37,7 +37,7 @@ training:
   weight_decay: 0.1
   num_epochs: 1
   max_train_steps: null
-  gradient_accumulation_steps: 1
+  gradient_accumulation_steps: 2
   lr_scheduler: "constant" # ["linear", "cosine", "cosine_with_restarts", "polynomial", "constant", "constant_with_warmup"]
   lr_warmup_steps: 10
   eval_every: 250
@@ -46,8 +46,6 @@ training:
   checkpoint:
     resume_from_checkpoint: 0 # integer representing which checkpoint to load from, or <= 0 to not
     every_n_steps: null
-  
-  
 
 tracking:
   enabled: true
@@ -55,3 +53,7 @@ tracking:
 
 testing:
   enabled: false
+
+keys:
+  WANDB_KEY: null
+  HF_access_token: null
