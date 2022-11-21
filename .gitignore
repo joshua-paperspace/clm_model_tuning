@@ -145,3 +145,4 @@ wandb
 outputs
 *.out
 out_files
+*.ipynb

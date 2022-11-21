@@ -41,9 +41,6 @@ import numpy as np
 import pickle 
 import time
 
-WANDB_KEY = cfg.keys.WANDB_KEY
-HF_access_token=cfg.keys.HF_access_token
-
 
 def check_cfg_and_load_defaults(cfg: DictConfig) -> DictConfig:
 
@@ -135,6 +132,7 @@ def load_model_and_tokenizer(cfg: DictConfig):
         config=config,
         from_flax=True
     )
+
     model.resize_token_embeddings(len(tokenizer))
     
     return tokenizer, model
@@ -262,6 +260,10 @@ def load_preloaded_data():
 def main(cfg: DictConfig):
 
     cfg = check_cfg_and_load_defaults(cfg)
+
+    WANDB_KEY = cfg.keys.WANDB_KEY
+    HF_access_token=cfg.keys.HF_access_token
+
     os.makedirs(cfg.output_dir, exist_ok=True)
 
     logger = get_logger(__name__)
