@@ -304,8 +304,7 @@ def main(cfg: DictConfig):
 
         if "train" not in tokenized_datasets.column_names:
             tokenized_datasets = tokenized_datasets.train_test_split(
-                test_size=cfg.training.val_split_percent / 100,
-                random_state=cfg.training.seed
+                test_size=cfg.training.val_split_percent / 100
             )
 
             # Removed below as we are not using a test dataset, only a validation set
